@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book List</title>
+    <style>
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .book-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-property {
+            margin-bottom: 5px;
+        }
+
+        .book-image {
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Book List</h1>
+
+    <div class="book-container">
+        <% books.forEach(function(book) { %>
+        <a href="/infoLivros?id=<%= book.id_book %>" style="text-decoration: none;">
+            <div class="book-box">
+                <% if (book.foto && book.foto.length > 0) { %>
+                <img class="book-image" src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>"
+                    alt="Book Image">
+                <% } else { %>
+                <p>No Image Available</p>
+                <% } %>
+                <div class="book-property"><strong>Code:</strong> <%= book.code %></div>
+                <div class="book-property"><strong>Title:</strong> <%= book.title %></div>
+                <div class="book-property"><strong>Author:</strong> <%= book.author %></div>
+                <div class="book-property"><strong>Edition:</strong> <%= book.edition %></div>
+                <div class="book-property"><strong>Editors:</strong> <%= book.editors %></div>
+                <div class="book-property"><strong>Years:</strong> <%= book.years %></div>
+                <div class="book-property"><strong>Available:</strong> <%= book.available ? 'Yes' : 'No' %></div>
+            </div>
+        </a>
+        <% }); %>
+    </div>
+</body>
+
+</html>
