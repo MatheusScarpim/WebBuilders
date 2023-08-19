@@ -52,6 +52,9 @@
                 <div class="book-property"><strong>Editors:</strong> <%= book.editors %></div>
                 <div class="book-property"><strong>Years:</strong> <%= book.years %></div>
                 <div class="book-property"><strong>Available:</strong> <%= book.available ? 'Yes' : 'No' %></div>
+                <a href="/alterarLivro?id=<%= book.id_book %>">
+                    <button>alterar</button>
+                </a>
             </div>
         </a>
         <% }); %>

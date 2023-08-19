@@ -7,7 +7,7 @@ const con = require('../../Banco/MySQL/conexaoMysql');
 router.use(bodyParser.urlencoded({
     extended: true
 }));
-
+//Usuário
 router.get('/alterarUsuario', (req, res) => {
     con.query('SELECT * FROM customer where email =?', req.session.login, (err, users) => {
         if (err) {
@@ -34,4 +34,31 @@ router.post('/alterarUsuario', (req, res) => {
     });
 });
 
+//Livros
+router.get('/alterarLivro', (req, res) => {
+    const id = req.query.id;
+    con.query('SELECT * FROM book where id_book =?', id, (err, books) => {
+        if (err) {
+            console.error('Error fetching books:', err);
+            res.status(500).send('Error fetching books');
+            return;
+        }
+        let book = books[0]
+        res.render(path.join(__dirname + "/AlteraDadosLivros", 'index.ejs'), {
+            book
+        });
+    });
+});
+router.post('/alterarLivro', (req, res) => {
+    const id = req.query.id;
+    let reqBody = req.body;
+    con.query('Update book set ? where id_book = ?', [reqBody, id], (err, books) => {
+        if (err) {
+            console.error('Error fetching books:', err);
+            res.status(500).send('Error fetching books');   
+            return;
+        } 
+        res.redirect("/")
+    });
+});
 module.exports = router;
