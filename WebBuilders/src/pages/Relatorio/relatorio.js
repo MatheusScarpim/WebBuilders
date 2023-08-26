@@ -45,14 +45,14 @@ function generateReport(reportData, response) {
 }
 
 function fetchReportData(callback) {
-  connection.query('SELECT * FROM testeRelatorio', (error, results) => {
+  connection.query('SELECT * FROM book', (error, results) => {
     if (error) {
       console.error('Erro ao buscar os dados:', error);
       return;
     }
 
     const reportData = results.map((row) => ({
-      content: `Nome: ${row.nome}, Cidade: ${row.cidade}`,
+      content: `Titulo: ${row.title}, Edição: ${row.edition}`,
     }));
 
     callback(reportData);

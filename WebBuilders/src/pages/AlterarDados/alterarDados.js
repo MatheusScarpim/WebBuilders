@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({
 }));
 //Usuário
 router.get('/alterarUsuario', (req, res) => {
-    con.query('SELECT * FROM customer where email =?', req.session.login, (err, users) => {
+    con.query('SELECT * FROM customers where email =?', req.session.login, (err, users) => {
         if (err) {
             console.error('Error fetching users:', err);
             res.status(500).send('Error fetching users');
@@ -24,7 +24,7 @@ router.get('/alterarUsuario', (req, res) => {
 });
 router.post('/alterarUsuario', (req, res) => {
     const reqBody = req.body;
-    con.query('Update customer set ? where email =?', [reqBody, req.session.login], (err, users) => {
+    con.query('Update customers set ? where email =?', [reqBody, req.session.login], (err, users) => {
         if (err) {
             console.error('Error fetching users:', err);
             res.status(500).send('Error fetching users');

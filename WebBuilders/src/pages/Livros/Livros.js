@@ -80,7 +80,6 @@ router.get('/livros', (req, res) => {
       res.status(500).send('Error fetching books');
       return;
     }
-    console.log(books)
     res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
       books
     });

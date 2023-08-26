@@ -41,12 +41,27 @@ function isAuthenticated(req, res, next) {
   }
 }
 
+function routesAdm(req, res, next) {
+  const privatesRoutesAdm = ['/cadbook', '/alterarLivro'];
+  const privaterRoutesMaster = ["/AdicionarAdm"];
+  if (privatesRoutesAdm.includes(req.path) && (req.session.adm == "A" || req.session.adm == "M")) {
+    next();
+  }
+  else if(privaterRoutesMaster.includes(req.path) && req.session.adm == "M")
+  {
+    next()
+  } else {
+    res.redirect('/');
+  }
+}
+
 app.use("/", isAuthenticated);
 app.use("/", principal);
 app.use("/", login);
 app.use("/", relatorio);
 app.use("/", Livros);
 app.use("/", AlterarDados);
+app.use("/", routesAdm);
 
 app.get('/status', (req, res) => {
   res.json({
