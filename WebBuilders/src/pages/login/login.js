@@ -16,25 +16,23 @@ router.get('/entrar', (req, res) => {
 router.get('/cadastrar', (req, res) => {
   res.render(path.join(__dirname + "/seCadastrar", 'index4.ejs'));
 });
-
+// /AdicionarAdm
 router.get('/AdicionarAdm', (req, res) => {
   res.render(path.join(__dirname + "/cadastrarADM", 'index.ejs'));
 });
 
 router.post('/AdicionarAdm', (req, res) => {
   let reqBody = req.body;
-  con.query(`INSERT INTO adm values(?,'A')`, reqBody.email, (err, results, fields) => {
+  con.query("INSERT INTO adm VALUES (?,'A')", reqBody.email, (err, results, fields) => {
     if (err) {
       console.error('Error inserting adm:', err);
-      res.status(500).send('Error inserting adm'); 
+      res.status(500).send('Error inserting adm');
       return;
     }
 
-    res.redirect("/");
-  });
-});
-
-
+    res.redirect('/');
+  })
+})
 
 router.post('/cadastrar', (req, res) => {
   let reqBody = req.body;
