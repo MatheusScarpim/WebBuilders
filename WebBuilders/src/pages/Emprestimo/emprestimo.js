@@ -14,14 +14,14 @@ router.get('/emprestimo', (req, res) => {
 });
 
 router.get('/dataset', (req, res) => {
-    con.query("SELECT names FROM customers", (err, results, fields) => {
+    con.query("SELECT email FROM customers", (err, results, fields) => {
         if (err) {
             console.error('Error querying customer names:', err);
             res.status(500).json({ error: 'Error querying customer names' });
             return;
         }
 
-        const customerNames = results.map(result => result.names);
+        const customerNames = results.map(result => result.email);
 
         res.json(customerNames);
     });

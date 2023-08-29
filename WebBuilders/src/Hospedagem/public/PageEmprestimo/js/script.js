@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     function fetchDataSet() {
         $.ajax({
-            url: "http://localhost:21062/dataset",
+            url: "http://localhost:3000/dataset",
             method: "GET",
             success: function(data) {
                 dataSet = data;
