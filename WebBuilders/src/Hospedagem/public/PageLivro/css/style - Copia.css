@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     border: 0;
-    
+
     font-family: 'Poppins';
 }
 
@@ -10,7 +10,7 @@ main {
     width: 100vw;
     height: 100vh;
     background-color: aquamarine;
-    
+
     /* -webkit-box-shadow:inset 0px 0px 0px 5px #f00;
     -moz-box-shadow:inset 0px 0px 0px 5px #f00;
     box-shadow:inset 0px 0px 0px 5px #f00; */
@@ -27,26 +27,30 @@ main {
     align-items: center;
     justify-content: space-between;
 }
+
 .nav-bar-lg {
     margin-top: 7px;
 }
+
 .nav-icon {
     width: 5vw;
-    height: 10vh;   
+    height: 10vh;
     font-size: 1.8vw;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .nav-icon a {
     text-decoration: none;
     color: #8f8f8f;
     margin-top: 10px;
 }
+
 .nav-icon:hover {
     transition: 0.8s;
-    background-color: #c5c5c5; 
+    background-color: #c5c5c5;
 }
 
 /* //////////////////////////////////////////////// */
@@ -55,17 +59,21 @@ main {
     display: flex;
     margin-right: 3vh;
 }
+
 .perfil-user p {
-    color: rgb(3, 30, 70);
+    color: rgb(58, 3, 3);
     margin-right: 3vh;
 }
+
 .perfil-user span {
     color: #fff !important;
     font-weight: 700;
 }
+
 .perfil-user img {
     border: 1px solid rgb(255, 0, 0);
 }
+
 .logo {
     width: 12vw;
     margin: 10px 30px;
@@ -79,10 +87,12 @@ main {
     background-color: darkslategray;
     display: flex;
 }
+
 .tb-space {
     width: 5vw;
     height: 20px;
 }
+
 .tool-bar {
     width: 5vw;
     height: 100%;
@@ -106,18 +116,21 @@ main {
     display: flex;
     align-items: center;
 }
-.nav-bar-desktop-texto { 
+
+.nav-bar-desktop-texto {
     display: flex;
     margin-left: 2%;
 }
-.nav-bar-desktop-texto p { 
+
+.nav-bar-desktop-texto p {
     color: rgb(248, 73, 60);
     font-weight: 500;
     font-size: 13px;
-    
+
     margin-top: 2px;
 }
-.nav-bar-desktop-texto h5 { 
+
+.nav-bar-desktop-texto h5 {
     color: #696969;
     margin-top: 2px;
     font-weight: 100;
@@ -138,7 +151,8 @@ main {
 }
 
 .hamburguer {
-    font-size: 24px; /* Tamanho do ícone */
+    font-size: 24px;
+    /* Tamanho do ícone */
     color: #696969;
 }
 
@@ -147,7 +161,8 @@ main {
     color: #696969;
     font-size: 20px;
     font-weight: 500;
-    position: relative; /* Adicionar posição relativa */
+    position: relative;
+    /* Adicionar posição relativa */
 }
 
 .mobile-menu a::before {
@@ -158,7 +173,8 @@ main {
     width: 0;
     height: 2px;
     background-color: #c0c0c0;
-    transition: width 0.5s ease; /* Adicionar a transição */
+    transition: width 0.5s ease;
+    /* Adicionar a transição */
 }
 
 .mobile-menu a:hover::before {
@@ -190,7 +206,7 @@ main {
     left: -100%;
     width: 80%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(241,241,241,1) 99%, rgba(192,192,192,1) 99%);
+    background: linear-gradient(90deg, rgba(241, 241, 241, 1) 99%, rgba(192, 192, 192, 1) 99%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -205,11 +221,15 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff 0.8; /* Cor de fundo com transparência */
-    backdrop-filter: blur(3px); /* Ajuste o valor para controlar o nível de borrão */
+    background-color: #fff 0.8;
+    /* Cor de fundo com transparência */
+    backdrop-filter: blur(3px);
+    /* Ajuste o valor para controlar o nível de borrão */
     transition: 2s;
-    z-index: 1; /* Coloque o fundo borrado abaixo do menu */
-    display: none; /* Inicialmente oculto */
+    z-index: 1;
+    /* Coloque o fundo borrado abaixo do menu */
+    display: none;
+    /* Inicialmente oculto */
 }
 
 .mobile-menu.active {
@@ -245,6 +265,7 @@ main {
     display: flex;
     justify-content: center;
 }
+
 .atalhos-desktop {
     /* width: 70%; 
     height: 400%; */
@@ -256,55 +277,203 @@ main {
     -moz-box-shadow:inset 0px 0px 0px 5px khaki;
     box-shadow:inset 0px 0px 0px 5px khaki; */
 }
-.ad-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-}
-.card {
+
+/* /////////////////////////////////// */
+
+.nav-bar-ferramentas {
+    background-color: rgb(216, 52, 41);
+    height: 8vh;
+    margin-top: -3vh;
+    margin-bottom: 3.5vh;
+    border-radius: 10px;
+    padding: 4px 17px;
+
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    background-color: #fff;
-    width: 15vw;
-    height: 30vh;
-    border-radius: 9px;
-    box-shadow: 0px 0px 10px -5px #696969;
+    align-items: center;
+    justify-content: space-between;
 }
-.card-icon {
+
+.atalhos-desktop-title h1 {
+    color: rgb(243, 103, 93);
+}
+
+.nbdt-filter {
+    background-color: rgb(248, 73, 60);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
 }
-.card-icon lord-icon {
-    width: 13vw !important;
-    height: 13vh !important;
+
+.nbdt-filter button {
+    cursor: pointer;
 }
-.card-text p {
+
+.btn {
+    background-color: rgb(248, 73, 60);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: rgb(243, 110, 100);
+    transition: 2s;
+    cursor: pointer;
+}
+
+.nav-bar-ferramentas img {
+    margin-top: 3px;
+    width: 25px;
+}
+
+.atalhos-desktop-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+
+/* /////////////////////////////////// */
+
+.ad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2.2vh;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+
+    width: 18vw;
+    height: auto;
+    position: relative;
+    border-radius: 9px;
+    padding: 15px 5px;
+    box-shadow: 0px 0px 10px -5px #696969;
+}
+
+.card-content {
+    background-color: red;
+    width: 100%;
+    height: 100%;
+}
+
+.card-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card-texto {
+    background-color: blue;
+}
+
+.card-texto h1 {
+    background-color: yellow;
     font-weight: 700;
-    font-size: 2vw;
-    color: rgba(13, 110, 253, 1);
+    font-size: 1.5vw;
+    color: #111;
+
+    overflow: hidden;
+    text-align: left;
+    line-height: 1.2;
+    word-spacing: 0.2px;
+    margin: 0;
 }
+
+.card-texto p {
+    background-color: aqua;
+    font-weight: 200;
+    font-size: 1vw;
+    color: #111;
+
+    flex-grow: 1;
+    /* Ocupar o espaço restante vertical */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Alinhar o texto verticalmente */
+    max-height: 60px;
+    /* Definir uma altura máxima para o .card-texto */
+    overflow: hidden;
+}
+
+.card-info {
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.card-info button {
+    background-color: goldenrod;
+}
+
+.card-button {
+    background-color: rgb(67, 142, 255);
+    color: #fff;
+    padding: 0.5vh 1vw;
+    border-radius: 5px;
+}
+
+.card-button:hover {
+    background-color: rgb(36, 124, 255);
+    transition: 2s;
+    cursor: pointer;
+}
+
+.card-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: rgb(139, 204, 136);
+    cursor: default;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-btn-i {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: rgb(241, 123, 103);
+    cursor: default;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-btn p {
+    color: #fff;
+    font-size: 15px;
+}
+
+.card-btn-i p {
+    color: #fff;
+    font-size: 15px;
+}
+
 
 /* //////////////////////////////////////////////// */
-
-.wide-rectangle {
-    background-color: rgb(172, 81, 81);
-    box-shadow: 0px 0px 10px -5px #696969;
-    border-radius: 9px;
-    margin-top: 20px;
-    /* width: 48vw;  */
-    width: 100%;
-    height: 30vh;
-}
 
 .rodape-desktop-texto {
     display: flex;
     margin: 10px 30px;
     margin-top: 15px;
 }
+
 .rodape-desktop {
     width: 100%;
     height: 7vh;
@@ -313,18 +482,16 @@ main {
     display: flex;
     align-items: center;
 }
+
 .rodape-desktop p {
     color: rgb(248, 73, 60);
     margin-right: 5px;
     font-weight: 500;
     font-size: 15px;
 }
+
 .rodape-desktop h5 {
     color: #696969;
     margin-top: 3px;
     font-weight: 100;
 }
-
-
-
-

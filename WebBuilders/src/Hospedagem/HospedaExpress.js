@@ -10,6 +10,7 @@ const login = require('../pages/login/login');
 const relatorio = require('../pages/Relatorio/relatorio');
 const Livros = require('../pages/Livros/Livros.js');
 const AlterarDados = require('../pages/AlterarDados/alterarDados');
+const emprestimo = require('../pages/Emprestimo/emprestimo')
 
 const path = require('path');
 
@@ -41,12 +42,25 @@ function isAuthenticated(req, res, next) {
   }
 }
 
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Erro ao encerrar a sessão:', err);
+      res.status(500).send('Erro ao encerrar a sessão');
+    } else {
+      res.redirect('/'); 
+    }
+  });
+});
+
+
 app.use("/", isAuthenticated);
 app.use("/", principal);
 app.use("/", login);
 app.use("/", relatorio);
 app.use("/", Livros);
 app.use("/", AlterarDados);
+app.use("/", emprestimo);
 
 app.get('/status', (req, res) => {
   res.json({
@@ -66,3 +80,4 @@ module.exports.principal = principal;
 module.exports.login = login;
 module.exports.relatorio = relatorio;
 module.exports.AlterarDados = AlterarDados;
+module.exports.emprestimo = emprestimo;

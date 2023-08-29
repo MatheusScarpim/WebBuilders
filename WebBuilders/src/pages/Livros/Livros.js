@@ -6,6 +6,9 @@ const con = require('../../Banco/MySQL/conexaoMysql');
 const path = require('path');
 const fs = require('fs');
 
+const cargo = require("../Cargo/cargo");
+const checkCargo = require('../Cargo/cargo');
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, __dirname + '/uploads'); // Specify the path where files will be stored
@@ -21,7 +24,8 @@ const storage = multer.diskStorage({
 router.use(bodyParser.urlencoded({
   extended: true
 }));
-router.get('/cadbook', (req, res) => {
+router.get('/cadbook', checkCargo("A"), (req, res) => {
+  console.log(req.session.adm)
   res.render(path.join(__dirname + "/CadastroLivros", 'index.ejs'));
 });
 
@@ -52,7 +56,7 @@ async function DadosLivro(res, id) {
 const upload = multer({
   storage: storage
 });
-router.post('/cadbook', upload.single('image'), (req, res) => {
+router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
   const reqBody = req.body;
   const imagePath = req.file.path;
   const imageBuffer = fs.readFileSync(imagePath);
@@ -68,7 +72,7 @@ router.post('/cadbook', upload.single('image'), (req, res) => {
 
     console.log('Id inserted: ' + results.insertId);
 
-    res.status(200).send('Book inserted successfully');
+    res.status(200).redirect('/livros');
   });
 });
 
@@ -80,7 +84,6 @@ router.get('/livros', (req, res) => {
       res.status(500).send('Error fetching books');
       return;
     }
-    console.log(books)
     res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
       books
     });

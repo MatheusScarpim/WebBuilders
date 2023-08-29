@@ -10,7 +10,10 @@ router.use(bodyParser.urlencoded({
 
 
 router.get('/', (req, res) => {
-    res.render(path.join(__dirname, 'index.ejs'));
+    res.render(path.join(__dirname, 'index.ejs'), { names: req.session.names });
+});
+router.get('/escolher', (req, res) => {
+    res.render(path.join(__dirname + "/Escolher", 'index.ejs'), { names: req.session.names });
 });
 
 
