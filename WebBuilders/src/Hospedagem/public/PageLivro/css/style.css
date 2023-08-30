@@ -413,18 +413,42 @@ main {
     padding: 10px;
 }
 
+/* .card-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    margin: 8px auto;
+} */
+/* .card-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+} */
 .card-img {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 95%;
     margin: 8px auto;
+    max-width: 200px;
+    max-height: 300px;
+    overflow: hidden;
+    position: relative; /* Adicione essa linha */
 }
+
 .card-img img {
-    width: 100%;
+    position: absolute; /* Adicione essa linha */
+    width: auto;
     height: auto;
-    border-radius: 8px;
+    max-width: none; /* Adicione essa linha */
+    max-height: none; /* Adicione essa linha */
+    top: 50%; /* Adicione essa linha */
+    left: 50%; /* Adicione essa linha */
+    transform: translate(-50%, -50%); /* Adicione essa linha */
 }
+
+
 
 .card-texto {
     padding: 10px 0;
@@ -458,8 +482,20 @@ main {
 
     font-size: 1.5vw;
 }
-.card-button-dispon {
+.card-button-not-dispon {
     background-color: red;
+    padding: 6px 13px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.card-button-not-dispon span {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.card-button-dispon {
+    background-color: green;
     padding: 6px 13px;
     border-radius: 50px;
     cursor: pointer;

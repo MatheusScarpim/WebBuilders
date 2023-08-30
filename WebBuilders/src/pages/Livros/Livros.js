@@ -84,7 +84,7 @@ router.get('/livros', (req, res) => {
       res.status(500).send('Error fetching books');
       return;
     }
-    res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
+    res.render(path.join(__dirname + "/ListaLivros", 'index 2.0.ejs'), {
       books
     });
   });

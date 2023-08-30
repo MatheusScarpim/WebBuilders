@@ -92,6 +92,17 @@
         color: #fff;
         font-size: 10px;
     }
+
+    .card-button-not-dispon {
+        margin-top: 3vh !important;
+        padding: 0.01px 6px;
+        border-radius: 50px;
+    }
+    .card-button-not-dispon span {
+        display: inline;
+        color: #fff;
+        font-size: 10px;
+    }
     .card-texto h1 {
         font-size: 1vh;
     }
