@@ -98,32 +98,33 @@
 
                         <div class="desktop-container">
                           <table style="width: -webkit-fill-available">
+                         
                             <thead>
                               <tr>
-                                <th>Livro</th>
-                                <th>Edição</th>
-                                <th>Titulo</th>
-                                <th>Data</th>
-                                <th>Codigo</th>
-                                <th>Situação</th>
-                                <th>Controle</th>
+                                <th>Livro:  </th>
+                                <th>Titulo : </th>
+                                <th>Edição: </th>
+                                <th>Codigo: </th>
+                                <th>Situação: </th>
+                                <th>Controle: </th>
                               </tr>
                             </thead>
+                            
                           
                             <tbody>
+                              <% books.forEach(function(book) { %>
                               <tr>
                                 <td><img src="https://placehold.co/60" alt="placehold"></td>
-                                <td>ninja</td>
-                                <td>Livro</td>
-                                <td>10/10/1010</td>
-                                <td>120</td>
-                                <td>Reservado</td>
+                                <td> <%= book.title %></td>
+                                <td> <%= book.edition %> </td>
+                                <td> <%= book.code %></td>
+                                <td> <%= book.status %></td> 
                                 <td>
                                   <button class="button_one">view</button>
-                                  <button class="button_two">delete</button>
                                 </td>
                               </tr>
-                          
+                              <% }); %>
+                              <!--
                               <tr>
                                 <td><img src="https://placehold.co/60" alt="placehold"></td>
                                 <td rowspan="2">shades</td>
@@ -148,7 +149,7 @@
                                   <button class="button_two">delete</button>
                                 </td>
                               </tr>
-                            </tbody>
+                            
                           
                             <tr>
                               <td><img src="https://placehold.co/60" alt="placehold"></td>
@@ -210,7 +211,8 @@
                                 <button class="button_one">view</button>
                                 <button class="button_two">delete</button>
                               </td>
-                            </tr>
+                            </tr>-->
+                          </tbody>
                           </table>
                             </form>
                         </div>
@@ -226,6 +228,7 @@
             </div>
         </div>
         <script src="/PageEmprestimo/js/script.js"></script>
+        <script src="../Historico/historico.js"></script>
     </div> <!-- container -->
 </main>
   </body>

@@ -64,6 +64,8 @@ router.post('/entrar', (req, res) => {
       req.session.login = reqBody.email;
       req.session.names = results[0].names;
       req.session.adm = dadosADM;
+      req.session.id_customer = results[0].id_customer;
+      
       res.status(200).redirect('/');
     } else {
       res.status(401).redirect('/entrar');
