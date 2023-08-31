@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/PageEmprestimo/css/responsive.css" type="text/css">
     <link rel="stylesheet" href="/PageEmprestimo/css/colors.css" type="text/css">
 
+    <link rel="stylesheet" href="/PageLivro/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/PageLivro/css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="/PageLivro/css/colors.css" type="text/css">
+
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
@@ -113,6 +117,13 @@
                           
                             <tbody>
                               <% books.forEach(function(book) { %>
+                                <div class="overlay"></div>
+                                <div class="zoom-frame">
+                                  <% historic.forEach(function(hist) { %>
+                                    <p> <%= hist.date %></p>
+                                    <p> <%= hist.status %></p>
+                                  <% }); %>
+                                </div>
                               <tr>
                                 <td><img src="https://placehold.co/60" alt="placehold"></td>
                                 <td> <%= book.title %></td>
@@ -120,9 +131,10 @@
                                 <td> <%= book.code %></td>
                                 <td> <%= book.status %></td> 
                                 <td>
-                                  <button class="button_one">view</button>
+                                  <button class="button_one zoomable">view</button>
                                 </td>
                               </tr>
+                            </div>
                               <% }); %>
                               <!--
                               <tr>
@@ -228,7 +240,8 @@
             </div>
         </div>
         <script src="/PageEmprestimo/js/script.js"></script>
-        <script src="../Historico/historico.js"></script>
+        <script src="../Historico/historico.js"></script><script src="/PageLivro/script.js"></script>
+        <script src=" /PageLivro/script.js"></script>
     </div> <!-- container -->
 </main>
   </body>
