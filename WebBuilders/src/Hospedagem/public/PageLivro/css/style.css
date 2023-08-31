@@ -431,28 +431,28 @@ main {
     justify-content: center;
     width: 95%;
     margin: 8px auto;
-    max-width: 200px;
+    max-width: 225px;
     max-height: 300px;
     overflow: hidden;
-    position: relative; /* Adicione essa linha */
+    position: relative; 
+    border-radius: 10px;
 }
 
 .card-img img {
-    position: absolute; /* Adicione essa linha */
-    width: auto;
+    /* position: absolute; */
+    /* width: auto; */
     height: auto;
-    max-width: none; /* Adicione essa linha */
-    max-height: none; /* Adicione essa linha */
-    top: 50%; /* Adicione essa linha */
-    left: 50%; /* Adicione essa linha */
-    transform: translate(-50%, -50%); /* Adicione essa linha */
+    max-width: none; 
+    max-height: none; 
+    /* top: 50%;  */
+    /* left: 50%;  */
+    /* transform: translate(-50%, -50%);  */
 }
-
-
 
 .card-texto {
     padding: 10px 0;
-    height: 10aaa0px;
+    width: 15vw;
+    height: 7vw;
 }
 
 .card-texto h1 {
