@@ -30,13 +30,13 @@
     <div class="container-my">
         <nav class="nav-bar">
            <div class="nav-bar-lg">
-                <a href="#">
+                <a href="/">
                     <img class="logo" src="/PageHome/img/logo-marca.png" alt="logo-marca">
                 </a>
            </div>
            <div class="nav-bar-perfil">
                 <div class="perfil-user">
-                    <p>Olá,&nbsp;<span>User</span></p>
+                  <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
                     <img src="#" alt="">
                 </div>
            </div>
@@ -46,12 +46,12 @@
             <div class="tool-bar">
                 <div class="tb-space"></div>
                 <div class="nav-icon">
-                    <a href="#">
+                    <a href="/">
                         <i class="fi fi-sr-home"></i>
                     </a>
                 </div>
                 <div class="nav-icon">
-                    <a href="#">
+                    <a href="/Livros">
                         <i class="fi fi-rr-book-alt"></i>
                     </a>
                 </div>
@@ -66,7 +66,7 @@
                     </a>
                 </div>
                 <div class="nav-icon">
-                    <a href="#">
+                    <a href="/alterarUsuario">
                         <i class="fi fi-rr-settings"></i>
                     </a>
                 </div>
@@ -87,10 +87,10 @@
                 </div>
                 <div class="mobile-menu">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Livros</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/Livros">Livros</a></li>
                         <li><a href="#">Ajuda</a></li>
-                        <li><a href="#">Configuração</a></li>
+                        <li><a href="/alterarUsuario">Configuração</a></li>
                     </ul>
                 </div>
                 <div class="content-desktop">

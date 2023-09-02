@@ -23,7 +23,7 @@ router.get('/historico', (req, res) => {
           return;
         }
         res.render(path.join(__dirname, 'index.ejs'), {
-            books,historic
+            books,historic,names: req.session.names
           });
         });
     });

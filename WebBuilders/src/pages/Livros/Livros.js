@@ -26,7 +26,7 @@ router.use(bodyParser.urlencoded({
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
   console.log(req.session.adm)
-  res.render(path.join(__dirname + "/CadastroLivros", 'index.ejs'));
+  res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), { names: req.session.names});
 });
 
 router.get('/infoLivros', (req, res) => {
@@ -84,8 +84,8 @@ router.get('/livros', (req, res) => {
       res.status(500).send('Error fetching books');
       return;
     }
-    res.render(path.join(__dirname + "/ListaLivros", 'index 2.0.ejs'), {
-      books
+    res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
+      books, names: req.session.names
     });
   });
 });
