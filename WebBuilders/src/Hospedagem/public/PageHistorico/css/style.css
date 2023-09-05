@@ -53,3 +53,12 @@ h2 {
   .bottom {
     border-bottom: 2px solid #009688;
   }
+
+  .Historico-Expandido {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+  

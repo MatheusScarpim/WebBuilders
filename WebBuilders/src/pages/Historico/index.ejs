@@ -119,11 +119,27 @@
                               <% books.forEach(function(book) { %>
                                 <div class="overlay"></div>
                                 <div class="zoom-frame">
-                                  <% historic.forEach(function(hist) { %>
-                                    <p> <%= hist.date %></p>
-                                    <p> <%= hist.status %></p>
-                                  <% }); %>
-                                </div>
+                                    <div class="Historico-Expandido">
+                                      <% historic.forEach(function(hist) { %>
+                                        <div class="history-entry">
+                                          <p>Data: <%= new Intl.DateTimeFormat('pt-BR').format(hist.date) %> - Status: 
+                                            <%= 
+                                            hist.status_book === "R" ? "Reservado" :
+                                            hist.status_book === "D" ? "Disponível" :
+                                            hist.status_book === "E" ? "Em Empréstimo" :
+                                            hist.status_book === "C" ? "Cancelado" :
+                                            hist.status_book === "P" ? "Pendente" :
+                                            hist.status_book === "F" ? "Finalizado/Concluído" :
+                                                                        "Outro status" 
+                                            %>
+                                          </p>
+                                        </div>
+                                      <% }); %>
+                                    </div>
+                                  </div>
+                                  
+                              </div>                             
+                      </div>
                               <tr>
                                 <td><img src="https://placehold.co/60" alt="placehold"></td>
                                 <td> <%= book.title %></td>
@@ -136,94 +152,6 @@
                               </tr>
                             </div>
                               <% }); %>
-                              <!--
-                              <tr>
-                                <td><img src="https://placehold.co/60" alt="placehold"></td>
-                                <td rowspan="2">shades</td>
-                                <td>Livro</td>
-                                <td>10/10/1010</td>
-                                <td>180</td>
-                                <td>Retirado</td>
-                                <td>
-                                  <button class="button_one">view</button>
-                                  <button class="button_two">delete</button>
-                                </td>
-                              </tr>
-                          
-                              <tr>
-                                <td><img src="https://placehold.co/60" alt="placehold"></td>
-                                <td>Livro</td>
-                                <td>10/10/1010</td>
-                                <td>160</td>
-                                <td>Reservado</td>
-                                <td>
-                                  <button class="button_one">view</button>
-                                  <button class="button_two">delete</button>
-                                </td>
-                              </tr>
-                            
-                          
-                            <tr>
-                              <td><img src="https://placehold.co/60" alt="placehold"></td>
-                              <td rowspan="2">valhala</td>
-                              <td>Livro</td>
-                              <td>10/10/1010</td>
-                              <td>190</td>
-                              <td>Cancelado</td>
-                              <td>
-                                <button class="button_one">view</button>
-                                <button class="button_two">delete</button>
-                              </td>
-                            </tr>
-                          
-                            <tr>
-                              <td><img src="https://placehold.co/60" alt="placehold"></td>
-                              <td>Livro</td>
-                              <td>10/10/1010</td>
-                              <td>110</td>
-                              <td>Reservado</td>
-                              <td>
-                                <button class="button_one">view</button>
-                                <button class="button_two">delete</button>
-                              </td>
-                            </tr>
-                          
-                            <tr class="bottom">
-                              <td><img src="https://placehold.co/60" alt="placehold"></td>
-                              <td>unino</td>
-                              <td>Livro</td>
-                              <td>10/10/1010</td>
-                              <td>130</td>
-                              <td>Cancelado</td>
-                              <td>
-                                <button class="button_one">view</button>
-                                <button class="button_two">delete</button>
-                              </td>
-                            </tr>
-                            <tr class="bottom">
-                              <td><img src="https://placehold.co/60" alt="placehold"></td>
-                              <td>Livro</td>
-                              <td>Livro</td>
-                              <td>10/10/1010</td>
-                              <td>920</td>
-                              <td>Reservado</td>
-                              <td>
-                                <button class="button_one">view</button>
-                                <button class="button_two">delete</button>
-                              </td>
-                            </tr>
-                            <tr class="bottom">
-                              <td><img src="https://placehold.co/60" alt="placehold"></td>
-                              <td>alvaro de campos</td>
-                              <td>Livro</td>
-                              <td>10/10/1010</td>
-                              <td>500</td>
-                              <td>Reservado</td>
-                              <td>
-                                <button class="button_one">view</button>
-                                <button class="button_two">delete</button>
-                              </td>
-                            </tr>-->
                           </tbody>
                           </table>
                             </form>
