@@ -36,17 +36,33 @@ router.post('/AdicionarAdm', (req, res) => {
 
 router.post('/cadastrar', (req, res) => {
   let reqBody = req.body;
-  con.query('INSERT INTO customers SET ?', reqBody, (err, results, fields) => {
+  const email = reqBody.email;
+
+  con.query('SELECT * FROM customers WHERE email = ?', [email], (err, results, fields) => {
     if (err) {
-      console.error('Error inserting user:', err);
-      res.status(500).send('Error inserting user'); 
+      console.error('Error checking email:', err);
+      res.status(500).send('Error checking email');
       return;
     }
 
-    console.log('Id inserted: ' + results.insertId);
-    res.render(path.join(__dirname + "/Login", 'index.ejs'));
+    if (results.length > 0) {
+      res.status(400).send('Email already exists');
+      return;
+    }
+
+    con.query('INSERT INTO customers SET ?', reqBody, (err, results, fields) => {
+      if (err) {
+        console.error('Error inserting user:', err);
+        res.status(500).send('Error inserting user'); 
+        return;
+      }
+
+      console.log('Id inserted: ' + results.insertId);
+      res.redirect("/entrar")
+    });
   });
 });
+
 
 router.post('/entrar', (req, res) => {
   let reqBody = req.body;
