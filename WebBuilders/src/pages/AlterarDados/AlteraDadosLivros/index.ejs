@@ -9,7 +9,7 @@
 
 <body>
     <div class="content">
-        <form action="/alterarLivro?id=<%= book.id_book %>" method="post">
+        <form action="/alterarLivro?id=<%= book.id_book %>" method="post" enctype="multipart/form-data">
             <input type="text" name="id_book" placeholder="id_book" value="<%= book.id_book %>" id="" disabled>
             <input type="text" name="code" placeholder="Codigo" value="<%= book.code %>" id="">
             <input type="text" name="title" placeholder="Titulo" value="<%= book.title%>" id="">
@@ -18,6 +18,8 @@
             <input type="text" name="editors" placeholder="Editores" value="<%= book.editors %>" id="">
             <input type="text" name="years" placeholder="Ano" value="<%= book.years %>" id="">
             <input type="text" name="place" placeholder="Local" value="<%= book.place %>" id="">
+            <input type="file" id="image" name="image" placeholder="Capa do livro"  value="<%= book.image %>" >
+
             <input type="submit" value="update">
         </form>
     </div>
