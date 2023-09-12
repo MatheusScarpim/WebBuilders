@@ -70,25 +70,24 @@ router.get('/alterarLivro', checkCargo("A"),  (req, res) => {
             return;
         }
         let book = books[0]
-        res.render(path.join(__dirname + "/AlteraDadosLivros", 'index.ejs'), {
-            book
+        res.render(path.join(__dirname + "/AlteraDadosLivros", 'index2.0.ejs'), 
+        { book, names: req.session.names});
         });
     });
-});
 
 //Atualizar
 router.post('/alterarLivro', checkCargo("A"), upload.single('image'),(req, res) => {
     const id = req.query.id;
-    let reqBody = req.body;
+    let reqBody = req.body
 
     //Temporario
-    //if (!(req.file === undefined)  !(req.file.path === undefined)) {
-        console.log("\n\n\\n\n\n\n\\n\n\n\n\n"+req.file.path);
+    if (req.file && req.file.path) {
+        console.log("Tem arquivo");
+        console.log("\n\n\n\n\n\n\n\n\n" + req.file.path);
         const imagePath = req.file.path;
         const imageBuffer = fs.readFileSync(imagePath);
         reqBody.foto = imageBuffer;
-    //}
-    
+    } 
     con.query('Update book set ? where id_book = ?', [reqBody, id], (err, books) => {
         if (err) {
             console.error('Error inserting books:', err);
