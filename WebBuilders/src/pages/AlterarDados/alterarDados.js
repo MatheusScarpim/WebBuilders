@@ -35,7 +35,8 @@ router.get('/alterarUsuario', (req, res) => {
     con.query('SELECT * FROM customers where email =?', req.session.login, (err, users) => {
         if (err) {
             console.error('Error fetching users:', err);
-            res.status(500).send('Error fetching users');
+            //res.status(500).send('Error fetching users');
+            res.status(404).redirect("/erro")
             return;
         }
         console.log(users)
@@ -51,7 +52,8 @@ router.post('/alterarUsuario', (req, res) => {
     con.query('Update customers set ? where email =?', [reqBody, req.session.login], (err, users) => {
         if (err) {
             console.error('Error fetching users:', err);
-            res.status(500).send('Error fetching users');
+            //res.status(500).send('Error fetching users');
+            res.status(404).redirect("/erro")
             return;
         }
         res.redirect("/")
@@ -59,35 +61,37 @@ router.post('/alterarUsuario', (req, res) => {
 });
 
 //Receber dados Livros
-router.get('/alterarLivro', checkCargo("A"),  (req, res) => {
-    let id = req.query.id;
-    const reqBody = req.body;
+router.get('/alterarLivro', checkCargo("A"), (req, res) => {
+    const id = req.query.id;
 
-    con.query('SELECT * FROM book where id_book =?', id, (err, books) => {
+    con.query('SELECT * FROM book WHERE id_book = ?', id, (err, books) => {
         if (err) {
             console.error('Error fetching books:', err);
             res.status(500).send('Error fetching books');
             return;
         }
-        let book = books[0]
-        res.render(path.join(__dirname + "/AlteraDadosLivros", 'index.ejs'), {
-            book
-        });
+
+        if (books.length === 0) {
+            // Book not found, redirect to an error page
+            res.redirect("/erro");
+        } else {
+            const book = books[0];
+            res.render(path.join(__dirname + "/AlteraDadosLivros", 'index.ejs'), {
+                book
+            });
+        }
     });
 });
+
 
 //Atualizar
 router.post('/alterarLivro', checkCargo("A"), upload.single('image'),(req, res) => {
     const id = req.query.id;
     let reqBody = req.body;
 
-    //Temporario
-    //if (!(req.file === undefined)  !(req.file.path === undefined)) {
-        console.log("\n\n\\n\n\n\n\\n\n\n\n\n"+req.file.path);
         const imagePath = req.file.path;
         const imageBuffer = fs.readFileSync(imagePath);
         reqBody.foto = imageBuffer;
-    //}
     
     con.query('Update book set ? where id_book = ?', [reqBody, id], (err, books) => {
         if (err) {
