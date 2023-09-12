@@ -77,7 +77,7 @@ router.get('/alterarLivro', checkCargo("A"), (req, res) => {
         } else {
             const book = books[0];
             res.render(path.join(__dirname + "/AlteraDadosLivros", 'index2.0.ejs'), {
-                book
+                book, names : req.session.names
             });
         }
     });
