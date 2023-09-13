@@ -31,10 +31,10 @@ router.get('/cadbook', checkCargo("A"), (req, res) => {
 
 router.get('/infoLivros', (req, res) => {
   let idLivro = req.query.id;
-  DadosLivro(res, idLivro)
+  DadosLivro(req,res, idLivro)
 });
 
-async function DadosLivro(res, id) {
+async function DadosLivro(req,res, id) {
   con.query('SELECT * FROM book where id_book = ?', parseInt(id), (err, linhas) => {
     if (err) {
       console.error('Error fetching books:', err);
@@ -44,8 +44,8 @@ async function DadosLivro(res, id) {
     let book = linhas[0]
 
     try {
-      res.render(path.join(__dirname + "/DadosLivro", 'index.ejs'), {
-        book
+      res.render(path.join(__dirname + "/DadosLivro", 'index2.0.ejs'), {
+        book, names: req.session.names
       });
     } catch (error) {
       res.status(404).redirect("/")
