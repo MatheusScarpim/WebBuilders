@@ -10,18 +10,38 @@ router.use(bodyParser.urlencoded({
 
 
 router.get('/emprestimo', (req, res) => {
-    res.render(path.join(__dirname, 'index.ejs'), { names: req.session.names });
+    res.render(path.join(__dirname, 'index.ejs'), {
+        names: req.session.names
+    });
 });
 
-router.get('/dataset', (req, res) => {
+router.get('/emails', (req, res) => {
     con.query("SELECT email FROM customers", (err, results, fields) => {
         if (err) {
             console.error('Error querying customer names:', err);
-            res.status(500).json({ error: 'Error querying customer names' });
+            res.status(500).json({
+                error: 'Error querying customer names'
+            });
             return;
         }
 
         const customerNames = results.map(result => result.email);
+
+        res.json(customerNames);
+    });
+});
+
+router.get('/names', (req, res) => {
+    con.query("SELECT names FROM customers", (err, results, fields) => {
+        if (err) {
+            console.error('Error querying customer names:', err);
+            res.status(500).json({
+                error: 'Error querying customer names'
+            });
+            return;
+        }
+
+        const customerNames = results.map(result => result.names);
 
         res.json(customerNames);
     });
