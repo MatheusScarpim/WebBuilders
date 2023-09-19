@@ -26,15 +26,15 @@ router.use(bodyParser.urlencoded({
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
   console.log(req.session.adm)
-  res.render(path.join(__dirname + "/CadastroLivros", 'index.ejs'));
+  res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), { names: req.session.names});
 });
 
 router.get('/infoLivros', (req, res) => {
   let idLivro = req.query.id;
-  DadosLivro(res, idLivro)
+  DadosLivro(req,res, idLivro)
 });
 
-async function DadosLivro(res, id) {
+async function DadosLivro(req,res, id) {
   con.query('SELECT * FROM book where id_book = ?', parseInt(id), (err, linhas) => {
     if (err) {
       console.error('Error fetching books:', err);
@@ -44,8 +44,8 @@ async function DadosLivro(res, id) {
     let book = linhas[0]
 
     try {
-      res.render(path.join(__dirname + "/DadosLivro", 'index.ejs'), {
-        book
+      res.render(path.join(__dirname + "/DadosLivro", 'index2.0.ejs'), {
+        book, names: req.session.names
       });
     } catch (error) {
       res.status(404).redirect("/")
@@ -85,10 +85,9 @@ router.get('/livros', (req, res) => {
       return;
     }
     res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
-      books
+      books, names: req.session.names
     });
   });
 });
-
 
 module.exports = router;

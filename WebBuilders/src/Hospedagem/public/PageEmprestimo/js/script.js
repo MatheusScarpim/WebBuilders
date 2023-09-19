@@ -1,22 +1,55 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let dataSet = [];
+    let dataSetNames = [];
 
     function fetchDataSet() {
         $.ajax({
-            url: "http://localhost:21062/dataset",
+            url: "http://localhost:3000/emails",
             method: "GET",
-            success: function(data) {
+            success: function (data) {
                 dataSet = data;
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Erro na requisição:", error);
             }
         });
     }
-    
+
+    function fetchDataSetNames() {
+        $.ajax({
+            url: "http://localhost:3000/names",
+            method: "GET",
+            success: function (data) {
+                dataSetNames = data;
+            },
+            error: function (xhr, status, error) {
+                console.log("Erro na requisição:", error);
+            }
+        });
+    }
+
+
+    function displayResultsNames(query) {
+        var results = dataSetNames.filter(item =>
+            item.toLowerCase().includes(query.toLowerCase())
+        );
+
+        var resultsContainer = $('#searchResultsNames');
+        resultsContainer.empty();
+
+        if (results.length > 0) {
+            results.forEach(result => {
+                resultsContainer.append('<p class="searchResultsNames">' + result + '</p>');
+            });
+        } else {
+            resultsContainer.append('<p>Nenhum resultado encontrado</p>');
+        }
+    }
+
+
 
     function displayResults(query) {
-        var results = dataSet.filter(item => 
+        var results = dataSet.filter(item =>
             item.toLowerCase().includes(query.toLowerCase())
         );
 
@@ -32,17 +65,29 @@ $(document).ready(function() {
         }
     }
 
-    $('#searchInput').on('input', function() {
+    $('#searchInput').on('input', function () {
         var query = $(this).val();
         displayResults(query);
     });
 
-    $('#searchResults').on('click', '.searchResult', function() {
+    $('#searchResults').on('click', '.searchResult', function () {
         var selectedResult = $(this).text();
         $('#searchInput').val(selectedResult);
         $('#searchResults').empty();
     });
 
+    $('#searchInputNames').on('input', function () {
+        var query = $(this).val();
+        displayResultsNames(query);
+    });
+
+    $('#searchResultsNames').on('click', '.searchResultsNames', function () {
+        var selectedResult = $(this).text();
+        $('#searchInputNames').val(selectedResult);
+        $('#searchResultsNames').empty();
+    });
+
     // Inicialização
     fetchDataSet();
+    fetchDataSetNames()
 });

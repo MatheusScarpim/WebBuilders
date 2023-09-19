@@ -3,6 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const path = require('path');
 const con = require('../../Banco/MySQL/conexaoMysql');
+const cargo = require("../Cargo/cargo");
+const checkCargo = require('../Cargo/cargo');
 
 router.use(bodyParser.urlencoded({
   extended: true
@@ -17,11 +19,11 @@ router.get('/cadastrar', (req, res) => {
   res.render(path.join(__dirname + "/seCadastrar", 'index4.ejs'));
 });
 // /AdicionarAdm
-router.get('/AdicionarAdm', (req, res) => {
+router.get('/AdicionarAdm', checkCargo("M"), (req, res) => {
   res.render(path.join(__dirname + "/cadastrarADM", 'index.ejs'));
 });
 
-router.post('/AdicionarAdm', (req, res) => {
+router.post('/AdicionarAdm', checkCargo("M"), (req, res) => {
   let reqBody = req.body;
   con.query("INSERT INTO adm VALUES (?,'A')", reqBody.email, (err, results, fields) => {
     if (err) {
@@ -36,17 +38,33 @@ router.post('/AdicionarAdm', (req, res) => {
 
 router.post('/cadastrar', (req, res) => {
   let reqBody = req.body;
-  con.query('INSERT INTO customers SET ?', reqBody, (err, results, fields) => {
+  const email = reqBody.email;
+
+  con.query('SELECT * FROM customers WHERE email = ?', [email], (err, results, fields) => {
     if (err) {
-      console.error('Error inserting user:', err);
-      res.status(500).send('Error inserting user'); 
+      console.error('Error checking email:', err);
+      res.status(500).send('Error checking email');
       return;
     }
 
-    console.log('Id inserted: ' + results.insertId);
-    res.render(path.join(__dirname + "/Login", 'index.ejs'));
+    if (results.length > 0) {
+      res.status(400).send('Email already exists');
+      return;
+    }
+
+    con.query('INSERT INTO customers SET ?', reqBody, (err, results, fields) => {
+      if (err) {
+        console.error('Error inserting user:', err);
+        res.status(500).send('Error inserting user');
+        return;
+      }
+
+      console.log('Id inserted: ' + results.insertId);
+      res.redirect("/entrar")
+    });
   });
 });
+
 
 router.post('/entrar', (req, res) => {
   let reqBody = req.body;
@@ -59,11 +77,13 @@ router.post('/entrar', (req, res) => {
     }
 
     if (results.length === 1) {
-      let dadosADM = await conferirADM(req,res,reqBody.email)
+      let dadosADM = await conferirADM(req, res, reqBody.email)
       console.log(dadosADM)
       req.session.login = reqBody.email;
       req.session.names = results[0].names;
       req.session.adm = dadosADM;
+      req.session.id_customer = results[0].id_customer;
+
       res.status(200).redirect('/');
     } else {
       res.status(401).redirect('/entrar');
@@ -77,7 +97,7 @@ function conferirADM(req, res, email) {
     con.query(query, email, (err, results) => {
       if (err) {
         console.error('Erro ao consultar o banco de dados:', err);
-        reject(err); 
+        reject(err);
         return;
       }
 

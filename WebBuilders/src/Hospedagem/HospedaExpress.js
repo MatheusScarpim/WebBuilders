@@ -11,6 +11,8 @@ const relatorio = require('../pages/Relatorio/relatorio');
 const Livros = require('../pages/Livros/Livros.js');
 const AlterarDados = require('../pages/AlterarDados/alterarDados');
 const emprestimo = require('../pages/Emprestimo/emprestimo')
+const historico = require('../pages/Historico/historico')
+const erro = require('../pages/Erros/erros')
 
 const path = require('path');
 
@@ -61,6 +63,8 @@ app.use("/", relatorio);
 app.use("/", Livros);
 app.use("/", AlterarDados);
 app.use("/", emprestimo);
+app.use("/", historico);
+app.use("/", erro);
 
 app.get('/status', (req, res) => {
   res.json({
@@ -68,7 +72,12 @@ app.get('/status', (req, res) => {
   });
 });
 
-const port = process.env.PORT || 21062;
+app.use((req, res, next) => {
+  //res.status(404).sendFile(__dirname + '/public/error404.html');
+  res.status(404).redirect("/erro")
+});
+
+const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 server.listen(port, () => {
@@ -81,3 +90,5 @@ module.exports.login = login;
 module.exports.relatorio = relatorio;
 module.exports.AlterarDados = AlterarDados;
 module.exports.emprestimo = emprestimo;
+module.exports.historico = historico;
+module.exports.erro = erro;
