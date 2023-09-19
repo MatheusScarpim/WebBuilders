@@ -19,22 +19,20 @@ const storage = multer.diskStorage({
   }
 });
 
-
-
 router.use(bodyParser.urlencoded({
   extended: true
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
   console.log(req.session.adm)
-  res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), { names: req.session.names});
+  res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), { names: req.session.names });
 });
 
 router.get('/infoLivros', (req, res) => {
   let idLivro = req.query.id;
-  DadosLivro(req,res, idLivro)
+  DadosLivro(req, res, idLivro)
 });
 
-async function DadosLivro(req,res, id) {
+async function DadosLivro(req, res, id) {
   con.query('SELECT * FROM book where id_book = ?', parseInt(id), (err, linhas) => {
     if (err) {
       console.error('Error fetching books:', err);
@@ -90,4 +88,42 @@ router.get('/livros', (req, res) => {
   });
 });
 
-module.exports = router;
+
+router.post('/reservar/:id_book', (req, res) => {
+  const idBook = req.params.id_book;
+  const idCustomer = req.session.login; // Supondo que você tenha uma sessão de usuário com o ID do cliente
+ console.log("idCustomer "+idCustomer+"\nidBook "+ idBook)
+  con.query('UPDATE book SET avaliable = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
+    if (err) {
+      console.error('Error updating book:', err);
+      res.status(500).send('Error updating book');
+      return;
+    }
+
+    // Obtenha a data atual para as inserções nas tabelas actions e historic
+    const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    // Inserir informações na tabela actions
+    con.query('INSERT INTO actions (id_book, id_customer, date_init, status) VALUES (?, ?, ?, ?)', [idBook, idCustomer, currentDate, "R"], (err, results, fields) => {
+      if (err) {
+        console.error('Error inserting into actions:', err);
+        res.status(500).send('Error inserting into actions');
+        return;
+      }
+
+      // Inserir informações na tabela historic
+      con.query('INSERT INTO historic (date, status_book) VALUES (?, ?)', [currentDate, "R"], (err, results, fields) => {
+        if (err) {
+          console.error('Error inserting into historic:', err);
+          res.status(500).send('Error inserting into historic');
+          return;
+        }
+
+        res.status(200).redirect('/livros');
+      });
+    });
+  });
+});
+
+
+    module.exports = router;

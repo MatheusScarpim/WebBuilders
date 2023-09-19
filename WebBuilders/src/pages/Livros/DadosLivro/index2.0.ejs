@@ -96,9 +96,16 @@
                             <div class="atalhos-desktop-title">
                                 <h1>Reservar Livro</h1>
                             </div>
-
+                
+                            <div class="modal" id="pop-up">
+                                <div class="modal-content">
+                                    <p>Você tem certeza que deseja Reservar esse livro?</p>
+                                    <button class="modal-button" id="confirmButton">Sim</button>
+                                    <button class="modal-button" id="cancelButton">Cancelar</button>
+                                </div>
+                            </div>
                             <div class="desktop-container">
-                                <form action="" method="post" enctype="multipart/form-data">
+                                <form action="/reservar/<%= book.id_book %>" id="frmReservar" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1" class="form-label">Capa do Livro</label>
                                         <div class="image-preview" id="imagePreview">
@@ -157,7 +164,7 @@
                     </div>
                 </div>
             </div>
-            <script src="/PageReserva/script.js"></script>
+            <script src="/PageReserva/js/script.js"></script>
         </div> <!-- container -->
     </main>
 </body>
