@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.getElementById("exampleFormControlFile1").addEventListener("change", function() {
+document.getElementById("exampleFormControlFile1").addEventListener("change", function () {
     var preview = document.getElementById("imagePreview");
-    var file    = this.files[0];
-    var reader  = new FileReader();
+    var file = this.files[0];
+    var reader = new FileReader();
 
-    reader.onload = function(event) {
+    reader.onload = function (event) {
         var image = new Image();
         image.src = event.target.result;
         image.style.maxWidth = "100%";
@@ -41,7 +41,7 @@ function previewImage() {
     var file = document.querySelector('#exampleFormControlFile1').files[0];
     var reader = new FileReader();
 
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         image.src = e.target.result;
     };
 
@@ -51,3 +51,22 @@ function previewImage() {
         image.src = '';
     }
 }
+
+const popUpModal = document.getElementById("pop-up");
+const confirmButton = document.getElementById("confirmButton");
+const cancelButton = document.getElementById("cancelButton");
+const frmReservar = document.getElementById("frmReservar");
+
+frmReservar.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    popUpModal.style.display = "block";
+});
+
+confirmButton.addEventListener("click", function () {
+    frmReservar.submit();
+});
+
+cancelButton.addEventListener("click", function () {
+    popUpModal.style.display = "none";
+});
