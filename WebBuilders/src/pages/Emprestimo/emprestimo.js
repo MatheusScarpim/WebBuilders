@@ -84,7 +84,7 @@ router.get('/cancelar', checkCargo("A"), (req, res) => {
         if (err) {
             console.error('Finalizado', err);
             res.status(500).send('Error inserting book');
-            return;\
+            return;
         }
     });
     con.query("insert into historic values(?,DEFAULT,'C')", id, (err, results, fields) => {
