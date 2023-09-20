@@ -16,15 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-window.addEventListener("scroll", function() {
-    var scrollArrow = document.getElementById("scrollArrow");
+// window.addEventListener("scroll", function() {
+//     var scrollArrow = document.getElementById("scrollArrow");
   
-    if (window.scrollY >= 10) {
-      scrollArrow.classList.add("visible");
-    } else {
-      scrollArrow.classList.remove("visible");
-    }
-});
+//     if (window.scrollY >= 10) {
+//       scrollArrow.classList.add("visible");
+//     } else {
+//       scrollArrow.classList.remove("visible");
+//     }
+// });
 
 document.addEventListener("DOMContentLoaded", function() {
     const zoomableImages = document.querySelectorAll(".zoomable");
@@ -43,4 +43,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
 
