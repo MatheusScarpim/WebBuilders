@@ -125,3 +125,21 @@
 @media only screen and (min-width: 601px) {
     
 }
+
+@media only screen and (max-width: 600px) { 
+
+    .card {
+        width: 17vw;
+        padding: 18px 9px;
+    }
+
+    .card-img img {
+        height: 100px;
+    }
+    .zoom-frame img {
+        height: 235px;
+    }
+    #txtBusca{ 
+        width: 46vw;
+    }
+}
