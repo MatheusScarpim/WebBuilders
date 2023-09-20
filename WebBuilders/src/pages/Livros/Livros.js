@@ -46,7 +46,7 @@ async function DadosLivro(req, res, id) {
         book, names: req.session.names
       });
     } catch (error) {
-      res.status(404).redirect("/")
+      res.status(404).redirect("/erro");
     }
   });
 }
@@ -88,42 +88,58 @@ router.get('/livros', (req, res) => {
   });
 });
 
+async function ChecaLivro(req, res, idBook) {
+  return new Promise((resolve, reject) => {
+    console.log('(ChecaLivro) Livro: ' + idBook);
+    con.query('SELECT available FROM book WHERE id_book = ?', [idBook], (err, disponibilidade) => {
+      if (err) {
+        console.error('Error fetching books:', err);
+        res.status(404).redirect("/erro");
+        reject(err);
+        return false;
+      }
+      let LivroDisponivel = disponibilidade[0].available;
+      console.error('Livroooooo'+LivroDisponivel);
+      resolve(LivroDisponivel != 0);
+    });
+  });
+}
 
-router.post('/reservar/:id_book', (req, res) => {
+
+router.post('/reservar/:id_book', async (req, res) => {
   const idBook = req.params.id_book;
-  const idCustomer = req.session.login; // Supondo que você tenha uma sessão de usuário com o ID do cliente
- console.log("idCustomer "+idCustomer+"\nidBook "+ idBook)
-  con.query('UPDATE book SET avaliable = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
-    if (err) {
-      console.error('Error updating book:', err);
-      res.status(500).send('Error updating book');
-      return;
-    }
+  const idCustomer = req.session.id_customer;
 
-    // Obtenha a data atual para as inserções nas tabelas actions e historic
+  let LivroDisponivel = await ChecaLivro(req, res, idBook);
+  console.error('Livroooooo        '+LivroDisponivel);
+  if (LivroDisponivel) {
+    con.query('UPDATE book SET available = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
+      if (err) {
+        console.error('Error updating book:', err);
+        res.status(500).send('Error updating book');
+        return;
+      }
+    });
     const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-    // Inserir informações na tabela actions
     con.query('INSERT INTO actions (id_book, id_customer, date_init, status) VALUES (?, ?, ?, ?)', [idBook, idCustomer, currentDate, "R"], (err, results, fields) => {
       if (err) {
         console.error('Error inserting into actions:', err);
         res.status(500).send('Error inserting into actions');
         return;
       }
-
-      // Inserir informações na tabela historic
-      con.query('INSERT INTO historic (date, status_book) VALUES (?, ?)', [currentDate, "R"], (err, results, fields) => {
-        if (err) {
-          console.error('Error inserting into historic:', err);
-          res.status(500).send('Error inserting into historic');
-          return;
-        }
-
-        res.status(200).redirect('/livros');
-      });
     });
-  });
+    con.query('INSERT INTO historic (date, status_book) VALUES (?, ?)', [currentDate, "R"], (err, results, fields) => {
+      if (err) {
+        console.error('Error inserting into historic:', err);
+        res.status(500).send('Error inserting into historic');
+        return;
+      }
+      console.error('Livro Reservado !');
+    });
+  } else
+    console.error('Livro ja Reservado !');
+    res.status(200).redirect('/livros');
 });
 
-
-    module.exports = router;
+module.exports = router;
