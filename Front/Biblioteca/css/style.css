@@ -343,9 +343,7 @@ main {
     font-size: 10px;
     border-radius: 50px;
     position: absolute;
-    transition: opacity 0.3s ease-in-out;
-    scroll-behavior: smooth;
-    bottom: 40px;
+    bottom: 50px;
     right: 30px;
 
     display: flex;
@@ -353,8 +351,15 @@ main {
     justify-content: center;
 }
 
-.volta-topo.visible {
-    opacity: 1;
+.volta-topo a {
+    background-color: #fff;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* //////////////////////////////////////////////// */
@@ -387,8 +392,6 @@ main {
     font-weight: 100;
 }
 
-
-
 /* ///////////////////////////////////////////// */
 
 /* CARD */
@@ -404,31 +407,41 @@ main {
     border-radius: 8px;
     box-shadow: 0px 0px 10px -5px #696969;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 350px; /* Largura máxima do card */
+    height: auto; /* Altura fixa do card */
 }
 
 .card-content {
-    
+    padding: 20px;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    justify-content: space-between;
 }
 
 .card-img {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 95%;
-    margin: 8px auto;
+    max-width: 100%; /* Define a largura máxima da imagem */
+    max-height: 100%; /* Define a altura máxima da imagem */
+    margin: 0 auto;
 }
+
 .card-img img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: auto; /* Permite que a largura da imagem se ajuste automaticamente */
+    height: 370px; /* Permite que a altura da imagem se ajuste automaticamente */
+    max-width: 100%; /* Define a largura máxima da imagem */
+    max-height: 100%; /* Define a altura máxima da imagem */
+    border-radius: 4px;
 }
 
 .card-texto {
     padding: 10px 0;
-    height: 10aaa0px;
+    height: 10 0px;
 }
 
 .card-texto h1 {
@@ -460,7 +473,7 @@ main {
 }
 .card-button-dispon {
     background-color: red;
-    padding: 6px 13px;
+    padding: 3px 9px;
     border-radius: 50px;
     cursor: pointer;
 }
@@ -537,14 +550,20 @@ main {
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.3s;
     z-index: 2000;
-
+    max-width: 300px; /* Largura máxima do zoom-frame */
+    height: auto; /* Altura fixa do zoom-frame */
     padding: 20px;
     background-color: #fff;
     text-align: center;
     border-radius: 8px;
 }
+
 .zoom-frame img {
-    border-radius: 8px;
+    width: auto; /* Permite que a largura da imagem se ajuste automaticamente */
+    height: 400px; /* Permite que a altura da imagem se ajuste automaticamente */
+    max-width: 100%; /* Define a largura máxima da imagem */
+    max-height: 100%; /* Define a altura máxima da imagem */
+    border-radius: 4px;
 }
 
 .image-title {
@@ -563,3 +582,38 @@ main {
 }
 
 /* ///////////////////////////////////////////// */
+
+#divBusca{
+    /* background-color: rgb(248, 73, 60); */
+    background-color:#e7e7e7;
+    border: solid 1px #e7e7e7;
+    border-radius: 5px;
+    height: 40px;
+    width: 56vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+#txtBusca{
+    background-color: transparent;
+    padding-left: 5px;
+    font-size: 18px;
+    border: none;
+    height: 32px;
+    width: 54vw;
+}
+#btnBusca {
+    cursor: pointer;
+}
+
+#divBusca input[type="text"]:focus {
+    outline: 0px solid #007bff; /* Cor da borda de foco e espessura */
+    outline-offset: 2px; /* Espaçamento entre o elemento e a borda de foco */
+}
+
+.src-tool {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
