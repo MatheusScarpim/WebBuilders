@@ -24,7 +24,9 @@ router.use(bodyParser.urlencoded({
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
   console.log(req.session.adm)
-  res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), { names: req.session.names });
+  res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), {
+    names: req.session.names
+  });
 });
 
 router.get('/infoLivros', (req, res) => {
@@ -43,7 +45,8 @@ async function DadosLivro(req, res, id) {
 
     try {
       res.render(path.join(__dirname + "/DadosLivro", 'index2.0.ejs'), {
-        book, names: req.session.names
+        book,
+        names: req.session.names
       });
     } catch (error) {
       res.status(404).redirect("/erro");
@@ -83,7 +86,8 @@ router.get('/livros', (req, res) => {
       return;
     }
     res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
-      books, names: req.session.names
+      books,
+      names: req.session.names
     });
   });
 });
@@ -99,6 +103,10 @@ async function ChecaLivro(req, res, idBook) {
         return false;
       }
       let LivroDisponivel = disponibilidade[0].available;
+<<<<<<< HEAD
+=======
+      console.error('Livroooooo' + LivroDisponivel);
+>>>>>>> 2ba073d8616a81e9a7544094b3cde20d8353546f
       resolve(LivroDisponivel != 0);
     });
   });
@@ -108,9 +116,12 @@ async function ChecaLivro(req, res, idBook) {
 router.post('/reservar/:id_book', async (req, res) => {
   const idBook = req.params.id_book;
   const idCustomer = req.session.id_customer;
-
+  let idactions;
   let LivroDisponivel = await ChecaLivro(req, res, idBook);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ba073d8616a81e9a7544094b3cde20d8353546f
   if (LivroDisponivel) {
     con.query('UPDATE book SET available = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
       if (err) {
@@ -121,6 +132,7 @@ router.post('/reservar/:id_book', async (req, res) => {
     });
     const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
+<<<<<<< HEAD
     con.query('INSERT INTO actions (id_book, id_customer, date_init, status) VALUES (?, ?, ?, ?)', [idBook, idCustomer, currentDate, "R"], (err, results, fields) => {
       if (err) {
         console.error('Error inserting into actions:', err);
@@ -139,6 +151,48 @@ router.post('/reservar/:id_book', async (req, res) => {
   } else
     console.error('Livro ja Reservado !, Reserva Cancelada');
     res.status(200).redirect('/livros');
+=======
+    // Usar uma Promise para esperar a inserção e obter idactions
+    const insertActions = () => {
+      return new Promise((resolve, reject) => {
+        con.query('INSERT INTO actions (id_book, id_customer, date_init, status) VALUES (?, ?, ?, ?)', [idBook, idCustomer, currentDate, "R"], (err, results, fields) => {
+          if (err) {
+            console.error('Error inserting into actions:', err);
+            reject(err);
+          } else {
+            idactions = parseInt(results.insertId);
+            console.log(idactions)
+            resolve();
+          }
+        });
+      });
+    };
+
+    // Aguardar a inserção das ações antes de continuar
+    try {
+      await insertActions();
+
+      await con.query('INSERT INTO historic (id_action,date, status_book) VALUES (?,?, ?)', [idactions, currentDate, "R"], (err, results, fields) => {
+        if (err) {
+          console.error('Error inserting into historic:', err);
+          res.status(500).send('Error inserting into historic');
+        } else {
+          console.log('Livro Reservado !');
+          // Agora você pode usar idactions aqui
+          console.log('idactions:', idactions);
+          res.status(200).redirect('/livros');
+        }
+      });
+    } catch (err) {
+      console.error('Livro já reservado ou erro na inserção de ações:', err);
+      res.status(500).send('Livro já reservado ou erro na inserção de ações');
+    }
+  } else {
+    console.error('Livro já reservado !');
+    res.status(500).send('Livro já reservado');
+  }
+>>>>>>> 2ba073d8616a81e9a7544094b3cde20d8353546f
 });
+
 
 module.exports = router;

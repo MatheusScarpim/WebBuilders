@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({
 
 
 router.get('/historico', (req, res) => {
-    con.query('select b.title,b.edition,b.code,b.foto,ac.status,ac.id_action from actions ac INNER join historic h on (ac.id_action = h.id_action) inner join book b on (ac.id_book = b.id_book) where ac.id_customer = ? GROUP by id_action',req.session.id_customer, (err, books) => {
+    con.query('select b.title,b.edition,b.code,b.foto,ac.status,ac.id_action from actions ac INNER join historic h on (ac.id_action = h.id_action) inner join book b on (ac.id_book = b.id_book) where ac.id_customer = ? GROUP by id_action',req.session.id_customer, (err, books,results) => {
       if (err) {
         console.error('Error fetching books:', err);
         res.status(500).send('Error fetching books');

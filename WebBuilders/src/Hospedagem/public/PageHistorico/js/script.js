@@ -16,31 +16,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-window.addEventListener("scroll", function() {
-    var scrollArrow = document.getElementById("scrollArrow");
-  
-    if (window.scrollY >= 10) {
-      scrollArrow.classList.add("visible");
-    } else {
-      scrollArrow.classList.remove("visible");
-    }
-});
+// window.addEventListener("scroll", function() {
+//     var scrollArrow = document.getElementById("scrollArrow");
 
-document.addEventListener("DOMContentLoaded", function() {
+//     if (window.scrollY >= 10) {
+//       scrollArrow.classList.add("visible");
+//     } else {
+//       scrollArrow.classList.remove("visible");
+//     }
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
     const zoomableImages = document.querySelectorAll(".zoomable");
     const overlays = document.querySelectorAll(".overlay");
     const zoomFrames = document.querySelectorAll(".zoom-frame");
 
     zoomableImages.forEach((image, index) => {
-        image.addEventListener("click", function() {
+        image.addEventListener("click", function () {
             overlays[index].style.display = "block";
             zoomFrames[index].classList.add("active");
         });
 
-        overlays[index].addEventListener("click", function() {
+        overlays[index].addEventListener("click", function () {
             overlays[index].style.display = "none";
             zoomFrames[index].classList.remove("active");
         });
     });
 });
-
