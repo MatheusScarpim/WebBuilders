@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <link rel="stylesheet" href="css/colors.css" type="text/css">
-    <title>Dados livro</title>
+    <title>Reservar livro</title>
 </head>
 <body>
     <main>
@@ -30,7 +30,7 @@
                </div>
                <div class="nav-bar-perfil">
                     <div class="perfil-user">
-                        <p>Olá,&nbsp;<span>User</span></p>
+                        <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
                         <img src="#" alt="">
                     </div>
                </div>
@@ -45,7 +45,7 @@
                         </a>
                     </div>
                     <div class="nav-icon">
-                        <a href="#">
+                        <a href="/livros">
                             <i class="fi fi-rr-book-alt"></i>
                         </a>
                     </div>
@@ -60,7 +60,7 @@
                         </a>
                     </div>
                     <div class="nav-icon">
-                        <a href="#">
+                        <a href="/alterarUsuario">
                             <i class="fi fi-rr-settings"></i>
                         </a>
                     </div>
@@ -76,25 +76,26 @@
                         <div class="nav-bar-desktop-texto">
                             <p><span>Home</span></p>
                             <h5>/</h5>
-                            <h5><span>Dados do livro</span></h5>
+                            <h5><span>Iniciar Reserva</span></h5>
                         </div>
                     </div>
                     <div class="mobile-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Livros</a></li>
+                            <li><a href="/Home">Home</a></li>
+                            <li><a href="/Livros">Livros</a></li>
                             <li><a href="#">Ajuda</a></li>
-                            <li><a href="#">Configuração</a></li>
+                            <li><a href="/alterarUsuario">Configuração</a></li>
                         </ul>
                     </div>
                     <div class="content-desktop">
                         <div class="atalhos-desktop">
                             
                             <div class="atalhos-desktop-title">
-                                <h1>Dados do livro</h1>
+                                <h1>Reservar Livro</h1>
                             </div>
 
                             <div class="desktop-container">
+                                <form action="/reservar/<%= book.id_book %>" id="frmReservar" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div class="image-preview" id="imagePreview">
                                         <img src="#" alt="Imagem selecionada" id="image">
@@ -102,46 +103,46 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                       <label for="inputEmail4">Código</label>
-                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome">
+                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome" readonly>
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="inputPassword4">Edição</label>
-                                      <input type="email" class="form-control" id="inputPassword4" placeholder="@">
+                                      <input type="email" class="form-control" id="inputPassword4" placeholder="@" readonly>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                       <label for="inputEmail4">Autor</label>
-                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome">
+                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome" readonly>
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="inputPassword4">Editores</label>
-                                      <input type="email" class="form-control" id="inputPassword4" placeholder="@">
+                                      <input type="email" class="form-control" id="inputPassword4" placeholder="@" readonly>
                                     </div>
                                 </div>  
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                       <label for="inputEmail4">Ano</label>
-                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome">
+                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome" readonly> 
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="inputPassword4">Titulo</label>
-                                      <input type="email" class="form-control" id="inputPassword4" placeholder="@">
+                                      <input type="email" class="form-control" id="inputPassword4" placeholder="@" readonly>
                                     </div>
                                 </div>  
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                       <label for="inputEmail4">Gênero</label>
-                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome">
+                                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nome" readonly>
                                     </div>
                                 </div> 
                                 <button type="submit" class="btn btn-primary" id="showModal">Reservar</button>
-
+                            </form>
                                 <!-- Pop-up Modal -->
                                 <div class="overlay" id="overlay"></div>
                                 <div class="modal" id="modal">
@@ -161,6 +162,7 @@
                 </div>
             </div>
             <script src="script.js"></script>
+            <script src="/PageReserva/js/script.js"></script>
         </div> <!-- container -->
     </main>
 </body>

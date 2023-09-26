@@ -3,7 +3,7 @@
     padding: 0;
     border: 0;
     
-    font-family: 'Poppins' !important; 
+    font-family: 'Poppins'; 
 }
 
 main {
@@ -104,7 +104,7 @@ main {
 
 .nav-bar-desktop {
     width: 100%;
-    height: 5vh;
+    height: 6vh;
     background-color: #fafafa;
 
     display: flex;
@@ -148,6 +148,7 @@ main {
 .hamburguer {
     font-size: 24px; /* Tamanho do ícone */
     color: #696969;
+    font-family: sans-serif !important;
 }
 .hamburguer img { width: 30px; }
 
@@ -208,17 +209,16 @@ main {
     z-index: 1000;
 }
 
+/* Estilo para o fundo escuro */
 .blur-background {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff 0.8; /* Cor de fundo com transparência */
-    backdrop-filter: blur(3px); /* Ajuste o valor para controlar o nível de borrão */
-    transition: 2s;
-    z-index: 1; /* Coloque o fundo borrado abaixo do menu */
-    display: none; /* Inicialmente oculto */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000; /* Certifique-se de que o z-index seja alto o suficiente */
 }
 
 .mobile-menu.active {
@@ -300,9 +300,11 @@ main {
 }
 
 .rodape-desktop-texto {
-    display: flex;    
-    margin: 28px 30px;
+    display: flex;
+    margin: 15px 30px;
+    margin-top: 26px;
 }
+
 .rodape-desktop {
     width: 100%;
     height: 7vh;
@@ -344,7 +346,7 @@ main {
     background-color: rgb(255, 255, 255);
     width: 100%;
     padding: 5vh 5vw;
-    height: 170%;
+    height: 125%;
 
     /* -webkit-box-shadow:inset 0px 0px 0px 5px khaki;
     -moz-box-shadow:inset 0px 0px 0px 5px khaki;
@@ -372,19 +374,6 @@ main {
     margin-top: 15px;
     --bs-btn-padding-x: 1.75rem;
 }
-
-/* #exampleFormControlSelect2 {
-    height: 37px;
-    margin-top: 10px;
-}
-#exampleFormControlSelect2 option:not(:first-child) {
-    margin-top: 2px;
-} */
-
- /* Estilize o quadrado de exibição da imagem */
-/* .form-group {
-    margin-bottom: 0.5rem;
-} */
 
 .image-preview {
     width: 200px;
@@ -422,4 +411,52 @@ main {
 .exclui:hover {
     background: #d84f4f !important;
     border: 1px solid #d64848 !important;
+}
+
+/* ////////////////////////////////////////////////////////////// */
+
+/* Estilo para o fundo escuro */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+/* Estilo para o pop-up */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 300px;
+    height: 140px;
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 2000;
+    text-align: center;
+}
+
+/* Estilo para o botão dentro do pop-up */
+.modal button {
+    margin: 10px;
+}
+
+.exclui {
+    background: #ff6565 !important;
+    border: 1px solid #d64848 !important;
+}
+.exclui:hover {
+    background: #d84f4f !important;
+    border: 1px solid #d64848 !important;
+}
+
+.submitAuxiliar{
+    display: none;
 }

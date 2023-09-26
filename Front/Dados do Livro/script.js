@@ -33,46 +33,44 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     
-    // Selecionar elementos do DOM
     const showModalButton = document.getElementById('showModal');
     const overlay = document.getElementById('overlay');
     const modal = document.getElementById('modal');
     const confirmButton = document.getElementById('confirm');
     const cancelButton = document.getElementById('cancel');
     
-    // Função para mostrar o pop-up
     showModalButton.addEventListener('click', () => {
         overlay.style.display = 'block';
         modal.style.display = 'block';
     });
     
-    // Função para esconder o pop-up
     function hideModal() {
         overlay.style.display = 'none';
         modal.style.display = 'none';
     }
     
-    // Evento de clique no botão "Sim"
     confirmButton.addEventListener('click', () => {
-        // Coloque aqui o código a ser executado quando o usuário clica em "Sim"
-        alert('Reserva confirmada!');
+        alert('Reserva confirmada! direciona pro submit');
         hideModal();
+        frmReservar.submit();
     });
     
-    // Evento de clique no botão "Não"
     cancelButton.addEventListener('click', () => {
-        // Coloque aqui o código a ser executado quando o usuário clica em "Não"
         hideModal();
     });   
 
-    // Evento de clique no fundo escuro para fechar o modal
     blurBackground.addEventListener('click', () => {
         hideModal();
     });
 
-    // Adicione a seguinte linha para também fechar o modal quando o overlay é clicado
     overlay.addEventListener('click', () => {
         hideModal();
+    });
+
+    frmReservar.addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        popUpModal.style.display = "block";
     });
 
 });

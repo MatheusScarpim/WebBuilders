@@ -36,7 +36,7 @@ async function DadosLivro(req, res, id) {
   con.query('SELECT * FROM book where id_book = ?', parseInt(id), (err, linhas) => {
     if (err) {
       console.error('Error fetching books:', err);
-      res.status(500).send('Error fetching books');
+      res.status(404).redirect("/erro");
       return;
     }
     let book = linhas[0]
@@ -99,7 +99,6 @@ async function ChecaLivro(req, res, idBook) {
         return false;
       }
       let LivroDisponivel = disponibilidade[0].available;
-      console.error('Livroooooo'+LivroDisponivel);
       resolve(LivroDisponivel != 0);
     });
   });
@@ -111,7 +110,7 @@ router.post('/reservar/:id_book', async (req, res) => {
   const idCustomer = req.session.id_customer;
 
   let LivroDisponivel = await ChecaLivro(req, res, idBook);
-  console.error('Livroooooo        '+LivroDisponivel);
+
   if (LivroDisponivel) {
     con.query('UPDATE book SET available = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
       if (err) {
@@ -135,10 +134,10 @@ router.post('/reservar/:id_book', async (req, res) => {
         res.status(500).send('Error inserting into historic');
         return;
       }
-      console.error('Livro Reservado !');
+      console.error('Livro Reservado com sucesso !');
     });
   } else
-    console.error('Livro ja Reservado !');
+    console.error('Livro ja Reservado !, Reserva Cancelada');
     res.status(200).redirect('/livros');
 });
 
