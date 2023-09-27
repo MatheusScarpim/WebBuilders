@@ -39,34 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmButton = document.getElementById('confirm');
     const cancelButton = document.getElementById('cancel');
     
-    showModalButton.addEventListener('click', () => {
-        overlay.style.display = 'block';
-        modal.style.display = 'block';
-    });
     
     function hideModal() {
         overlay.style.display = 'none';
         modal.style.display = 'none';
     }
     
-    confirmButton.addEventListener('click', () => {
-        alert('Reserva confirmada! direciona pro submit');
-        hideModal();
-        //frmReservar.submit();
-    });
-    
-    cancelButton.addEventListener('click', () => {
-        hideModal();
-    });   
-
-    blurBackground.addEventListener('click', () => {
-        hideModal();
-    });
-
-    overlay.addEventListener('click', () => {
-        hideModal();
-    });
-
     //frmReservar.addEventListener("submit", function (e) {
       //  e.preventDefault();
     

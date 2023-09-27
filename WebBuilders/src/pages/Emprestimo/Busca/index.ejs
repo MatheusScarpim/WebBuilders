@@ -2,8 +2,7 @@
 <html lang="pt-br">
 
 <head>
-  <title>Historico</title>
-  <link rel="stylesheet" href='/PageHistorico/css/style.css'>
+  <title>Dados Busca</title>
 
   <!--Só para teste precisar mudar-->
   <link rel="stylesheet" href="/PageHistorico/css/style.css" type="text/css">
@@ -29,7 +28,7 @@
       <nav class="nav-bar">
         <div class="nav-bar-lg">
           <a href="/">
-            <img class="logo" src="/PageHome/img/logo-marca.png" alt="logo-marca">
+            <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
           </a>
         </div>
         <div class="nav-bar-perfil">
@@ -52,7 +51,7 @@
           </div>
           <div class="nav-icon">
             <a href="/Livros">
-              <i class="fi fi-rr-user-alt"></i>
+              <i class="fi fi-rr-book-alt"></i>
             </a>
           </div>
           <div class="nav-icon">
@@ -97,7 +96,7 @@
             <div class="atalhos-desktop">
 
               <div class="atalhos-desktop-title">
-                <h1>Empréstimo</h1>
+                <h1>Dados da Busca</h1>
               </div>
 
               <div class="desktop-container">
@@ -132,10 +131,12 @@
                                                                         "Outro status" 
                                             %>
                           </p>
+                          <% if (dado.status != 'C') { %>
                           <a href="/cancelar?id_action=<%= dado.id_action %>"><button>Cancelar</button></a>
+                          <%} %>
                           <% if (dado.status === 'E') { %>
                           <a href="/finalizar?id_action=<%= dado.id_action %>"><button>Finalizar</button></a>
-                          <% }else if (status === 'R') { %>
+                          <% }else if (dado.status === 'R') { %>
                           <a href="/emprestimo?id_action=<%= dado.id_action %>"><button>Emprestar</button></a>
                           <% } %>
 
@@ -167,7 +168,7 @@
     </div>
     <div class="rodape-desktop">
       <div class="rodape-desktop-texto">
-        <p>WebBuilders</p>
+        <p>WBuilders</p>
         <h5>| Versão 1.0.0.2</h5>
       </div>
     </div>

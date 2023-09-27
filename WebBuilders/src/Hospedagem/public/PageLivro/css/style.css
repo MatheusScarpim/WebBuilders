@@ -410,8 +410,10 @@ main {
     display: flex;
     flex-direction: column;
     position: relative;
-    max-width: 350px; /* Largura máxima do card */
-    height: auto; /* Altura fixa do card */
+    max-width: 350px;
+    /* Largura máxima do card */
+    height: auto;
+    /* Altura fixa do card */
 }
 
 .card-content {
@@ -426,16 +428,22 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 100%; /* Define a largura máxima da imagem */
-    max-height: 100%; /* Define a altura máxima da imagem */
+    max-width: 100%;
+    /* Define a largura máxima da imagem */
+    max-height: 100%;
+    /* Define a altura máxima da imagem */
     margin: 0 auto;
 }
 
 .card-img img {
-    width: auto; /* Permite que a largura da imagem se ajuste automaticamente */
-    height: 370px; /* Permite que a altura da imagem se ajuste automaticamente */
-    max-width: 100%; /* Define a largura máxima da imagem */
-    max-height: 100%; /* Define a altura máxima da imagem */
+    width: auto;
+    /* Permite que a largura da imagem se ajuste automaticamente */
+    height: 370px;
+    /* Permite que a altura da imagem se ajuste automaticamente */
+    max-width: 100%;
+    /* Define a largura máxima da imagem */
+    max-height: 100%;
+    /* Define a altura máxima da imagem */
     border-radius: 4px;
 }
 
@@ -475,7 +483,7 @@ main {
 .card-button-dispon {
     background-color: rgb(51, 255, 0);
     padding: 7px 15px;
-    border-radius: 65px;
+    border-radius: 60px;
     cursor: pointer;
 }
 
@@ -488,7 +496,7 @@ main {
 .card-button-not-dispon {
     background-color: red;
     padding: 7px 15px;
-    border-radius: 50px;
+    border-radius: 60px;
     cursor: pointer;
 }
 
@@ -497,6 +505,7 @@ main {
     font-size: 17px;
     font-weight: 900;
 }
+
 
 .card-btn span {
     width: 3vw;
@@ -565,8 +574,10 @@ main {
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.3s;
     z-index: 2000;
-    max-width: 300px; /* Largura máxima do zoom-frame */
-    height: auto; /* Altura fixa do zoom-frame */
+    max-width: 300px;
+    /* Largura máxima do zoom-frame */
+    height: auto;
+    /* Altura fixa do zoom-frame */
     padding: 20px;
     background-color: #fff;
     text-align: center;
@@ -574,10 +585,14 @@ main {
 }
 
 .zoom-frame img {
-    width: auto; /* Permite que a largura da imagem se ajuste automaticamente */
-    height: 400px; /* Permite que a altura da imagem se ajuste automaticamente */
-    max-width: 100%; /* Define a largura máxima da imagem */
-    max-height: 100%; /* Define a altura máxima da imagem */
+    width: auto;
+    /* Permite que a largura da imagem se ajuste automaticamente */
+    height: 400px;
+    /* Permite que a altura da imagem se ajuste automaticamente */
+    max-width: 100%;
+    /* Define a largura máxima da imagem */
+    max-height: 100%;
+    /* Define a altura máxima da imagem */
     border-radius: 4px;
 }
 
@@ -598,9 +613,9 @@ main {
 
 /* ///////////////////////////////////////////// */
 
-#divBusca{
+#divBusca {
     /* background-color: rgb(248, 73, 60); */
-    background-color:#e7e7e7;
+    background-color: #e7e7e7;
     border: solid 1px #e7e7e7;
     border-radius: 5px;
     height: 40px;
@@ -609,8 +624,8 @@ main {
     justify-content: center;
     align-items: center;
 }
-  
-#txtBusca{
+
+#txtBusca {
     background-color: transparent;
     padding-left: 5px;
     font-size: 18px;
@@ -618,13 +633,16 @@ main {
     height: 32px;
     width: 54vw;
 }
+
 #btnBusca {
     cursor: pointer;
 }
 
 #divBusca input[type="text"]:focus {
-    outline: 0px solid #007bff; /* Cor da borda de foco e espessura */
-    outline-offset: 2px; /* Espaçamento entre o elemento e a borda de foco */
+    outline: 0px solid #007bff;
+    /* Cor da borda de foco e espessura */
+    outline-offset: 2px;
+    /* Espaçamento entre o elemento e a borda de foco */
 }
 
 .src-tool {

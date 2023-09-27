@@ -46,7 +46,7 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
         }
 
         if (values.length === 0) {
-            res.redirect("/erro");
+            res.redirect("/buscar");
         } else {
             const dados = values;
             res.render(path.join(__dirname + "/Busca", 'index.ejs'), {
@@ -75,6 +75,17 @@ router.get('/finalizar', checkCargo("A"), (req, res) => {
         }
         res.status(200).redirect('/buscar');
     });
+    con.query(`UPDATE book b
+    INNER JOIN actions  ac ON b.id_book = ac.id_book
+    SET b.available = 1
+    WHERE ac.id_action = ?
+    `, id, (err, results, fields) => {
+        if (err) {
+            console.error('Finalizado', err);
+            res.status(500).send('Error inserting book');
+            return;
+        }
+    });
 });
 
 router.get('/cancelar', checkCargo("A"), (req, res) => {
@@ -94,6 +105,18 @@ router.get('/cancelar', checkCargo("A"), (req, res) => {
             return;
         }
         res.status(200).redirect('/buscar');
+    });
+
+    con.query(`UPDATE book b
+    INNER JOIN actions  ac ON b.id_book = ac.id_book
+    SET b.available = 1
+    WHERE ac.id_action = ?
+    `, id, (err, results, fields) => {
+        if (err) {
+            console.error('Finalizado', err);
+            res.status(500).send('Error inserting book');
+            return;
+        }
     });
 });
 

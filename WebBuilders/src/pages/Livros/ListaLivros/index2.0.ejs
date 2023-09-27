@@ -21,16 +21,18 @@
 
 <body>
     <main>
-        <div class="container">          
+        <div class="container">
             <nav class="nav-bar">
                 <div class="nav-bar-lg">
                     <a href="#">
-                        <img class="logo" src="/PageLivro/img/logo-marca.png" alt="logo-marca">
+                        <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
                     </a>
                 </div>
                 <div class="nav-bar-perfil">
                     <div class="perfil-user">
-                        <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
+                        <a href="/logout">
+                            <p>Olá,&nbsp;<span><%= names %></span></p>
+                        </a>
                         <img src="#" alt="">
                     </div>
                 </div>
@@ -65,7 +67,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="desktop">
                     <div class="blur-background"></div>
                     <div class="nav-bar-desktop">
@@ -92,16 +94,15 @@
                         <section id="topo"></section>
                         <div class="atalhos-desktop">
 
-                            <nav>                                
+                            <nav>
                                 <div class="nav-bar-ferramentas">
                                     <div class="nbdt-btn">
                                         <div id="divBusca">
-                                            <input type="text" id="txtBusca" placeholder="Buscar..."/>
+                                            <input type="text" id="txtBusca" placeholder="Buscar..." />
                                             <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
                                             <div class="src-tool">
                                                 <lord-icon id="btnBusca" alt="Buscar"
-                                                    src="https://cdn.lordicon.com/rlizirgt.json"
-                                                    trigger="hover"
+                                                    src="https://cdn.lordicon.com/rlizirgt.json" trigger="hover"
                                                     colors="primary:#690c12">
                                                 </lord-icon>
                                             </div>
@@ -113,7 +114,7 @@
                                     </div>
                                 </div>
                             </nav>
-                            
+
                             <div class="atalhos-desktop-title">
                                 <h1>Biblioteca</h1>
                             </div>
@@ -124,12 +125,15 @@
                                     <div class="card-content">
                                         <div class="card-img">
                                             <a href="#">
-                                                <img src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" class="zoomable" alt="Book 1">
+                                                <img src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>"
+                                                    class="zoomable" alt="Book 1">
                                             </a>
                                         </div>
                                         <div class="overlay"></div>
                                         <div class="zoom-frame">
-                                            <img class="zoomed-image" src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" alt="Enlarged Image">
+                                            <img class="zoomed-image"
+                                                src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>"
+                                                alt="Enlarged Image">
                                             <div class="image-title"><strong>Título:</strong><%= book.title %></div>
                                             <div class="image-title"><strong>Autor:</strong><%= book.author %></div>
                                             <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
@@ -141,110 +145,31 @@
                                             <p><%= book.author %></p>
                                         </div>
                                         <div class="card-info">
-                                            <a href="/infoLivros?id=<%= book.id_book %>"><button class="card-button">Reservar</button></a>
-                                            <button class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
+<% if ( book.available == 1) { %>
+<a href="/infoLivros?id=<%= book.id_book %>"></a><button class="card-button">Reservar</button></a>
+<%} %>
+                                            <button
+                                                class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
                                         </div>
                                     </div>
                                 </div>
                                 <% }); %>
-                                <div class="card">
-                                    <div class="card-content">
-                                        <div class="card-img">
-                                            <a href="#">
-                                                <img src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" class="zoomable" alt="Book 2">
-                                            </a>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <div class="zoom-frame">
-                                            <img class="zoomed-image" src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" alt="Enlarged Image">
-                                            <div class="image-title"><strong>Título:</strong><%= book.title %></div>
-                                            <div class="image-title"><strong>Autor:</strong><%= book.author %></div>
-                                            <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
-                                            <div class="image-title"><strong>Editores:</strong><%= book.editors %></div>
-                                            <div class="image-title"><strong>Ano:</strong><%= book.years %></div>
-                                        </div>
-                                        <div class="card-texto">
-                                            <h1><%= book.title %></h1>
-                                            <p><%= book.author %></p>
-                                        </div>
-                                        <div class="card-info">
-                                            <a href="/infoLivros?id=<%= book.id_book %>"><button class="card-button">Reservar</button></a>
-                                            <button class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="card">
-                                    <div class="card-content">
-                                        <div class="card-img">
-                                            <a href="#">
-                                                <img src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" class="zoomable" alt="Book 3">
-                                            </a>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <div class="zoom-frame">
-                                            <img class="zoomed-image" src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" alt="Enlarged Image">
-                                            <div class="image-title"><strong>Título:</strong><%= book.title %></div>
-                                            <div class="image-title"><strong>Autor:</strong><%= book.author %></div>
-                                            <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
-                                            <div class="image-title"><strong>Editores:</strong><%= book.editors %></div>
-                                            <div class="image-title"><strong>Ano:</strong><%= book.years %></div>
-                                        </div>
-                                        <div class="card-texto">
-                                            <h1><%= book.title %></h1>
-                                            <p><%= book.author %></p>
-                                        </div>
-                                        <div class="card-info">
-                                            <a href="/infoLivros?id=<%= book.id_book %>"><button class="card-button">Reservar</button></a>
-                                            <button class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-content">
-                                        <div class="card-img">
-                                            <a href="#">
-                                                <img src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" class="zoomable" alt="Book 4">
-                                            </a>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <div class="zoom-frame">
-                                            <img class="zoomed-image" src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" alt="Enlarged Image">
-                                            <div class="image-title"><strong>Título:</strong><%= book.title %></div>
-                                            <div class="image-title"><strong>Autor:</strong><%= book.author %></div>
-                                            <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
-                                            <div class="image-title"><strong>Editores:</strong><%= book.editors %></div>
-                                            <div class="image-title"><strong>Ano:</strong><%= book.years %></div>
-                                        </div>
-                                        <div class="card-texto">
-                                            <h1><%= book.title %></h1>
-                                            <p><%= book.author %></p>
-                                        </div>
-                                        <div class="card-info">
-                                            <a href="/infoLivros?id=<%= book.id_book %>"></a><button class="card-button">Reservar</button></a>
-                                            <button class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
-                                        </div>
-                                    </div>
-                                </div>                   
                                 <!-- Repita esse bloco para os outros 3 cartões -->
                             </div>
 
                             <div class="volta-topo" id="scrollArrow"><a href="#topo">
-                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/xdakhdsq.json"
-                                        trigger="hover"
-                                        colors="primary:#ff0000"
-                                        style="width:60px;height:60px">
+                                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                    <lord-icon src="https://cdn.lordicon.com/xdakhdsq.json" trigger="hover"
+                                        colors="primary:#ff0000" style="width:60px;height:60px">
                                     </lord-icon>
-                            </a></div>
+                                </a></div>
 
                         </div> <!-- atalhos-desktop -->
                     </div>
                     <div class="rodape-desktop">
                         <div class="rodape-desktop-texto">
-                            <p>WebBuilders</p>
+                            <p>WBuilders</p>
                             <h5>| Versão 1.0.0.2</h5>
                         </div>
                     </div>

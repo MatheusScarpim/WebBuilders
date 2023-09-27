@@ -3,12 +3,15 @@
     .logo {
         width: 35vw;
     }
+
     .nav-icon {
         font-size: 3vw;
     }
+
     .ad-grid {
         grid-gap: 10px;
     }
+
     .wide-rectangle {
         margin-top: 10px;
         height: 100px;
@@ -17,6 +20,7 @@
     .tool-bar {
         display: none;
     }
+
     .desktop {
         width: 100vw;
     }
@@ -29,9 +33,10 @@
 
     .ad-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 1vh;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 3vh;
     }
+
     .card-icon img {
         width: 16vw;
         border-radius: 4px;
@@ -40,15 +45,17 @@
     .card h1 {
         font-size: 15px;
     }
+
     .card p {
         display: none;
     }
 
     /* ////////////////// */
-        
+
     .content-desktop {
         height: 76vh;
     }
+
     .card {
         /* width: 22vw;
         height: 14vh; */
@@ -56,13 +63,16 @@
         /* height: 170px; */
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centraliza horizontalmente */
-        justify-content: center; /* Centraliza verticalmente */
+        align-items: center;
+        /* Centraliza horizontalmente */
+        justify-content: center;
+        /* Centraliza verticalmente */
         background-color: #fff;
         height: auto;
         border-radius: 9px;
         padding: 7px 6px;
     }
+
     .card-button {
         background-color: rgb(67, 142, 255);
         color: #fff;
@@ -71,22 +81,26 @@
         margin-top: 2.8vh !important;
         font-size: 8px;
     }
+
     .card-content {
-        width: 98%;
+        width: 100%;
         padding: 0px;
         margin-top: -7px;
     }
+
     .card-btn {
         margin-top: 3vh !important;
         width: 20px;
         height: 20px;
         border-radius: 50px;
     }
+
     .card-button-dispon {
         margin-top: 3vh !important;
         padding: 0.01px 6px;
         border-radius: 50px;
     }
+
     .card-button-dispon span {
         display: inline;
         color: #fff;
@@ -98,14 +112,17 @@
         padding: 0.01px 6px;
         border-radius: 50px;
     }
+
     .card-button-not-dispon span {
         display: inline;
         color: #fff;
         font-size: 10px;
     }
+
     .card-texto h1 {
-        font-size: 1vh;
+        font-size: 2vh;
     }
+
     .card-info {
         margin-top: -17px;
     }
@@ -120,26 +137,27 @@
         display: none;
     }
 }
-  
-/* Estilos para telas grandes */
-@media only screen and (min-width: 601px) {
-    
-}
 
-@media only screen and (max-width: 600px) { 
+/* Estilos para telas grandes */
+@media only screen and (min-width: 601px) {}
+
+@media only screen and (max-width: 600px) {
 
     .card {
-        width: 17vw;
+        width: 30vw;
         padding: 18px 9px;
     }
 
     .card-img img {
-        height: 100px;
+        height: 175px;
+        width: auto;
     }
+
     .zoom-frame img {
         height: 235px;
     }
-    #txtBusca{ 
+
+    #txtBusca {
         width: 46vw;
     }
 }
