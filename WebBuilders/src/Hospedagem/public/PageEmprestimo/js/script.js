@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     function fetchDataSetNames() {
         $.ajax({
-            url: "https://f907-2804-389-e2-158f-8003-16a8-feed-9e1.ngrok-free.app/names",
+            url: "https/names",
             method: "GET",
             success: function (data) {
                 dataSetNames = data;
