@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     function fetchDataSet() {
         $.ajax({
-            url: "https://f907-2804-389-e2-158f-8003-16a8-feed-9e1.ngrok-free.app/emails",
+            url: "https://0585-2804-389-ae-3ad5-fde3-18fb-1053-4b38.ngrok-free.app/emails",
             method: "GET",
             success: function (data) {
                 dataSet = data;
@@ -17,13 +17,14 @@ $(document).ready(function () {
 
     function fetchDataSetNames() {
         $.ajax({
-            url: "https/names",
+            url: "https://0585-2804-389-ae-3ad5-fde3-18fb-1053-4b38.ngrok-free.app/names",
             method: "GET",
             success: function (data) {
                 dataSetNames = data;
             },
             error: function (xhr, status, error) {
                 console.log("Erro na requisição:", error);
+           
             }
         });
     }
