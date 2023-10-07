@@ -17,7 +17,7 @@ router.get('/historico', (req, res) => {
       return;
     }
 
-    con.query('select h.date,h.status_book from actions ac INNER join historic h on (ac.id_action = h.id_action) inner join book b on (ac.id_book = b.id_book) where ac.id_customer = ? order by h.date', req.session.id_customer, (err, historic) => {
+    con.query('select h.date,h.status_book,ac.id_action from actions ac INNER join historic h on (ac.id_action = h.id_action) inner join book b on (ac.id_book = b.id_book) where ac.id_customer = ? order by h.date', req.session.id_customer, (err, historic) => {
       if (err) {
         console.error('Error fetching books:', err);
         res.status(500).send('Error fetching books');

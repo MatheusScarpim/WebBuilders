@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     function fetchDataSet() {
         $.ajax({
-            url: "https://0585-2804-389-ae-3ad5-fde3-18fb-1053-4b38.ngrok-free.app/emails",
+            url: "http://localhost:4005/emails",
             method: "GET",
             success: function (data) {
                 dataSet = data;
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     function fetchDataSetNames() {
         $.ajax({
-            url: "https://0585-2804-389-ae-3ad5-fde3-18fb-1053-4b38.ngrok-free.app/names",
+            url: "http://localhost:4005/names",
             method: "GET",
             success: function (data) {
                 dataSetNames = data;

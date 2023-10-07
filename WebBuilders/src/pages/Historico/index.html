@@ -114,7 +114,8 @@
                                 <div class="zoom-frame">
                                     <div class="Historico-Expandido">
                                       <% historic.forEach(function(hist) { %>
-                                        <div class="history-entry">
+                                        <% if ( book.id_action == hist.id_action) { %>
+                                            <div class="history-entry">
                                           <p>Data: <%= new Intl.DateTimeFormat('pt-BR').format(hist.date) %> - Status: 
                                             <%= 
                                             hist.status_book === "R" ? "Reservado" :
@@ -127,6 +128,7 @@
                                             %>
                                           </p>
                                         </div>
+                                          <%} %>
                                       <% }); %>
                                     </div>
                                   </div>
