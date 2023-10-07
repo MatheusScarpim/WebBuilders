@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Dados do Livro</title>
+</head>
+
+<body>
+    <div class="content">
+        <form action="/alterarLivro?id=<%= book.id_book %>" method="post" enctype="multipart/form-data">
+            <input type="text" name="id_book" placeholder="id_book" value="<%= book.id_book %>" id="" disabled>
+            <input type="text" name="code" placeholder="Codigo" value="<%= book.code %>" id="code">
+            <input type="text" name="title" placeholder="Titulo" value="<%= book.title%>" id="title">
+            <input type="text" name="author" placeholder="Autor" value="<%= book.author%>" id="author">
+            <input type="text" name="edition" placeholder="Edição" value="<%= book.edition %>" id="edition">
+            <input type="text" name="editors" placeholder="Editores" value="<%= book.editors %>" id="editors">
+            <input type="text" name="years" placeholder="Ano" value="<%= book.years %>" id="years">
+            <input type="text" name="place" placeholder="Local" value="<%= book.place %>" id="">
+            <input type="file" id="image" name="image" placeholder="Capa do livro"  value="<%= book.image %>" >
+
+            <input type="submit" value="update">
+        </form>
+    </div>
+</body>
+
+</html>

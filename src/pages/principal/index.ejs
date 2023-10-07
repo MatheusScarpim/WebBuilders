@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/PageHome/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/PageHome/css/responsive.css" type="text/css">
+    <title>Home</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="nav-bar-lg">
+                    <a href="/">
+                        <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
+                    </a>
+                </div>
+               <div class="nav-bar-perfil">
+                    <div class="perfil-user">
+                        <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
+                        <img src="#" alt="">
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="tool-bar">
+                    <div class="tb-space"></div>
+                    <div class="nav-icon">
+                        <a href="#">
+                            <i class="fi fi-sr-home"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/livros">
+                            <i class="fi fi-rr-book-alt"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="#">
+                            <i class="fi fi-rs-truck-side"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="#">
+                            <i class="fi fi-rr-interrogation"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/alterarUsuario">
+                            <i class="fi fi-rr-settings"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="desktop">
+                    <div class="blur-background"></div>
+                    <div class="nav-bar-desktop">
+                        <div class="nav-bar-mobile">
+                            <div class="hamburguer">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                        <div class="nav-bar-desktop-texto">
+                            <p><span>Home</span></p>
+                            <h5>/</h5>
+                            <h5><span>Iniciar</span></h5>
+                        </div>
+                    </div>
+                    <div class="mobile-menu">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/livros">Livros</a></li>
+                            <li><a href="#">Ajuda</a></li>
+                            <li><a href="/alterarUsuario">Configuração</a></li>
+                        </ul>
+                    </div>
+                    <div class="content-desktop">
+                        <div class="atalhos-desktop">
+                            <div class="ad-grid">
+
+                                <div class="card">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        <a href="/livros">
+                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                            <lord-icon src="https://cdn.lordicon.com/qvbrkejx.json" trigger="morph"
+                                                colors="primary:#FF6666">
+                                            </lord-icon>
+                                        </a>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Livros</p>
+                                    </div>
+                                </div> <!-- card -->
+
+                                <div class="card">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon src="https://cdn.lordicon.com/qtxqkhzr.json" trigger="hover"
+                                            colors="primary:#FF6666" style="width:250px;height:250px">
+                                        </lord-icon>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Datas</p>
+                                    </div>
+                                </div> <!-- card -->
+
+                                <div class="card">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon src="https://cdn.lordicon.com/nocvdjmh.json" trigger="hover"
+                                            colors="primary:#FF6666" style="width:250px;height:250px">
+                                        </lord-icon>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Ajuda</p>
+                                    </div>
+                                </div> <!-- card -->
+
+                                <div class="card">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        <a href="/escolher">
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon src="https://cdn.lordicon.com/frjgvxce.json" trigger="hover"
+                                            colors="primary:#FF6666" style="width:250px;height:250px">
+                                        </lord-icon>
+                                     </a>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Cadastros</p>
+                                    </div>
+                                </div> <!-- card -->
+
+                                <div class="card">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        <a href="/historico">
+                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                            <lord-icon src="https://cdn.lordicon.com/svpxtchp.json" trigger="hover"
+                                                colors="primary:#FF6666" style="width:250px;height:250px">
+                                            </lord-icon>
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Histórico</p>
+                                    </div>
+                                </div> <!-- card -->
+
+                                <div class="card">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon src="https://cdn.lordicon.com/ehfubvwr.json" trigger="hover"
+                                            colors="primary:#FF6666" style="width:250px;height:250px">
+                                        </lord-icon>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>WBuilders</p>
+                                    </div>
+                                </div> <!-- card -->
+
+                            </div>
+                            <div class="wide-rectangle"></div>
+                        </div>
+                    </div>
+                    <div class="rodape-desktop">
+                        <div class="rodape-desktop-texto">
+                            <p>WBuilders</p>
+                            <h5>| Versão 1.0.0.2</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="/PageHome/script.js"></script>
+        </div> <!-- container -->
+    </main>
+</body>
+
+</html>

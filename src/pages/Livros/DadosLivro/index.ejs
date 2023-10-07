@@ -1,0 +1,28 @@
+<!-- book-details.ejs -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= book.title %> Details</title>
+</head>
+
+<body>
+    <h1><%= book.title %></h1>
+    <% if (book.foto && book.foto.length > 0) { %>
+    <img class="book-image" src="data:image/jpeg;base64,<%= book.foto.toString('base64') %>" alt="Book Image">
+    <% } else { %>
+    <p>No Image Available</p>
+    <% } %>
+    <p><strong>Title:</strong> <%= book.title %></p>
+    <p><strong>Author:</strong> <%= book.author %></p>
+    <p><strong>Edition:</strong> <%= book.edition %></p>
+    <p><strong>Editors:</strong> <%= book.editors %></p>
+    <p><strong>Years:</strong> <%= book.years %></p>
+    <p><strong>Available:</strong> <%= book.available ? 'Yes' : 'No' %></p>
+
+    <form action="/book/<%= book.id_book %>/reserve" method="post">
+        <button type="submit">Reserve</button>
+    </form>
+</body>
+
+</html>

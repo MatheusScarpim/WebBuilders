@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="/PageLogin/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <link rel="icon" type="/PageLogin/image/png" href="" />
+    <title>Login</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="content">
+                <form method="post" action="/cadastrar">
+                    <p>Bem-vindo(a)!</p>
+                    <div class="underline-p"></div>
+                    <br><br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="names" name="names">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                        <div id="emailHelp" class="form-text">Não compartilhe seu email com qualquer um.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Senha:</label>
+                        <input type="password" class="form-control" id="passwords" name="passwords">
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Idade:</label>
+                        <input type="number" class="form-control" id="age" name="age">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Endereço:</label>
+                        <input type="text" class="form-control" id="address" name="address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Telefone:</label>
+                        <input type="text" class="form-control" id="cellphone" name="cellphone">
+                    </div>
+                    <div class="mb-3 form-check"></div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+
+                    <p class="text-version">Versão 1.0.0 | contate Wbuilders (99)9999-9999</p>
+                </form>
+            </div> <!-- content -->
+        </div> <!-- container -->
+    </main>
+</body>
+
+</html>

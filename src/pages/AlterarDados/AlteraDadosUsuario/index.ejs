@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Dados Pessoais</title>
+</head>
+
+<body>
+    <div class="content">
+        <form action="/alterarUsuario" method="post">
+            <input type="text" name="email" placeholder="email" value="<%= user.email %>" id="">
+            <input type="text" name="cellphone" placeholder="telefone" value="<%= user.cellphone%>" id="">
+            <input type="text" name="names" placeholder="Nome" value="<%= user.names%>" id="">
+            <input type="text" name="address" placeholder="endereço" value="<%= user.address %>" id="">
+            <input type="text" name="age" placeholder="idade" value="<%= user.age %>" id="">
+            <input type="submit" value="update">
+        </form>
+    </div>
+</body>
+
+</html>
