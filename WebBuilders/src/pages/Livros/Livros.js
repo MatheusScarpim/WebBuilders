@@ -5,9 +5,11 @@ const multer = require('multer');
 const con = require('../../Banco/MySQL/conexaoMysql');
 const path = require('path');
 const fs = require('fs');
+const notifier = require('node-notifier');
 
 const cargo = require("../Cargo/cargo");
 const checkCargo = require('../Cargo/cargo');
+const { Console } = require('console');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -108,12 +110,37 @@ async function ChecaLivro(req, res, idBook) {
   });
 }
 
+async function ChecaUsuarioTemLivroReservado(req, res){
+  return new Promise((resolve, reject) => {
+    con.query('SELECT STATUS FROM `actions` WHERE id_customer = ? ORDER BY date_init DESC LIMIT 1', [req.session.id_customer], (err, ultimaAcao) => {
+      if (err) {
+        console.error('Error fetching books:', err);
+        res.status(404).redirect("/erro");
+        reject(err);
+        return false;
+      }
+      let ultimaAcaoUsua = ultimaAcao[0].STATUS; 
+      resolve(ultimaAcaoUsua == 'R' || ultimaAcaoUsua == 'E' || ultimaAcaoUsua == 'P');
+    });
+  });
+}
 
 router.post('/reservar/:id_book', async (req, res) => {
   const idBook = req.params.id_book;
   const idCustomer = req.session.id_customer;
+  const imagePath = path.join(__dirname, 'PageReserva', 'img', 'livroTriste.png');
   let LivroDisponivel = await ChecaLivro(req, res, idBook);
-
+  let UsuarioTemReservaPendente = ChecaUsuarioTemLivroReservado(req, res);
+  if(UsuarioTemReservaPendente){
+    notifier.notify({
+      appName: 'WBuilders',
+      title: 'Reserva Indisponível',
+      message: 'Você já tem uma reserva, livro emprestado ou pendência, portanto não é possível reservar.',
+      timeout: 10000,
+    });
+    res.status(200).redirect('/livros');
+    return;
+  }
   if (LivroDisponivel) {
     const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
     con.query('UPDATE book SET available = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
