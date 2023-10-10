@@ -146,7 +146,19 @@
               <td> <%= book.title %></td>
               <td> <%= book.edition %> </td>
               <td> <%= book.code %></td>
-              <td> <%= book.status %></td>
+              <td>
+                <% 
+                  let situacao = book.status;
+                  situacao = (situacao == "R") ? "Reservado" :
+                            (situacao == "D") ? "Disponível" :
+                            (situacao == "E") ? "Em Empréstimo" :
+                            (situacao == "C") ? "Cancelado" :
+                            (situacao == "P") ? "Pendente" :
+                            (situacao == "F") ? "Finalizado/Concluído" :
+                            "Outro status";
+                %>
+                <%= situacao %>
+              </td>
               <td>
                 <button class="button_one zoomable">view</button>
               </td>
