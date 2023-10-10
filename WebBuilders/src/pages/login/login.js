@@ -93,7 +93,7 @@ router.post('/entrar', (req, res) => {
 
 function conferirADM(req, res, email) {
   return new Promise((resolve, reject) => {
-    const query = `SELECT * FROM adm WHERE email = ? `;
+    const query = `SELECT * FROM customers WHERE email = ? `;
     con.query(query, email, (err, results) => {
       if (err) {
         console.error('Erro ao consultar o banco de dados:', err);
@@ -102,7 +102,7 @@ function conferirADM(req, res, email) {
       }
 
       if (results.length === 1) {
-        resolve(results[0].cargo); // Resolver a Promise com o cargo
+        resolve(results[0].adm); // Resolver a Promise com o cargo
       } else {
         resolve("U"); // Resolver a Promise com "U" se não houver resultados
       }
