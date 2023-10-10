@@ -1,10 +1,11 @@
 $(document).ready(function () {
     let dataSet = [];
     let dataSetNames = [];
-
+    var url_atual = window.location.origin;
+    console.log(url_atual)
     function fetchDataSet() {
         $.ajax({
-            url: "https://0585-2804-389-ae-3ad5-fde3-18fb-1053-4b38.ngrok-free.app/emails",
+            url: `${url_atual}/emails`,
             method: "GET",
             success: function (data) {
                 dataSet = data;
@@ -17,7 +18,7 @@ $(document).ready(function () {
 
     function fetchDataSetNames() {
         $.ajax({
-            url: "https://0585-2804-389-ae-3ad5-fde3-18fb-1053-4b38.ngrok-free.app/names",
+            url: `${url_atual}/emails`,
             method: "GET",
             success: function (data) {
                 dataSetNames = data;

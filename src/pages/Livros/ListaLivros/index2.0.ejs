@@ -139,6 +139,11 @@
                                             <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
                                             <div class="image-title"><strong>Editores:</strong><%= book.editors %></div>
                                             <div class="image-title"><strong>Ano:</strong><%= book.years %></div>
+                                            <% if ( adms ) {  %>
+                                                
+                                                <a href="/alterarLivro?id=<%= book.id_book %>"><button
+                                                        class="card-button">Alterar</button></a>
+                                            <%} %>
                                         </div>
                                         <div class="card-texto">
                                             <h1><%= book.title %></h1>

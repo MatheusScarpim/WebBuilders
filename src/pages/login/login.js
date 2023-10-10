@@ -23,7 +23,21 @@ router.get('/AdicionarAdm', checkCargo("M"), (req, res) => {
   res.render(path.join(__dirname + "/cadastrarADM", 'index.ejs'));
 });
 
+
 router.post('/AdicionarAdm', checkCargo("M"), (req, res) => {
+  let reqBody = req.body;
+  con.query("UPDATE customers SET adm = 'A' where email = ?", reqBody.email, (err, results, fields) => {
+    if (err) {
+      console.error('Error updating customers:', err);
+      res.status(500).send('Error updating customers');
+      return;
+    }
+    res.redirect('/');
+  })
+})
+
+
+/*router.post('/AdicionarAdm', checkCargo("M"), (req, res) => {
   let reqBody = req.body;
   con.query("INSERT INTO adm VALUES (?,'A')", reqBody.email, (err, results, fields) => {
     if (err) {
@@ -31,10 +45,9 @@ router.post('/AdicionarAdm', checkCargo("M"), (req, res) => {
       res.status(500).send('Error inserting adm');
       return;
     }
-
     res.redirect('/');
   })
-})
+})*/
 
 router.post('/cadastrar', (req, res) => {
   let reqBody = req.body;
@@ -93,7 +106,7 @@ router.post('/entrar', (req, res) => {
 
 function conferirADM(req, res, email) {
   return new Promise((resolve, reject) => {
-    const query = `SELECT * FROM adm WHERE email = ? `;
+    const query = `SELECT * FROM customers WHERE email = ? `;
     con.query(query, email, (err, results) => {
       if (err) {
         console.error('Erro ao consultar o banco de dados:', err);
@@ -102,9 +115,9 @@ function conferirADM(req, res, email) {
       }
 
       if (results.length === 1) {
-        resolve(results[0].cargo); // Resolver a Promise com o cargo
+        resolve(results[0].adm); 
       } else {
-        resolve("U"); // Resolver a Promise com "U" se não houver resultados
+        resolve("U");
       }
     });
   });

@@ -80,6 +80,7 @@ router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
 
 router.get('/livros', (req, res) => {
   con.query('SELECT * FROM book', (err, books) => {
+    let cargo = req.session.adm == 'A' || req.session.adm == 'M'
     if (err) {
       console.error('Error fetching books:', err);
       res.status(500).send('Error fetching books');
@@ -87,7 +88,7 @@ router.get('/livros', (req, res) => {
     }
     res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
       books,
-      names: req.session.names
+      names: req.session.names, adms: cargo
     });
   });
 });
