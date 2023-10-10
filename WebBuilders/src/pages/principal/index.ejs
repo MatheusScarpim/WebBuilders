@@ -117,20 +117,33 @@
                                         <p>Datas</p>
                                     </div>
                                 </div> <!-- card -->
-
+                                <% let usuarioAdm =  cargo%>
+                                <% if (usuarioAdm) { %>
                                 <div class="card">
                                     <div class="card-space"></div>
                                     <div class="card-icon">
                                         <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                        <lord-icon src="https://cdn.lordicon.com/nocvdjmh.json" trigger="hover"
+                                        <lord-icon src="https://cdn.lordicon.com/xfftupfv.json" trigger="hover"
                                             colors="primary:#FF6666" style="width:250px;height:250px">
                                         </lord-icon>
                                     </div>
                                     <div class="card-text">
-                                        <p>Ajuda</p>
+                                        <p>Buscar</p>
                                     </div>
                                 </div> <!-- card -->
+                                <% } else { %>
+                                <div class="card" style="background-color:#ff8787;">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
+                                        
+                                    </div>
+                                    <div class="card-text">
+                                        
+                                    </div>
+                                </div> <!-- card -->
+                                <% } %>
 
+                                <% if (usuarioAdm) { %>
                                 <div class="card">
                                     <div class="card-space"></div>
                                     <div class="card-icon">
@@ -145,7 +158,18 @@
                                         <p>Cadastros</p>
                                     </div>
                                 </div> <!-- card -->
-
+                                <% } else { %>
+                                    <div class="card" style="background-color:#ff8787;">
+                                        <div class="card-space"></div>
+                                        <div class="card-icon">
+                                            
+                                        </div>
+                                        <div class="card-text">
+                                            
+                                        </div>
+                                    </div> <!-- card -->
+                                <% } %>
+                                
                                 <div class="card">
                                     <div class="card-space"></div>
                                     <div class="card-icon">
@@ -162,6 +186,7 @@
                                     </div>
                                 </div> <!-- card -->
 
+                                <% if (usuarioAdm) { %>
                                 <div class="card">
                                     <div class="card-space"></div>
                                     <div class="card-icon">
@@ -170,10 +195,22 @@
                                             colors="primary:#FF6666" style="width:250px;height:250px">
                                         </lord-icon>
                                     </div>
+
                                     <div class="card-text">
                                         <p>WBuilders</p>
                                     </div>
                                 </div> <!-- card -->
+                                <% } else { %>
+                                    <div class="card" style="background-color:#ff8787;">
+                                        <div class="card-space"></div>
+                                        <div class="card-icon">
+                                            
+                                        </div>
+                                        <div class="card-text">
+                                            
+                                        </div>
+                                    </div> <!-- card -->
+                                    <% } %>
 
                             </div>
                             <div class="wide-rectangle"></div>
