@@ -110,19 +110,29 @@ async function ChecaLivro(req, res, idBook) {
   });
 }
 
-async function ChecaUsuarioTemLivroReservado(req, res){
-  return new Promise((resolve, reject) => {
-    con.query('SELECT STATUS FROM `actions` WHERE id_customer = ? ORDER BY date_init DESC LIMIT 1', [req.session.id_customer], (err, ultimaAcao) => {
-      if (err) {
-        console.error('Error fetching books:', err);
-        res.status(404).redirect("/erro");
-        reject(err);
-        return false;
-      }
-      let ultimaAcaoUsua = ultimaAcao[0].STATUS; 
-      resolve(ultimaAcaoUsua == 'R' || ultimaAcaoUsua == 'E' || ultimaAcaoUsua == 'P');
+async function ChecaUsuarioTemLivroReservado(req, res) {
+  try {
+    const ultimaAcao = await new Promise((resolve, reject) => {
+      con.query('SELECT STATUS FROM `actions` WHERE id_customer = ? ORDER BY date_init DESC LIMIT 1', [req.session.id_customer], (err, result) => {
+        if (err) {
+          console.error('Error fetching books:', err);
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
     });
-  });
+
+    if (ultimaAcao.length === 0) {
+      return true; 
+    } else {
+      const ultimaAcaoUsua = ultimaAcao[0].STATUS;
+      return ultimaAcaoUsua === 'R' || ultimaAcaoUsua === 'E' || ultimaAcaoUsua === 'P';
+    }
+  } catch (error) {
+    console.error(error);
+    return false; 
+  }
 }
 
 router.post('/reservar/:id_book', async (req, res) => {
@@ -130,7 +140,7 @@ router.post('/reservar/:id_book', async (req, res) => {
   const idCustomer = req.session.id_customer;
   const imagePath = path.join(__dirname, 'PageReserva', 'img', 'livroTriste.png');
   let LivroDisponivel = await ChecaLivro(req, res, idBook);
-  let UsuarioTemReservaPendente = ChecaUsuarioTemLivroReservado(req, res);
+  let UsuarioTemReservaPendente = await ChecaUsuarioTemLivroReservado(req, res);
   if(UsuarioTemReservaPendente){
     notifier.notify({
       appName: 'WBuilders',
@@ -142,7 +152,27 @@ router.post('/reservar/:id_book', async (req, res) => {
     return;
   }
   if (LivroDisponivel) {
-    const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const currentDate = new Date();
+    const numberOfDaysToAdd = 3;
+
+    // Adiciona dias à data atual
+    const date_end = new Date(currentDate);
+    date_end.setDate(currentDate.getDate() + numberOfDaysToAdd);
+
+    // Subtrai 1 dia da data final
+    const date_alert = new Date(date_end);
+    date_alert.setDate(date_end.getDate() - 1);
+
+    // Adiciona 1 dia à data final
+    const date_late = new Date(date_end);
+    date_late.setDate(date_end.getDate() + 1);
+
+    // Formata as datas em strings
+    const currentDateString = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+    const date_endString = date_end.toISOString().slice(0, 19).replace('T', ' ');
+    const date_alertString = date_alert.toISOString().slice(0, 19).replace('T', ' ');
+    const date_lateString = date_late.toISOString().slice(0, 19).replace('T', ' ');
+
     con.query('UPDATE book SET available = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
       if (err) {
         console.error('Error updating book:', err);
@@ -150,8 +180,9 @@ router.post('/reservar/:id_book', async (req, res) => {
         return;
       }
     })
-    // Primeiro INSERT
-    con.query('INSERT INTO actions (id_book, id_customer, date_init, status) VALUES (?, ?, ?, ?)', [idBook, idCustomer, currentDate, "R"], (err, results, fields) => {
+    // Primeiro INSERT na Tabela açaõ
+    con.query('INSERT INTO actions (id_book, id_customer, date_init, date_end, date_alert, date_late, status) VALUES (?, ?, ?, ?, ?, ?, ?)', 
+    [idBook, idCustomer, currentDateString, date_endString, date_alertString, date_lateString, "R"], (err, results, fields) => {
       if (err) {
         console.error('Error inserting into actions:', err);
         res.status(500).send('Error inserting into actions');
@@ -160,7 +191,7 @@ router.post('/reservar/:id_book', async (req, res) => {
 
       const id_action = results.insertId; // Pega o ID gerado no primeiro INSERT
 
-      // Segundo INSERT
+      // Segundo INSERT na tabela historico ( pode ser uma trigger)
       con.query('INSERT INTO historic (id_action, date, status_book) VALUES (?, ?, ?)', [id_action, currentDate, "R"], (err, results, fields) => {
         if (err) {
           console.error('Error inserting into historic:', err);

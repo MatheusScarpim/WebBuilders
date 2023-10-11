@@ -20,6 +20,7 @@
 
 <body>
     <main>
+        <% let usuarioAdm =  cargo%>
         <div class="container">
             <nav class="nav-bar">
                 <div class="nav-bar-lg">
@@ -49,13 +50,15 @@
                         </a>
                     </div>
                     <div class="nav-icon">
-                        <a href="#">
-                            <i class="fi fi-rs-truck-side"></i>
+                        <a href="/historico">
+                            <i class="fi fi-rr-refresh"></i>
                         </a>
                     </div>
                     <div class="nav-icon">
                         <a href="#">
-                            <i class="fi fi-rr-interrogation"></i>
+                            <i class=
+                            "fi fi-rr-calendar"
+                            ></i>
                         </a>
                     </div>
                     <div class="nav-icon">
@@ -117,31 +120,21 @@
                                         <p>Datas</p>
                                     </div>
                                 </div> <!-- card -->
-                                <% let usuarioAdm =  cargo%>
-                                <% if (usuarioAdm) { %>
                                 <div class="card">
                                     <div class="card-space"></div>
                                     <div class="card-icon">
-                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                        <lord-icon src="https://cdn.lordicon.com/xfftupfv.json" trigger="hover"
-                                            colors="primary:#FF6666" style="width:250px;height:250px">
-                                        </lord-icon>
-                                    </div>
-                                    <div class="card-text">
-                                        <p>Buscar</p>
-                                    </div>
-                                </div> <!-- card -->
-                                <% } else { %>
-                                <div class="card" style="background-color:#ff8787;">
-                                    <div class="card-space"></div>
-                                    <div class="card-icon">
+                                        <a href="/historico">
+                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                            <lord-icon src="https://cdn.lordicon.com/svpxtchp.json" trigger="hover"
+                                                colors="primary:#FF6666" style="width:250px;height:250px">
+                                            </lord-icon>
+                                        </a>
                                         
                                     </div>
                                     <div class="card-text">
-                                        
+                                        <p>Histórico</p>
                                     </div>
                                 </div> <!-- card -->
-                                <% } %>
 
                                 <% if (usuarioAdm) { %>
                                 <div class="card">
@@ -170,21 +163,33 @@
                                     </div> <!-- card -->
                                 <% } %>
                                 
+                                
+                                <% if (usuarioAdm) { %>
                                 <div class="card">
                                     <div class="card-space"></div>
                                     <div class="card-icon">
-                                        <a href="/historico">
-                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                            <lord-icon src="https://cdn.lordicon.com/svpxtchp.json" trigger="hover"
-                                                colors="primary:#FF6666" style="width:250px;height:250px">
-                                            </lord-icon>
-                                        </a>
+                                        <a href="/buscar">
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon src="https://cdn.lordicon.com/xfftupfv.json" trigger="hover"
+                                            colors="primary:#FF6666" style="width:250px;height:250px">
+                                        </lord-icon>
+                                         </a>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Buscar</p>
+                                    </div>
+                                </div> <!-- card -->
+                                <% } else { %>
+                                <div class="card" style="background-color:#ff8787;">
+                                    <div class="card-space"></div>
+                                    <div class="card-icon">
                                         
                                     </div>
                                     <div class="card-text">
-                                        <p>Histórico</p>
+                                        
                                     </div>
                                 </div> <!-- card -->
+                                <% } %>
 
                                 <% if (usuarioAdm) { %>
                                 <div class="card">
