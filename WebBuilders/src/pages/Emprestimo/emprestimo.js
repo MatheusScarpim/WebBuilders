@@ -120,7 +120,7 @@ router.get('/cancelar', checkCargo("A"), (req, res) => {
     });
 });
 
-router.get('/emails', (req, res) => {
+router.get('/emails', checkCargo("A"), (req, res) => {
     con.query("SELECT email FROM customers", (err, results, fields) => {
         if (err) {
             console.error('Error querying customer names:', err);
@@ -136,7 +136,23 @@ router.get('/emails', (req, res) => {
     });
 });
 
-router.get('/names', (req, res) => {
+router.get('/names', checkCargo("A"), (req, res) => {
+    con.query("SELECT names FROM customers", (err, results, fields) => {
+        if (err) {
+            console.error('Error querying customer names:', err);
+            res.status(500).json({
+                error: 'Error querying customer names'
+            });
+            return;
+        }
+
+        const customerNames = results.map(result => result.names);
+
+        res.json(customerNames);
+    });
+});
+
+router.post('/emprestimo', checkCargo("A"), (req, res) => {
     con.query("SELECT names FROM customers", (err, results, fields) => {
         if (err) {
             console.error('Error querying customer names:', err);
