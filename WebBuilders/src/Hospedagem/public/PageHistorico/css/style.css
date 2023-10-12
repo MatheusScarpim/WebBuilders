@@ -41,8 +41,12 @@ button {
 }
 
 .button_one {
-  background: #03a9f4;
+  background: #cc5a6a;
   color: white;
+}
+.button_one:hover {
+  background: #d63e52;
+  
 }
 
 .button_two {

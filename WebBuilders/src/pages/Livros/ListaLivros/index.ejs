@@ -52,13 +52,15 @@
                         </a>
                     </div>
                     <div class="nav-icon">
-                        <a href="#">
-                            <i class="fi fi-rs-truck-side"></i>
+                        <a href="/historico">
+                            <i class="fi fi-rr-refresh"></i>
                         </a>
                     </div>
                     <div class="nav-icon">
-                        <a href="#">
-                            <i class="fi fi-rr-interrogation"></i>
+                        <a href="/datas">
+                            <i class=
+                            "fi fi-rr-calendar"
+                            ></i>
                         </a>
                     </div>
                     <div class="nav-icon">
@@ -93,19 +95,21 @@
                     <div class="content-desktop">
                         <section id="topo"></section>
                         <div class="atalhos-desktop">
-
+                            <% let usuarioAdm =  cargo%>
                             <nav>
+                                <% if (usuarioAdm) { %>
                                 <div class="nav-bar-ferramentas">
                                     <div class="nbdt-btn">
-                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                                        &nbsp;&nbsp;
-                                        <button type="submit" class="btn btn-primary">Reservar</button>
+                                        <a href="/cadbook">
+                                        <button type="submit" class="btn btn-primary" >Cadastrar</button>
+                                        </a>
                                     </div>
                                     <!-- <div class="nbdt-space"></div> -->
                                     <div class="nbdt-filter">
                                         <button style="background: none"><img src="/PageLivro/img/filter.png"></button>
                                     </div>
                                 </div>
+                                <% } %>
                             </nav>
 
                             <div class="atalhos-desktop-title">

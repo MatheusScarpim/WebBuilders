@@ -25,9 +25,9 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
-  console.log(req.session.adm)
+  let cargo =  req.session.adm == 'M'|| req.session.adm == "A"
   res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), {
-    names: req.session.names
+    names: req.session.names,cargo
   });
 });
 
@@ -81,6 +81,7 @@ router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
 
 
 router.get('/livros', (req, res) => {
+  let cargo =  req.session.adm == 'M'|| req.session.adm == "A"
   con.query('SELECT * FROM book', (err, books) => {
     if (err) {
       console.error('Error fetching books:', err);
@@ -89,7 +90,8 @@ router.get('/livros', (req, res) => {
     }
     res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
       books,
-      names: req.session.names
+      names: req.session.names,
+      cargo
     });
   });
 });
