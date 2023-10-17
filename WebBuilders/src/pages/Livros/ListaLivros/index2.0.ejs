@@ -147,9 +147,9 @@
                                             <p><%= book.author %></p>
                                         </div>
                                         <div class="card-info">
-<% if ( book.available == 1) { %>
-<a href="/infoLivros?id=<%= book.id_book %>"></a><button class="card-button">Reservar</button></a>
-<%} %>
+                                            <% if ( book.available == 1) { %>
+                                            <a href="/infoLivros?id=<%= book.id_book %>"></a><button class="card-button">Reservar</button></a>
+                                            <%} %>
                                             <button
                                                 class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
                                         </div>

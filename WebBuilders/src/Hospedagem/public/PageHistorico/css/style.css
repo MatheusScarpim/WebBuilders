@@ -438,6 +438,12 @@ main {
 .btn {
   margin-top: 15px;
   --bs-btn-padding-x: 1.75rem;
+  background-color: #cc5a6a !important;
+  border-style: none !important;
+}
+
+.btn:hover {
+  background: #d63e52 !important;
 }
 
 /* #exampleFormControlSelect2 {
