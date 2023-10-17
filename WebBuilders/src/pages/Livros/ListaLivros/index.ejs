@@ -58,9 +58,7 @@
                     </div>
                     <div class="nav-icon">
                         <a href="/datas">
-                            <i class=
-                            "fi fi-rr-calendar"
-                            ></i>
+                            <i class="fi fi-rr-calendar"></i>
                         </a>
                     </div>
                     <div class="nav-icon">
@@ -99,6 +97,7 @@
                             <nav>
                                
                                 <div class="nav-bar-ferramentas">
+<<<<<<< Updated upstream
                                     <% if (usuarioAdm) { %>
                                         <div class="nbdt-btn">
                                             <a href="/cadbook">
@@ -110,6 +109,13 @@
                                             <button type="submit" class="btn btn-primary" style="cursor: not-allowed;">Cadastrar</button>
                                         </div>
                                     <% } %>
+=======
+                                    <div class="nbdt-btn">
+                                        <a href="/cadbook">
+                                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                        </a>
+                                    </div>
+>>>>>>> Stashed changes
                                     <!-- <div class="nbdt-space"></div> -->
                                     <div class="nbdt-filter">
                                         <button style="background: none"><img src="/PageLivro/img/filter.png"></button>
@@ -144,6 +150,11 @@
                                             <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
                                             <div class="image-title"><strong>Editores:</strong><%= book.editors %></div>
                                             <div class="image-title"><strong>Ano:</strong><%= book.years %></div>
+                                            <% if ( cargo ) {  %>
+
+                                            <a href="/alterarLivro?id=<%= book.id_book %>"><button
+                                                    class="card-button">Alterar</button></a>
+                                            <%} %>
                                         </div>
                                         <div class="card-texto">
                                             <h1><%= book.title %></h1>

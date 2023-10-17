@@ -1,10 +1,13 @@
 $(document).ready(function () {
+    var url_atual = window.location.origin;
+
+
     let dataSet = [];
     let dataSetNames = [];
 
     function fetchDataSet() {
         $.ajax({
-            url: "http://localhost:4005/emails",
+            url: `${url_atual}/emails`,
             method: "GET",
             success: function (data) {
                 dataSet = data;
@@ -17,14 +20,14 @@ $(document).ready(function () {
 
     function fetchDataSetNames() {
         $.ajax({
-            url: "http://localhost:4005/names",
+            url: `${url_atual}/names`,
             method: "GET",
             success: function (data) {
                 dataSetNames = data;
             },
             error: function (xhr, status, error) {
                 console.log("Erro na requisição:", error);
-           
+
             }
         });
     }

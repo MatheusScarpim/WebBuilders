@@ -9,7 +9,9 @@ const notifier = require('node-notifier');
 
 const cargo = require("../Cargo/cargo");
 const checkCargo = require('../Cargo/cargo');
-const { Console } = require('console');
+const {
+  Console
+} = require('console');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -39,7 +41,6 @@ router.get('/infoLivros', (req, res) => {
 async function DadosLivro(req, res, id) {
   con.query('SELECT * FROM book where id_book = ?', parseInt(id), (err, linhas) => {
     if (err) {
-      console.error('Error fetching books:', err);
       res.status(404).redirect("/erro");
       return;
     }
@@ -126,14 +127,14 @@ async function ChecaUsuarioTemLivroReservado(req, res) {
     });
 
     if (ultimaAcao.length === 0) {
-      return true; 
+      return false;
     } else {
       const ultimaAcaoUsua = ultimaAcao[0].STATUS;
       return ultimaAcaoUsua === 'R' || ultimaAcaoUsua === 'E' || ultimaAcaoUsua === 'P';
     }
   } catch (error) {
     console.error(error);
-    return false; 
+    return false;
   }
 }
 
@@ -143,7 +144,7 @@ router.post('/reservar/:id_book', async (req, res) => {
   const imagePath = path.join(__dirname, 'PageReserva', 'img', 'livroTriste.png');
   let LivroDisponivel = await ChecaLivro(req, res, idBook);
   let UsuarioTemReservaPendente = await ChecaUsuarioTemLivroReservado(req, res);
-  if(UsuarioTemReservaPendente){
+  if (UsuarioTemReservaPendente) {
     notifier.notify({
       appName: 'WBuilders',
       title: 'Reserva Indisponível',
@@ -183,28 +184,28 @@ router.post('/reservar/:id_book', async (req, res) => {
       }
     })
     // Primeiro INSERT na Tabela açaõ
-    con.query('INSERT INTO actions (id_book, id_customer, date_init, date_end, date_alert, date_late, status) VALUES (?, ?, ?, ?, ?, ?, ?)', 
-    [idBook, idCustomer, currentDateString, date_endString, date_alertString, date_lateString, "R"], (err, results, fields) => {
-      if (err) {
-        console.error('Error inserting into actions:', err);
-        res.status(500).send('Error inserting into actions');
-        return;
-      }
-
-      const id_action = results.insertId; // Pega o ID gerado no primeiro INSERT
-
-      // Segundo INSERT na tabela historico ( pode ser uma trigger)
-      con.query('INSERT INTO historic (id_action, date, status_book) VALUES (?, ?, ?)', [id_action, currentDate, "R"], (err, results, fields) => {
+    con.query('INSERT INTO actions (id_book, id_customer, date_init, date_end, date_alert, date_late, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [idBook, idCustomer, currentDateString, date_endString, date_alertString, date_lateString, "R"], (err, results, fields) => {
         if (err) {
-          console.error('Error inserting into historic:', err);
-          res.status(500).send('Error inserting into historic');
+          console.error('Error inserting into actions:', err);
+          res.status(500).send('Error inserting into actions');
           return;
         }
 
-        console.error('Livro Reservado com sucesso!');
-        res.status(200).redirect('/livros');
+        const id_action = results.insertId; // Pega o ID gerado no primeiro INSERT
+
+        // Segundo INSERT na tabela historico ( pode ser uma trigger)
+        con.query('INSERT INTO historic (id_action, date, status_book) VALUES (?, ?, ?)', [id_action, currentDate, "R"], (err, results, fields) => {
+          if (err) {
+            console.error('Error inserting into historic:', err);
+            res.status(500).send('Error inserting into historic');
+            return;
+          }
+
+          console.error('Livro Reservado com sucesso!');
+          res.status(200).redirect('/livros');
+        });
       });
-    });
   } else {
     console.error('Livro já Reservado! Reserva Cancelada');
     res.status(200).redirect('/livros'); // Redireciona em caso de falha na reserva

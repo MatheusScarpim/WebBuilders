@@ -152,8 +152,23 @@ router.get('/names', checkCargo("A"), (req, res) => {
     });
 });
 
-router.post('/emprestimo', checkCargo("A"), (req, res) => {
-    con.query("SELECT names FROM customers", (err, results, fields) => {
+router.get('/emprestimo', checkCargo("A"), (req, res) => {
+    let id = req.query.id_action;
+    let dataHoje = new Date()
+    dataHoje.getTime(dataHoje.getDate() - 1)
+    console.log(dataHoje)
+    let dataCortada = dataHoje.toISOString().split("T")
+    console.log(dataCortada)
+    let dataCerta = dataCortada[0]
+
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+    console.log("currentDateString "+currentDateString)
+
+    con.query(`select ac.id_action,cu.names,bo.title,bo.code from actions ac 
+    inner join book bo on (ac.id_book = bo.id_book) 
+    inner join customers cu on (cu.id_customer = ac.id_customer)
+    where ac.id_action = ?;`, id, (err, results, fields) => {
         if (err) {
             console.error('Error querying customer names:', err);
             res.status(500).json({
@@ -161,13 +176,72 @@ router.post('/emprestimo', checkCargo("A"), (req, res) => {
             });
             return;
         }
-
-        const customerNames = results.map(result => result.names);
-
-        res.json(customerNames);
+        let dados = results[0];
+        res.render(path.join(__dirname + "/Emprestimo", 'index 2.0.ejs'), {
+            dados,
+            names: req.session.names,
+            dataCerta
+        });
     });
 });
 
+
+router.post('/emprestimo', checkCargo("A"), (req, res) => {
+
+    let body = req.body
+    const date_init = body.date_init
+    const date_end = body.date_end
+    const id = body.id_action
+    console.log(date_init)
+
+    const dateInit = new Date(date_init);
+    const dateEnd = new Date(date_end);
+    const dateAlert = new Date(date_end);
+    const dateLate = new Date(date_end);
+
+    dateAlert.setDate(dateEnd.getDate() - 1);
+
+    dateLate.setDate(dateEnd.getDate() + 1);
+
+
+
+    con.query(`
+        UPDATE actions ac
+        SET ac.status = 'E',
+            ac.date_init = ?,
+            ac.date_end = ?,
+            ac.date_alert = ?,
+            ac.date_late = ?
+        WHERE ac.id_action = ?
+        `, [dateInit, dateEnd, dateAlert, dateLate, id], (err, results, fields) => {
+        if (err) {
+            console.error('Emprestado', err);
+            res.status(500).send('Error updating actions');
+            return;
+        }
+    });
+
+    con.query("insert into historic values(?,DEFAULT,'E')", id, (err, results, fields) => {
+        if (err) {
+            console.error('Finalizado no historico', err);
+            res.status(500).send('Error inserting book');
+            return;
+        }
+    });
+
+    con.query(`UPDATE book b
+    INNER JOIN actions  ac ON b.id_book = ac.id_book
+    SET b.available = 0
+    WHERE ac.id_action = ?
+    `, id, (err, results, fields) => {
+        if (err) {
+            console.error('Finalizado', err);
+            res.status(500).send('Error inserting book');
+            return;
+        }
+    });
+    res.redirect("/")
+});
 
 
 module.exports = router;

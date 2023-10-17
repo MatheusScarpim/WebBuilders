@@ -58,9 +58,7 @@
                     </div>
                     <div class="nav-icon">
                         <a href="/datas">
-                            <i class=
-                            "fi fi-rr-calendar"
-                            ></i>
+                            <i class="fi fi-rr-calendar"></i>
                         </a>
                     </div>
                     <div class="nav-icon">
@@ -141,6 +139,11 @@
                                             <div class="image-title"><strong>Edição:</strong><%= book.edition %></div>
                                             <div class="image-title"><strong>Editores:</strong><%= book.editors %></div>
                                             <div class="image-title"><strong>Ano:</strong><%= book.years %></div>
+                                            <% if ( cargo ) {  %>
+
+                                            <a href="/alterarLivro?id=<%= book.id_book %>"><button
+                                                    class="card-button">Alterar</button></a>
+                                            <%} %>
                                         </div>
                                         <div class="card-texto">
                                             <h1><%= book.title %></h1>
@@ -148,7 +151,12 @@
                                         </div>
                                         <div class="card-info">
                                             <% if ( book.available == 1) { %>
+<<<<<<< Updated upstream
                                             <a href="/infoLivros?id=<%= book.id_book %>"></a><button class="card-button">Reservar</button></a>
+=======
+                                            <a href="/infoLivros?id=<%= book.id_book %>"></a><button
+                                                class="card-button">Reservar</button></a>
+>>>>>>> Stashed changes
                                             <%} %>
                                             <button
                                                 class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>

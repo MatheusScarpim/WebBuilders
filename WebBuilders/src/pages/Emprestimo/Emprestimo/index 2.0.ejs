@@ -96,36 +96,37 @@
                         <div class="atalhos-desktop">
 
                             <div class="atalhos-desktop-title">
-                                <h1>Cadastrar Livro</h1>
+                                <h1>Empréstimo</h1>
                             </div>
 
                             <div class="desktop-container">
-                                <form action="/cadbook" method="post" enctype="multipart/form-data">
+                                <form action="/emprestimo" method="post">
+                                    <input type="hidden" name="id_action" value="<%= dados.id_action %>">
                                     <div class="dc-flexbox">
                                         <div class="form-right">
                                             <div class="mb-3">
                                                 <label for="exampleInputCode1" class="form-label">Livro</label>
                                                 <input type="text" name="livro" class="form-control" id="livro"
-                                                    aria-describedby="codeHelp" disabled>
+                                                    aria-describedby="codeHelp" value="<%= dados.title %>" disabled>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEdition1" class="form-label">Nome do
                                                     usuário</label>
-                                                <input type="nome_usuario" name="edition" class="form-control"
-                                                    id="nome_usuario" aria-describedby="editionlHelp" disabled>
+                                                <input type="text" name="edition" class="form-control"
+                                                    aria-describedby="editionlHelp" value="<%= dados.names %>" disabled>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputDataInicial" class="form-label">Data
                                                     Inicial</label>
-                                                <input type="date" name="date_init" class="form-control" id="date_init"
-                                                    aria-describedby="date_initHelp">
+                                                <input type="date" name="date_init" class="form-control"
+                                                    aria-describedby="date_initHelp" value="<%=dataCerta%>">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputDataFinal" class="form-label">Data Final</label>
-                                                <input type="date" name="date_end" class="form-control" id="date_end"
+                                                <input type="date" name="date_end" class="form-control"
                                                     aria-describedby="date_endHelp">
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <input type="submit" class="btn btn-primary">
                                         </div>
                                     </div>
                                 </form>
