@@ -93,7 +93,7 @@ router.get('/alterarLivro', checkCargo("A"), (req, res) => {
 router.post('/alterarLivro', checkCargo("A"), upload.single('image'), (req, res) => {
     const id = req.query.id;
     let reqBody = req.body
-    if (req.file.path != undefined) {
+    if (req.file) {
         const imagePath = req.file.path;
         const imageBuffer = fs.readFileSync(imagePath);
         reqBody.foto = imageBuffer;
