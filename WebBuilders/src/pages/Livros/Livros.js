@@ -99,7 +99,6 @@ router.get('/livros', (req, res) => {
 
 async function ChecaLivro(req, res, idBook) {
   return new Promise((resolve, reject) => {
-    console.log('(ChecaLivro) Livro: ' + idBook);
     con.query('SELECT available FROM book WHERE id_book = ?', [idBook], (err, disponibilidade) => {
       if (err) {
         console.error('Error fetching books:', err);
