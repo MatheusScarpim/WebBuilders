@@ -151,12 +151,8 @@
                                         </div>
                                         <div class="card-info">
                                             <% if ( book.available == 1) { %>
-<<<<<<< Updated upstream
-                                            <a href="/infoLivros?id=<%= book.id_book %>"></a><button class="card-button">Reservar</button></a>
-=======
                                             <a href="/infoLivros?id=<%= book.id_book %>"></a><button
                                                 class="card-button">Reservar</button></a>
->>>>>>> Stashed changes
                                             <%} %>
                                             <button
                                                 class="<%= book.available ? 'card-button-dispon' : 'card-button-not-dispon' %>"><span>D</span></button>
