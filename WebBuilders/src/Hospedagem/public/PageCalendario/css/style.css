@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 300px;
+}
+
+th, td {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 5px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: #f2f2f2;
+}
+
+.today {
+    background-color: #4CAF50;
+    color: white;
+}
+
+select {
+    font-size: 16px;
+}
+
+#year, #month {
+    display: inline-block;
+    margin: 10px;
+}
+
+.month-nav {
+    display: flex;
+    align-items: center;
+}
+
+.prev-month, .next-month {
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}

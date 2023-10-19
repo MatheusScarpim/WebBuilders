@@ -13,6 +13,8 @@ const AlterarDados = require('../pages/AlterarDados/alterarDados');
 const emprestimo = require('../pages/Emprestimo/emprestimo')
 const historico = require('../pages/Historico/historico')
 const erro = require('../pages/Erros/erros')
+const calendario = require('../pages/Calendario/calendario')
+
 
 const path = require('path');
 
@@ -65,6 +67,7 @@ app.use("/", AlterarDados);
 app.use("/", emprestimo);
 app.use("/", historico);
 app.use("/", erro);
+app.use("/", calendario);
 
 app.get('/status', (req, res) => {
   res.json({
@@ -92,3 +95,4 @@ module.exports.AlterarDados = AlterarDados;
 module.exports.emprestimo = emprestimo;
 module.exports.historico = historico;
 module.exports.erro = erro;
+module.exports.calendario = calendario;
