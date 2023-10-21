@@ -20,7 +20,76 @@
 
 </head>
 <body>
-    <h1>Calendário</h1>
+    <!--<h1>Calendário</h1>-->
+
+    <div class="container">
+        <nav class="nav-bar">
+            <div class="nav-bar-lg">
+                <a href="/">
+                    <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
+                </a>
+            </div>
+           <div class="nav-bar-perfil">
+                <div class="perfil-user">
+                    <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
+                    <img src="#" alt="">
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="tool-bar">
+                <div class="tb-space"></div>
+                <div class="nav-icon">
+                    <a href="#">
+                        <i class="fi fi-sr-home"></i>
+                    </a>
+                </div>
+                <div class="nav-icon">
+                    <a href="/livros">
+                        <i class="fi fi-rr-book-alt"></i>
+                    </a>
+                </div>
+                <div class="nav-icon">
+                    <a href="/historico">
+                        <i class="fi fi-rr-refresh"></i>
+                    </a>
+                </div>
+                <div class="nav-icon">
+                    <a href="/datas">
+                        <i class=
+                        "fi fi-rr-calendar"
+                        ></i>
+                    </a>
+                </div>
+                <div class="nav-icon">
+                    <a href="/alterarUsuario">
+                        <i class="fi fi-rr-settings"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="desktop">
+                <div class="blur-background"></div>
+                <div class="nav-bar-desktop">
+                    <div class="nav-bar-mobile">
+                        <div class="hamburguer">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                    <div class="nav-bar-desktop-texto">
+                        <p><span>Home</span></p>
+                        <h5>/</h5>
+                        <h5><span>Iniciar</span></h5>
+                    </div>
+                </div>
+                <div class="mobile-menu">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/livros">Livros</a></li>
+                        <li><a href="#">Ajuda</a></li>
+                        <li><a href="/alterarUsuario">Configuração</a></li>
+                    </ul>
+                </div>
 
     <div class="calendar-container">
         <div class="month-nav" id="monthNav">
@@ -31,7 +100,7 @@
         <div id="calendar"></div>
     </div>
 
-    <form>
+    <form class="selecaodata">
         <label for="month">Mês:</label>
         <select id="month">
             <option value="0">Janeiro</option>
