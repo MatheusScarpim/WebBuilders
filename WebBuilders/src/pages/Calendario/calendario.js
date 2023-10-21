@@ -3,13 +3,12 @@ var router = express.Router();
 const bodyParser = require('body-parser');
 const path = require('path');
 
-
 router.use(bodyParser.urlencoded({
     extended: true
 }));
 
 router.get('/calendario', (req, res) => {
-    res.render(path.join(__dirname + "/Calendario", 'index.ejs'), { names: req.session.names });
+    res.render(path.join(__dirname + '/index.ejs'), { names: req.session.names });
 });
 
 
