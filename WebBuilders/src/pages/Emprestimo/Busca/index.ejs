@@ -56,16 +56,14 @@
           </div>
           <div class="nav-icon">
             <a href="/historico">
-                <i class="fi fi-rr-refresh"></i>
+              <i class="fi fi-rr-refresh"></i>
             </a>
-        </div>
-        <div class="nav-icon">
+          </div>
+          <div class="nav-icon">
             <a href="/datas">
-                <i class=
-                "fi fi-rr-calendar"
-                ></i>
+              <i class="fi fi-rr-calendar"></i>
             </a>
-        </div>
+          </div>
           <div class="nav-icon">
             <a href="/alterarUsuario">
               <i class="fi fi-rr-settings"></i>
@@ -154,7 +152,16 @@
               <td> <%= dado.title %></td>
               <td> <%= dado.id_action %> </td>
               <td> <%= dado.code %></td>
-              <td> <%= dado.status %></td>
+              <td>
+                <%= 
+                dado.status === "R" ? "Reservado" :
+                dado.status === "D" ? "Disponível" :
+                dado.status === "E" ? "Em Empréstimo" :
+                dado.status === "C" ? "Cancelado" :
+                dado.status === "P" ? "Pendente" :
+                dado.status === "F" ? "Finalizado/Concluído" :
+                                            "Outro status" 
+                %></td>
               <td>
                 <button class="button_one zoomable">view</button>
               </td>

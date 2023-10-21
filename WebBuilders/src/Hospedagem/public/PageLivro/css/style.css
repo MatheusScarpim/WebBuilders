@@ -21,7 +21,7 @@ main {
 .nav-bar {
     width: 100%;
     height: 10vh;
-        background-color: #D62D37 !important;
+    background-color: #D62D37 !important;
 
     display: flex;
     align-items: center;
@@ -299,7 +299,7 @@ main {
 }
 
 .nbdt-filter {
-        background-color: #D62D37 !important;
+    background-color: #D62D37 !important;
     width: 40px;
     height: 40px;
     border-radius: 5px;
@@ -314,7 +314,7 @@ main {
 }
 
 .btn {
-        background-color: #B70006 !important;
+    background-color: #B70006 !important;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -649,4 +649,56 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+.pagination {
+    padding: 20px;
+}
+
+.pagination ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
 }

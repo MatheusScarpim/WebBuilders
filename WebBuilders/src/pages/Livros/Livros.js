@@ -27,9 +27,10 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
-  let cargo =  req.session.adm == 'M'|| req.session.adm == "A"
+  let cargo = req.session.adm == 'M' || req.session.adm == "A"
   res.render(path.join(__dirname + "/CadastroLivros", 'index 2.0.ejs'), {
-    names: req.session.names,cargo
+    names: req.session.names,
+    cargo
   });
 });
 
@@ -82,20 +83,111 @@ router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
 
 
 router.get('/livros', (req, res) => {
-  let cargo =  req.session.adm == 'M'|| req.session.adm == "A"
-  con.query('SELECT * FROM book', (err, books) => {
+  const cargo = req.session.adm === 'M' || req.session.adm === 'A';
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 8;
+
+  const offset = (page - 1) * perPage;
+
+  con.query('SELECT * FROM book LIMIT ? OFFSET ?', [perPage, offset], (err, books) => {
     if (err) {
       console.error('Error fetching books:', err);
       res.status(500).send('Error fetching books');
       return;
     }
-    res.render(path.join(__dirname + "/ListaLivros", 'index.ejs'), {
-      books,
-      names: req.session.names,
-      cargo
+
+    con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
+      if (err) {
+        console.error('Error counting books:', err);
+        res.status(500).send('Error counting books');
+        return;
+      }
+
+      const totalBooks = result[0].count;
+      const totalPages = Math.ceil(totalBooks / perPage);
+
+      res.render(path.join(__dirname + '/ListaLivros', 'index.ejs'), {
+        books,
+        names: req.session.names,
+        cargo,
+        currentPage: page,
+        totalPages,
+      });
     });
   });
 });
+
+router.get('/livros', (req, res) => {
+  const cargo = req.session.adm === 'M' || req.session.adm === 'A';
+  const reqBody = req.body;
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 8;
+
+  const offset = (page - 1) * perPage;
+
+  con.query('SELECT * FROM book where ? LIMIT ? OFFSET ?', [reqBody, perPage, offset], (err, books) => {
+    if (err) {
+      console.error('Error fetching books:', err);
+      res.status(500).send('Error fetching books');
+      return;
+    }
+
+    con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
+      if (err) {
+        console.error('Error counting books:', err);
+        res.status(500).send('Error counting books');
+        return;
+      }
+
+      const totalBooks = result[0].count;
+      const totalPages = Math.ceil(totalBooks / perPage);
+
+      res.render(path.join(__dirname + '/ListaLivros', 'index.ejs'), {
+        books,
+        names: req.session.names,
+        cargo,
+        currentPage: page,
+        totalPages,
+      });
+    });
+  });
+});
+router.post('/livros/filtro', (req, res) => {
+  const cargo = req.session.adm === 'M' || req.session.adm === 'A';
+  const reqBody = req.body;
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 8;
+
+  const offset = (page - 1) * perPage;
+
+  con.query('SELECT * FROM book where ? LIMIT ? OFFSET ?', [reqBody, perPage, offset], (err, books) => {
+    if (err) {
+      console.error('Error fetching books:', err);
+      res.status(500).send('Error fetching books');
+      return;
+    }
+
+    con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
+      if (err) {
+        console.error('Error counting books:', err);
+        res.status(500).send('Error counting books');
+        return;
+      }
+
+      const totalBooks = result[0].count;
+      const totalPages = Math.ceil(totalBooks / perPage);
+
+      res.render(path.join(__dirname + '/ListaLivros', 'index.ejs'), {
+        books,
+        names: req.session.names,
+        cargo,
+        currentPage: page,
+        totalPages,
+      });
+    });
+  });
+});
+
 
 async function ChecaLivro(req, res, idBook) {
   return new Promise((resolve, reject) => {

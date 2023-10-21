@@ -111,11 +111,39 @@
                                     <% } %>
                                     <!-- <div class="nbdt-space"></div> -->
                                     <div class="nbdt-filter">
-                                        <button style="background: none"><img src="/PageLivro/img/filter.png"></button>
+                                        <button style="background: none" class="zoomable" id="filter"><img
+                                                src="/PageLivro/img/filter.png"></button>
                                     </div>
                                 </div>
 
                             </nav>
+                            <div class="overlay"></div>
+                            <div class="zoom-frame">
+                                <form action="/livros/filtro" method="post">
+                                    <h1>Filtro</h1>
+                                    <Label>Reservado?</Label>
+                                    <select class="form-control" name="place" id="place" value="">
+                                        <option value="">Selecione uma opção</option>
+                                        <option>Sim</option>
+                                        <option>Não</option>
+                                    </select>
+                                    <select class="form-control" name="available" id="available">
+                                        <option value="1">Disponível</option>
+                                        <option value="0">Não Disponível</option>
+                                    </select>
+
+                                    <input type="submit" value="Enviar">
+                                </form>
+                            </div>
+
+
+
+                            <div id="modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" id="fecharModal">&times;</span>
+                                    <p>Conteúdo da modal</p>
+                                </div>
+                            </div>
 
                             <div class="atalhos-desktop-title">
                                 <h1>Biblioteca</h1>
@@ -164,6 +192,26 @@
                                     </div>
                                 </div>
                                 <% }); %>
+<<<<<<< Updated upstream
+=======
+
+
+                                <!-- Repita esse bloco para os outros 3 cartões -->
+>>>>>>> Stashed changes
+                            </div>
+                            <div class="pagination">
+                                <ul>
+                                    <% if (currentPage > 1) { %>
+                                    <li><a href="/livros?page=<%= currentPage - 1 %>">Anterior</a></li>
+                                    <% } %>
+                                    <% for (let i = 1; i <= totalPages; i++) { %>
+                                    <li <% if (i === currentPage) { %>class="active" <% } %>><a
+                                            href="/livros?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% if (currentPage < totalPages) { %>
+                                    <li><a href="/livros?page=<%= currentPage + 1 %>">Próxima</a></li>
+                                    <% } %>
+                                </ul>
                             </div>
 
                             <div class="volta-topo" id="scrollArrow"><a href="#topo">
