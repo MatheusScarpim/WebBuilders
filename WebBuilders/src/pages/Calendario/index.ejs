@@ -1,125 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Calendário</title>
-    <link rel="stylesheet" href="/PageCalendario/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/PageCalendario/css/responsive.css" type="text/css">
-    <link rel="stylesheet" href="/PageCalendario/css/colors.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="/PageCalendario/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/PageCalendario/css/colors.css" type="text/css">
+    <link rel="stylesheet" href="/PageCalendario/css/responsive.css" type="text/css">
+    <title>Home</title>
 </head>
+
 <body>
-    <div class="container">
-        <nav class="nav-bar">
-            <div class="nav-bar-lg">
-                <a href="/">
-                    <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
-                </a>
-            </div>
-           <div class="nav-bar-perfil">
-                <div class="perfil-user">
-                    <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
-                    <img src="#" alt="">
-                </div>
-            </div>
-        </nav>
-        <div class="content">
-            <div class="tool-bar">
-                <div class="tb-space"></div>
-                <div class="nav-icon">
+    <main>
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="nav-bar-lg">
                     <a href="/">
-                        <i class="fi fi-sr-home"></i>
+                        <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
                     </a>
                 </div>
-                <div class="nav-icon">
-                    <a href="/livros">
-                        <i class="fi fi-rr-book-alt"></i>
-                    </a>
+                <div class="nav-bar-perfil">
+                    <div class="perfil-user">
+                        <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
+                        <img src="#" alt="">
+                    </div>
                 </div>
-                <div class="nav-icon">
-                    <a href="/historico">
-                        <i class="fi fi-rr-refresh"></i>
-                    </a>
+            </nav>
+
+            <div class="content">
+                <div class="tool-bar">
+                    <div class="tb-space"></div>
+                    <div class="nav-icon">
+                        <a href="/">
+                            <i class="fi fi-sr-home"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/livros">
+                            <i class="fi fi-rr-book-alt"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/historico">
+                            <i class="fi fi-rr-refresh"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/datas">
+                            <i class="fi fi-rr-calendar"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/alterarUsuario">
+                            <i class="fi fi-rr-settings"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="nav-icon">
-                    <a href="/datas">
-                        <i class="fi fi-rr-calendar"></i>
-                    </a>
-                </div>
-                <div class="nav-icon">
-                    <a href="/alterarUsuario">
-                        <i class="fi fi-rr-settings"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="desktop">
-                <div class="blur-background"></div>
-                <div class="nav-bar-desktop">
-                    <div class="nav-bar-mobile">
-                        <div class="hamburguer">
-                            <i class="fas fa-bars"></i>
+
+                <div class="desktop">
+                    <div class="blur-background"></div>
+                    <div class="nav-bar-desktop">
+                        <div class="nav-bar-mobile">
+                            <div class="hamburguer">
+                                <i class="fas fa-bars"></i> <!-- Ícone de hambúrguer (3 riscos horizontais) -->
+                            </div>
+                        </div>
+                        <div class="nav-bar-desktop-texto">
+                            <p><span>Home</span></p>
+                            <h5>/</h5>
+                            <h5><span>Calendario</span></h5>
                         </div>
                     </div>
-                    <div class="nav-bar-desktop-texto">
-                        <p><span>Home</span></p>
-                        <h5>/</h5>
-                        <h5><span>Iniciar</span></h5>
+                    <div class="mobile-menu">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Livros</a></li>
+                            <li><a href="#">Ajuda</a></li>
+                            <li><a href="#">Configuração</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-desktop">
+                        <div class="conteudo-calendario">
+                            <div class="calendar-container">
+                                <div class="month-nav" id="monthNav">
+                                    <span class="prev-month" id="prevMonth">&#9665;</span>
+                                    <h2 id="currentMonthYear"></h2>
+                                    <span class="next-month" id="nextMonth">&#9655;</span>
+                                </div>
+                                <div id="calendar"></div>
+                            </div>
+            
+                            <form class="selecaodata">
+                                <label for="month">Mês:</label>
+                                <select id="month">
+                                    <option value="0">Janeiro</option>
+                                    <option value="1">Fevereiro</option>
+                                    <option value="2">Março</option>
+                                    <option value="3">Abril</option>
+                                    <option value="4">Maio</option>
+                                    <option value="5">Junho</option>
+                                    <option value="6">Julho</option>
+                                    <option value="7">Agosto</option>
+                                    <option value="8">Setembro</option>
+                                    <option value="9">Outubro</option>
+                                    <option value="10">Novembro</option>
+                                    <option value="11">Dezembro</option>
+                                </select>
+            
+                                <label for="year">Ano:</label>
+                                <select id="year"></select>
+                            </form>
+                        </div> <!-- conteudo-calendario -->
+                    </div> <!-- content-desktop -->
+
+                    <div class="rodape-desktop">
+                        <div class="rodape-desktop-texto">
+                            <p>WBuilders</p>
+                            <h5>| Versão 1.0.0.2</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="mobile-menu">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/livros">Livros</a></li>
-                        <li><a href="#">Ajuda</a></li>
-                        <li><a href="/alterarUsuario">Configuração</a></li>
-                    </ul>
-                </div>
-
-                <div class="calendar-container">
-                    <div class="month-nav" id="monthNav">
-                        <span class="prev-month" id="prevMonth">&#9665;</span>
-                        <h2 id="currentMonthYear"></h2>
-                        <span class="next-month" id="nextMonth">&#9655;</span>
-                    </div>
-                    <div id="calendar"></div>
-                </div>
-
-                <form class="selecaodata">
-                    <label for="month">Mês:</label>
-                    <select id="month">
-                        <option value="0">Janeiro</option>
-                        <option value="1">Fevereiro</option>
-                        <option value="2">Março</option>
-                        <option value="3">Abril</option>
-                        <option value="4">Maio</option>
-                        <option value="5">Junho</option>
-                        <option value="6">Julho</option>
-                        <option value="7">Agosto</option>
-                        <option value="8">Setembro</option>
-                        <option value="9">Outubro</option>
-                        <option value="10">Novembro</option>
-                        <option value="11">Dezembro</option>
-                    </select>
-
-                    <label for="year">Ano:</label>
-                    <select id="year"></select>
-                </form>
             </div>
-        </div>
-    </div>
+            <script src="/PageCalendario/js/script.js"></script>
+        </div> <!-- container -->
+    </main>
 
     <script>
         var datasMarcadas = JSON.parse('<%- datasMarcadas %>');
         console.log('Datas recebidas no cliente:', datasMarcadas);
-
     </script>
-    
+
     <script src="/PageCalendario/js/script.js"></script>
+    
 </body>
+
 </html>

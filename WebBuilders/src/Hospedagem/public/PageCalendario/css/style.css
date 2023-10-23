@@ -274,7 +274,6 @@ select {
     height: 76vh;
     background-color: #e7e7e7;
     overflow-y: scroll;
-    display: flex;
     justify-content: center;
 }
 
@@ -357,4 +356,8 @@ select {
 td.marcada {
     background-color: #FF5733 !important;
     color: #FFFFFF !important;
+}
+
+.conteudo-calendario {
+    margin-top: 35px;
 }
