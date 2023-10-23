@@ -43,7 +43,8 @@ function dataEstaMarcada(ano, mes, dia) {
     console.log(`Verificando data: ${ano} ${mes} ${dia}`);
     for (const dataMarcada of datasMarcadas) {
         console.log(ano, dataMarcada.init.ano, mes, dataMarcada.init.mes)
-        if (ano === dataMarcada.init.ano && (mes+1) === dataMarcada.init.mes) {
+        if (ano === dataMarcada.init.ano && (mes+1
+            ) === dataMarcada.init.mes) {
             if (
                 (dia >= dataMarcada.init.dia && dia <= dataMarcada.end.dia) ||
                 dia === dataMarcada.alert.dia ||

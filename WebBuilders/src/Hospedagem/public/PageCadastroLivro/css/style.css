@@ -329,7 +329,7 @@ main {
     color: rgb(243, 103, 93);
 }
 .content-desktop {
-    background-color: indigo;
+    background-color: rgb(255, 255, 255);;
 }
 .desktop-container {
     background-color: rgb(243, 243, 243);

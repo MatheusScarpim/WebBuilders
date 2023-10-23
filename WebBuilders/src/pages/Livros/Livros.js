@@ -92,14 +92,14 @@ router.get('/livros', (req, res) => {
   con.query('SELECT * FROM book LIMIT ? OFFSET ?', [perPage, offset], (err, books) => {
     if (err) {
       console.error('Error fetching books:', err);
-      res.status(500).send('Error fetching books');
+      res.status(404).redirect("/erro"); 
       return;
     }
 
     con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
       if (err) {
         console.error('Error counting books:', err);
-        res.status(500).send('Error counting books');
+        res.status(404).redirect("/erro");
         return;
       }
 
@@ -128,14 +128,14 @@ router.get('/livros', (req, res) => {
   con.query('SELECT * FROM book where ? LIMIT ? OFFSET ?', [reqBody, perPage, offset], (err, books) => {
     if (err) {
       console.error('Error fetching books:', err);
-      res.status(500).send('Error fetching books');
+      res.status(404).redirect("/erro");
       return;
     }
 
     con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
       if (err) {
         console.error('Error counting books:', err);
-        res.status(500).send('Error counting books');
+        res.status(404).redirect("/erro");
         return;
       }
 
@@ -163,14 +163,14 @@ router.post('/livros/filtro', (req, res) => {
   con.query('SELECT * FROM book where ? LIMIT ? OFFSET ?', [reqBody, perPage, offset], (err, books) => {
     if (err) {
       console.error('Error fetching books:', err);
-      res.status(500).send('Error fetching books');
+      res.status(404).redirect("/erro");
       return;
     }
 
     con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
       if (err) {
         console.error('Error counting books:', err);
-        res.status(500).send('Error counting books');
+        res.status(404).redirect("/erro");
         return;
       }
 
@@ -270,7 +270,7 @@ router.post('/reservar/:id_book', async (req, res) => {
     con.query('UPDATE book SET available = ? WHERE id_book = ?', [0, idBook], (err, results, fields) => {
       if (err) {
         console.error('Error updating book:', err);
-        res.status(500).send('Error updating book');
+        res.status(404).redirect("/erro");
         return;
       }
     })
@@ -279,7 +279,7 @@ router.post('/reservar/:id_book', async (req, res) => {
       [idBook, idCustomer, currentDateString, date_endString, date_alertString, date_lateString, "R"], (err, results, fields) => {
         if (err) {
           console.error('Error inserting into actions:', err);
-          res.status(500).send('Error inserting into actions');
+          res.status(404).redirect("/erro");
           return;
         }
 
@@ -289,7 +289,7 @@ router.post('/reservar/:id_book', async (req, res) => {
         con.query('INSERT INTO historic (id_action, date, status_book) VALUES (?, ?, ?)', [id_action, currentDate, "R"], (err, results, fields) => {
           if (err) {
             console.error('Error inserting into historic:', err);
-            res.status(500).send('Error inserting into historic');
+            res.status(404).redirect("/erro");
             return;
           }
 
