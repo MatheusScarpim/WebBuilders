@@ -299,7 +299,7 @@ main {
 }
 
 .nbdt-filter {
-    background-color: #D62D37 !important;
+    background-color: #B70006 !important;
     width: 40px;
     height: 40px;
     border-radius: 5px;
@@ -701,4 +701,27 @@ main {
     right: 0;
     padding: 10px;
     cursor: pointer;
+}
+
+/* /////////////////////////////////////////////////////////////////// */
+
+.stylefiltro {
+
+}
+.stylefiltro h1 {
+    color: #410004;
+}
+
+.stylefiltro input[type="submit"] {
+    margin: 10px;
+    padding: 12px 5vw;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(241 65 65);
+}
+.stylefiltro input[type="submit"]:hover {
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: rgb(177, 42, 42);
 }
