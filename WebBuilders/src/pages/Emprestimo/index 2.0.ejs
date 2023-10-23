@@ -15,12 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="/PageEmprestimo/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/PageEmprestimo/css/responsive.css" type="text/css">
-    <link rel="stylesheet" href="/PageEmprestimo/css/colors.css" type="text/css">
-    <title>Empréstimo</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="css/colors.css" type="text/css">
+    <title>Buscar</title>
 </head>
 
 <body>
@@ -34,9 +33,7 @@
                 </div>
                 <div class="nav-bar-perfil">
                     <div class="perfil-user">
-                        <a href="/logout">
-                            <p>Olá,&nbsp;<span><%= names %></span></p>
-                        </a>
+                        <p>Olá,&nbsp;<span><%= names %></span></p>
                         <img src="#" alt="">
                     </div>
                 </div>
@@ -76,47 +73,46 @@
                     <div class="nav-bar-desktop">
                         <div class="nav-bar-mobile">
                             <div class="hamburguer">
-                                <img src="img/hamburguer.png" alt="hamburguer">
+                                <i class="fas fa-bars"></i>
                             </div>
                         </div>
                         <div class="nav-bar-desktop-texto">
                             <p><span>Home</span></p>
                             <h5>/</h5>
-                            <h5><span>Iniciar</span></h5>
+                            <h5><span>Cadastrar Administrador</span></h5>
                         </div>
                     </div>
                     <div class="mobile-menu">
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/livros">Livros</a></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Livros</a></li>
                             <li><a href="#">Ajuda</a></li>
-                            <li><a href="/alterarUsuario">Configuração</a></li>
+                            <li><a href="#">Configuração</a></li>
                         </ul>
                     </div>
                     <div class="content-desktop">
                         <div class="atalhos-desktop">
 
                             <div class="atalhos-desktop-title">
-                                <h1>Buscar historico</h1>
+                                <h1>Buscar dados</h1>
                             </div>
 
                             <div class="desktop-container">
-                                <form action="/buscar" method="post">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <input type="text" name="email" class="form-control" id="searchInput"
-                                                placeholder="Digite o e-mail">
-                                            <br>
-                                            <div id="searchResults"></div>
-                                            <label for="OU">OU</label>
-                                            <br><br>
-                                            <input type="text" name="names" class="form-control" id="searchInputNames"
-                                                placeholder="Digite o nome">
-                                            <br>
-                                            <div id="searchResultsNames"></div>
-                                        </div>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Email</label>
+                                        <input type="text" class="form-control" id="searchInput" placeholder="@">
+                                        <div id="searchResults"></div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                    <br>
+                                    <label for="inputAddress2">Ou</label>
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Nome</label>
+                                        <input type="text" class="form-control" id="searchInputNames"
+                                            placeholder="Seu nome">
+                                        <div id="searchResultsNames"></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>
                             </div>
 
@@ -130,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <script src="/PageEmprestimo/js/script.js"></script>
+            <script src="script.js"></script>
         </div> <!-- container -->
     </main>
 </body>

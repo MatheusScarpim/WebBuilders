@@ -163,7 +163,7 @@ router.get('/emprestimo', checkCargo("A"), (req, res) => {
 
     const currentDate = new Date();
     const currentDateString = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-    console.log("currentDateString "+currentDateString)
+    console.log("currentDateString " + currentDateString)
 
     con.query(`select ac.id_action,cu.names,bo.title,bo.code from actions ac 
     inner join book bo on (ac.id_book = bo.id_book) 
