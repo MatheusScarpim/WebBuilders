@@ -9,6 +9,12 @@ table {
   background-color: #eeeeee;
 }
 
+td {
+  background-color: #efefef;
+  border-bottom: 1px solid #dfdfdf !important;
+  color: #575757 !important;
+}
+
 table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
@@ -19,7 +25,7 @@ table, th, td {
 }
 
 table th {
-  background-color: #404040;
+  background-color: #f36b6b;
   color: white;
 }
 
@@ -41,11 +47,11 @@ button {
 }
 
 .button_one {
-  background: #cc5a6a;
+  background: #f36b6b;
   color: white;
 }
 .button_one:hover {
-  background: #d63e52;
+  background: #d65e5e;
   
 }
 
@@ -59,11 +65,16 @@ button {
 }
 
 .Historico-Expandido {
+  border: 1px solid red;
   background-color: #f2f2f2;
-  padding: 10px;
+  padding: 40px;
+  text-align: left;
   margin-bottom: 5px;
   font-size: 16px;
   border-radius: 10px;
+}
+.history-entry {
+  margin-bottom: -8px;
 }
 
 * {
@@ -118,6 +129,10 @@ main {
 }
 
 /* //////////////////////////////////////////////// */
+
+.perfil-user a {
+  text-decoration: none;
+}
 
 .perfil-user {
   display: flex;
@@ -635,7 +650,8 @@ main {
 
 .zoomable {
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: 0.3s;
+  border-radius: 5px;
 }
 
 .overlay {
@@ -658,7 +674,7 @@ main {
   z-index: 2000;
 
   padding: 20px;
-  background-color: #fff;
+  /* background-color: #fff; */
   text-align: center;
   border-radius: 8px;
 }
