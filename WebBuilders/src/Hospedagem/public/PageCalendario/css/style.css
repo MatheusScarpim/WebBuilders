@@ -14,6 +14,7 @@ th, td {
     width: 40px;
     height: 40px;
     border: 1px solid #ddd;
+    background: #fff;
     text-align: center;
     padding: 5px;
 }
@@ -48,6 +49,12 @@ select {
 .month-nav {
     display: flex;
     align-items: center;
+}
+.month-nav img {
+    width: 15px;
+}
+.month-nav h2 {
+    color: #d76767 !important;
 }
 
 .prev-month, .next-month {
@@ -360,4 +367,20 @@ td.marcada {
 
 .conteudo-calendario {
     margin-top: 35px;
+}
+
+/* /////////////////////////////////////////////// */
+
+.content-desktop {
+    display: flex;
+}
+.dados-agendamento {
+    background-color: #fff;
+    width: 40%;
+    height: 100%;
+    margin-left: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

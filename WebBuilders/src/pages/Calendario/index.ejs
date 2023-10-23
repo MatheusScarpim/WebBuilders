@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link rel="stylesheet" href="/PageCalendario/css/style.css" type="text/css">
     <link rel="stylesheet" href="/PageCalendario/css/colors.css" type="text/css">
@@ -93,9 +94,9 @@
                         <div class="conteudo-calendario">
                             <div class="calendar-container">
                                 <div class="month-nav" id="monthNav">
-                                    <span class="prev-month" id="prevMonth">&#9665;</span>
+                                    <span class="prev-month" id="prevMonth"><img src="/PageCalendario/img/seta-esquerda.png"></span>
                                     <h2 id="currentMonthYear"></h2>
-                                    <span class="next-month" id="nextMonth">&#9655;</span>
+                                    <span class="next-month" id="nextMonth"><img src="/PageCalendario/img/seta-direita.png"></span>
                                 </div>
                                 <div id="calendar"></div>
                             </div>
@@ -121,6 +122,11 @@
                                 <select id="year"></select>
                             </form>
                         </div> <!-- conteudo-calendario -->
+
+                        <div class="dados-agendamento">
+                            <p>teste</p>
+                        </div>
+
                     </div> <!-- content-desktop -->
 
                     <div class="rodape-desktop">
