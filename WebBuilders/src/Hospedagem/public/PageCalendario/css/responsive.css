@@ -35,6 +35,22 @@
     .nav-bar-desktop-texto {
         display: none;
     }
+    .content-desktop {
+        display: flex;
+        flex-direction: column;
+    }
+    .dados-agendamento {
+        /* background-color: #fff; */
+        width: 100%;
+        height: 100%;
+        margin-left: 0px;
+    }
+    .iaf-title {
+        padding: 15px 0px;
+    }
+    .iaf-content {
+        padding: 15px 0px;
+    }
 }
   
 /* Estilos para telas grandes */

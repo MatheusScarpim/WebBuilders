@@ -13,7 +13,7 @@ table {
 th, td {
     width: 40px;
     height: 40px;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     background: #fff;
     text-align: center;
     padding: 5px;
@@ -111,6 +111,10 @@ select {
 
 .nav-icon:hover {
     background-color: #c5c5c5;
+}
+
+.perfil-user a {
+    text-decoration: none;
 }
 
 .perfil-user {
@@ -375,12 +379,59 @@ td.marcada {
     display: flex;
 }
 .dados-agendamento {
-    background-color: #fff;
-    width: 40%;
+    /* background-color: #fff; */
+    width: 30%;
     height: 100%;
     margin-left: 10px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.informacoes-agenda-frame {
+    width: 60%;
+    height: 80%;
+    
+    border-radius: 10px;
+    
+    margin-bottom: 50px;
+    /* background-color: #fff; */
+    /* margin-top: -40px; */
+}
+.iaf-title {
+    background-color: #e43a3a;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    height: 10px;
+    padding: 15px 20px;
+}
+.iaf-content {
+    background-color: #fff;
+    border-radius: 0px 0px 10px 10px;
+    width: 100%;
+    height: 80%;
+    padding: 10px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notificacao-content {
+    text-align: left;
+}
+.notificacao-content h2 {
+    font-weight: bolder;
+    font-size: 20px;
+    margin-top: 10px;
+    color: #d76767;
+}
+.notificacao-content h5 {
+    margin-top: -4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #4d4d4d;
+}
+.notificacao-content p {
+    margin-bottom: 10px;
 }
