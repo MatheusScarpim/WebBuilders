@@ -118,7 +118,7 @@
 
                             </nav>
                             <div class="overlay"></div>
-                            <div class="zoom-frame">
+                            <div class="zoom-frame stylefiltro">
                                 <form action="/livros/filtro" method="post">
                                     <h1>Filtro</h1>
                                     <Label>Reservado?</Label>
@@ -127,12 +127,13 @@
                                         <option>Sim</option>
                                         <option>Não</option>
                                     </select>
+                                    <Label>Disponível?</Label>
                                     <select class="form-control" name="available" id="available">
                                         <option value="1">Disponível</option>
                                         <option value="0">Não Disponível</option>
                                     </select>
-
-                                    <input type="submit" value="Enviar">
+                                    <br>
+                                    <input type="submit" value="Aplicar filtro">
                                 </form>
                             </div>
 
