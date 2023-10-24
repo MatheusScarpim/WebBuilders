@@ -55,6 +55,10 @@ main {
     display: flex;
     margin-right: 3vh;
 }
+
+.perfil-user a {
+    text-decoration: none;
+}
 .perfil-user p {
     color: rgb(3, 30, 70);
     margin-right: 3vh;

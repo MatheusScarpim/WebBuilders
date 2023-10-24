@@ -119,19 +119,22 @@
                             </nav>
                             <div class="overlay"></div>
                             <div class="zoom-frame stylefiltro">
-                                <form action="/livros/filtro" method="post">
+                                <form action="/livros" method="get">
                                     <h1>Filtro</h1>
-                                    <Label>Reservado?</Label>
+                                    <Label>Onde consta?</Label>
                                     <select class="form-control" name="place" id="place" value="">
-                                        <option value="">Selecione uma opção</option>
-                                        <option>Sim</option>
-                                        <option>Não</option>
+                                        <option value=>Selecione uma opção</option>
+                                        <option value="SEDE">SEDE</option>
+                                        <option value="FILIAL">FILIAL</option>
                                     </select>
                                     <Label>Disponível?</Label>
                                     <select class="form-control" name="available" id="available">
+                                        <option value=>Selecione uma opção</option>
                                         <option value="1">Disponível</option>
                                         <option value="0">Não Disponível</option>
                                     </select>
+                                    <Label>Nome do Livro?</Label>
+                                    <input type="text" name="nome_livro" id="nome_livro">
                                     <br>
                                     <input type="submit" value="Aplicar filtro">
                                 </form>
@@ -151,6 +154,7 @@
                             </div>
 
                             <div class="ad-grid">
+                                <% if(books.length > 0) {%>
                                 <% books.forEach(function(book) { %>
                                 <div class="card">
                                     <div class="card-content">
@@ -193,20 +197,30 @@
                                     </div>
                                 </div>
                                 <% }); %>
+                                <% } else {%>
+                                <h1>Nenhum Livro Encontrado</h1>
+                                <% } %>
                             </div>
                             <div class="pagination">
                                 <ul>
                                     <% if (currentPage > 1) { %>
-                                    <li><a href="/livros?page=<%= currentPage - 1 %>">Anterior</a></li>
+                                    <li><a
+                                            href="/livros?page=<%= currentPage - 1 %>&available=<%= filterOptions.available %>&place=<%= filterOptions.place %>&nome_livro=<%= filterOptions.nome_livro %>">Anterior</a>
+                                    </li>
                                     <% } %>
                                     <% for (let i = 1; i <= totalPages; i++) { %>
                                     <li <% if (i === currentPage) { %>class="active" <% } %>><a
-                                            href="/livros?page=<%= i %>"><%= i %></a></li>
+                                            href="/livros?page=<%= i %>&available=<%= filterOptions.available %>&place=<%= filterOptions.place %>&nome_livro=<%= filterOptions.nome_livro %>"><%= i %></a>
+                                    </li>
                                     <% } %>
                                     <% if (currentPage < totalPages) { %>
-                                    <li><a href="/livros?page=<%= currentPage + 1 %>">Próxima</a></li>
+                                    <li><a
+                                            href="/livros?page=<%= currentPage + 1 %>&available=<%= filterOptions.available %>&place=<%= filterOptions.place %>&nome_livro=<%= filterOptions.nome_livro %>">Próxima</a>
+                                    </li>
                                     <% } %>
                                 </ul>
+
+
                             </div>
 
                             <div class="volta-topo" id="scrollArrow"><a href="#topo">
