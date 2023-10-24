@@ -60,6 +60,10 @@ main {
     margin-right: 3vh;
 }
 
+.perfil-user a {
+    text-decoration: none;
+}
+
 .perfil-user p {
     color: rgb(58, 3, 3);
     margin-right: 3vh;

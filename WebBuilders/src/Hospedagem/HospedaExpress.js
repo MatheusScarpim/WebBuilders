@@ -14,6 +14,7 @@ const emprestimo = require('../pages/Emprestimo/emprestimo')
 const historico = require('../pages/Historico/historico')
 const erro = require('../pages/Erros/erros')
 const calendario = require('../pages/Calendario/calendario')
+const institucional = require('../pages/Institucional/institucional')
 
 
 const path = require('path');
@@ -68,6 +69,7 @@ app.use("/", emprestimo);
 app.use("/", historico);
 app.use("/", erro);
 app.use("/", calendario);
+app.use("/", institucional);
 
 app.get('/status', (req, res) => {
   res.json({
@@ -80,7 +82,7 @@ app.use((req, res, next) => {
   res.status(404).redirect("/erro")
 });
 
-const port = process.env.PORT || 4010;
+const port = process.env.PORT || 4441;
 const server = http.createServer(app);
 
 server.listen(port, () => {
@@ -96,3 +98,4 @@ module.exports.emprestimo = emprestimo;
 module.exports.historico = historico;
 module.exports.erro = erro;
 module.exports.calendario = calendario;
+module.exports.institucional = institucional;

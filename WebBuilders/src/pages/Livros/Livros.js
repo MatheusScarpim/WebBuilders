@@ -82,6 +82,7 @@ router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
 });
 
 
+
 router.get('/livros', (req, res) => {
   const cargo = req.session.adm === 'M' || req.session.adm === 'A';
   const page = parseInt(req.query.page) || 1;
@@ -89,50 +90,52 @@ router.get('/livros', (req, res) => {
 
   const offset = (page - 1) * perPage;
 
-  con.query('SELECT * FROM book LIMIT ? OFFSET ?', [perPage, offset], (err, books) => {
-    if (err) {
-      console.error('Error fetching books:', err);
-      res.status(404).redirect("/erro"); 
-      return;
+  const filterOptions = {
+    available: req.query.available || '',
+    place: req.query.place || '',
+    nome_livro: req.query.nome_livro || '',
+  };
+
+  // Build the SQL query with the filter options
+  let query = 'SELECT * FROM book';
+  let query2 = 'SELECT COUNT(*) AS count FROM book '
+
+  // Check if any filter options are provided
+  if (filterOptions.available !== '' || filterOptions.place !== '' || filterOptions.nome_livro !== '') {
+    query += ' WHERE';
+    query2 += ' WHERE';
+
+    if (filterOptions.available !== '') {
+      query += ` available = '${filterOptions.available}'`;
+      query2 += ` available = '${filterOptions.available}'`;
+
     }
 
-    con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
-      if (err) {
-        console.error('Error counting books:', err);
-        res.status(404).redirect("/erro");
-        return;
-      }
+    if (filterOptions.available !== '' && (filterOptions.place !== '' || filterOptions.nome_livro !== '')) {
+      query += ' AND';
+      query2 += ' AND';
+    }
 
-      const totalBooks = result[0].count;
-      const totalPages = Math.ceil(totalBooks / perPage);
+    if (filterOptions.place !== '') {
+      query += ` place = '${filterOptions.place}'`;
+      query2 += ` place = '${filterOptions.place}'`;
+    }
 
-      res.render(path.join(__dirname + '/ListaLivros', 'index.ejs'), {
-        books,
-        names: req.session.names,
-        cargo,
-        currentPage: page,
-        totalPages,
-      });
-    });
-  });
-});
+    if (filterOptions.nome_livro !== '') {
+      query += ` title LIKE '%${filterOptions.nome_livro}%'`;
+      query2 += ` title LIKE '%${filterOptions.nome_livro}%'`;
+    }
+  }
+  query += ' LIMIT ? OFFSET ?';
 
-router.get('/livros', (req, res) => {
-  const cargo = req.session.adm === 'M' || req.session.adm === 'A';
-  const reqBody = req.body;
-  const page = parseInt(req.query.page) || 1;
-  const perPage = 8;
-
-  const offset = (page - 1) * perPage;
-
-  con.query('SELECT * FROM book where ? LIMIT ? OFFSET ?', [reqBody, perPage, offset], (err, books) => {
+  con.query(query, [perPage, offset], (err, books) => {
     if (err) {
       console.error('Error fetching books:', err);
       res.status(404).redirect("/erro");
       return;
     }
 
-    con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
+    con.query(query2, (err, result) => {
       if (err) {
         console.error('Error counting books:', err);
         res.status(404).redirect("/erro");
@@ -148,41 +151,7 @@ router.get('/livros', (req, res) => {
         cargo,
         currentPage: page,
         totalPages,
-      });
-    });
-  });
-});
-router.post('/livros/filtro', (req, res) => {
-  const cargo = req.session.adm === 'M' || req.session.adm === 'A';
-  const reqBody = req.body;
-  const page = parseInt(req.query.page) || 1;
-  const perPage = 8;
-
-  const offset = (page - 1) * perPage;
-
-  con.query('SELECT * FROM book where ? LIMIT ? OFFSET ?', [reqBody, perPage, offset], (err, books) => {
-    if (err) {
-      console.error('Error fetching books:', err);
-      res.status(404).redirect("/erro");
-      return;
-    }
-
-    con.query('SELECT COUNT(*) AS count FROM book', (err, result) => {
-      if (err) {
-        console.error('Error counting books:', err);
-        res.status(404).redirect("/erro");
-        return;
-      }
-
-      const totalBooks = result[0].count;
-      const totalPages = Math.ceil(totalBooks / perPage);
-
-      res.render(path.join(__dirname + '/ListaLivros', 'index.ejs'), {
-        books,
-        names: req.session.names,
-        cargo,
-        currentPage: page,
-        totalPages,
+        filterOptions, // Pass filter options to the view for display
       });
     });
   });

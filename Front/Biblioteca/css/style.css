@@ -55,6 +55,9 @@ main {
 
 /* //////////////////////////////////////////////// */
 
+.perfil-user a {
+    text-decoration: none;
+}
 .perfil-user {
     display: flex;
     margin-right: 3vh;
