@@ -28,7 +28,7 @@ function criarCalendario(ano, mes) {
 
     html += '</table>';
     calendario.innerHTML = html;
-        const cells = calendario.querySelectorAll('td.dia');
+    const cells = calendario.querySelectorAll('td.dia');
     for (const cell of cells) {
         const dia = parseInt(cell.getAttribute('data-dia'));
         if (dataDeveSerMarcada(parseInt(ano), parseInt(mes), parseInt(dia))) {
@@ -68,22 +68,22 @@ function criarCalendario(ano, mes) {
 }
 
 function dataDeveSerMarcada(ano, mes, dia) {
-    for (const dataMarcada of datasMarcadas) {  
+    for (const dataMarcada of datasMarcadas) {
         console.log(`mes ${parseInt(mes)+1} dia ${dia} calendario`)
         console.log(`mes ${dataMarcada.end.mes} dia ${dataMarcada.end.dia} node`)
-        
-        if ((ano === dataMarcada.init.ano && ( parseInt(mes)+1 ) === dataMarcada.init.mes) || (ano === dataMarcada.end.ano && ( parseInt(mes)+1 ) === dataMarcada.end.mes) || (ano === dataMarcada.late.ano && ( parseInt(mes)+1 ) === dataMarcada.late.mes) || (ano === dataMarcada.alert.ano && ( parseInt(mes)+1 ) === dataMarcada.alert.mes)) {
-            if (
-                dia === dataMarcada.init.dia || dia === dataMarcada.end.dia ||
-                dia === dataMarcada.alert.dia ||
-                dia === dataMarcada.late.dia
-            ) {
-                return true; 
+
+        if (
+            (ano === dataMarcada.init.ano && (parseInt(mes) + 1) === dataMarcada.init.mes && dia === dataMarcada.init.dia) ||
+            (ano === dataMarcada.end.ano && (parseInt(mes) + 1) === dataMarcada.end.mes && dia === dataMarcada.end.dia) ||
+            (ano === dataMarcada.late.ano && (parseInt(mes) + 1) === dataMarcada.late.mes && dia === dataMarcada.late.dia) ||
+            (ano === dataMarcada.alert.ano && (parseInt(mes) + 1) === dataMarcada.alert.mes && dia === dataMarcada.alert.dia)) {
+            {
+                return true;
             }
+        } else {
+            return false;
         }
     }
-
-    return false; 
 }
 /*
 function comparaDateInit(init, ano, mes, dia) {
