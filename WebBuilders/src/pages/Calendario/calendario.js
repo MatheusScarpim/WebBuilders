@@ -26,25 +26,32 @@ function carregarDatas(idCustomer) {
             } else {
                 const datas = [];
                 for (const row of results) {
+                    console.log(row.date_end.getMonth() + 1)
+
+                    let mesinit = row.date_init.getMonth() + 1
+                    let mesend =  row.date_end.getMonth() + 1
+                    let mesalert = row.date_alert.getMonth() + 1
+                    let mesless= row.date_late.getMonth() + 1
+                    console.log(mesinit)
                     datas.push({
                         init: {
                             ano: row.date_init.getFullYear(),
-                            mes: row.date_init.getMonth() + 1, 
+                            mes: mesinit, 
                             dia: row.date_init.getDate()
                         },
                         end: {
                             ano: row.date_end.getFullYear(),
-                            mes: row.date_end.getMonth() + 1, 
+                            mes: mesend, 
                             dia: row.date_end.getDate()
                         },
                         alert: {
                             ano: row.date_alert.getFullYear(),
-                            mes: row.date_alert.getMonth() + 1,
+                            mes: mesalert,
                             dia: row.date_alert.getDate()
                         },
                         late: {
                             ano: row.date_late.getFullYear(),
-                            mes: row.date_late.getMonth() + 1,
+                            mes: mesless,
                             dia: row.date_late.getDate()
                         }
                     });

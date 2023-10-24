@@ -1,7 +1,8 @@
 function criarCalendario(ano, mes) {
+    console.log(datasMarcadas)
     const calendario = document.getElementById('calendar');
     const hoje = new Date();
-    const diasNoMes = new Date(ano, mes + 1, 0).getDate();
+    const diasNoMes = new Date(ano, parseInt(mes) + 1, 0).getDate();
     const primeiroDia = new Date(ano, mes, 1).getDay();
     let html = '';
     html += '<table>';
@@ -27,38 +28,127 @@ function criarCalendario(ano, mes) {
 
     html += '</table>';
     calendario.innerHTML = html;
-
-    const cells = calendario.querySelectorAll('td.dia');
+        const cells = calendario.querySelectorAll('td.dia');
     for (const cell of cells) {
         const dia = parseInt(cell.getAttribute('data-dia'));
-        if (dataEstaMarcada(ano, mes, dia)) {
+        if (dataDeveSerMarcada(parseInt(ano), parseInt(mes), parseInt(dia))) {
             cell.classList.add('marcada');
         }
     }
+
+    const mesAtual = parseInt(mes) + 1; // Lembre-se de que os meses em JavaScript são baseados em zero.
+    const anoAtual = parseInt(ano);
+
+    // Encontre as datas correspondentes em datasMarcadas.
+    const datasDoMesAtual = datasMarcadas.filter(dataMarcada => {
+        return (
+            dataMarcada.init.ano === anoAtual &&
+            dataMarcada.init.mes === mesAtual
+        );
+    });
+
+    // Se houver datas correspondentes, atualize a notificação com as datas do mês atual.
+    if (datasDoMesAtual.length > 0) {
+        const dataInitElement = document.getElementById("dataInit");
+        const dataEndElement = document.getElementById("dataEnd");
+
+        // Use a primeira data encontrada (você pode ajustar isso se houver várias datas).
+        const primeiraDataDoMes = datasDoMesAtual[0];
+        dataInitElement.textContent = `${primeiraDataDoMes.init.ano}-${primeiraDataDoMes.init.mes}-${primeiraDataDoMes.init.dia}`;
+        dataEndElement.textContent = `${primeiraDataDoMes.end.ano}-${primeiraDataDoMes.end.mes}-${primeiraDataDoMes.end.dia}`;
+    } else {
+        // Se não houver datas correspondentes, você pode definir um texto padrão.
+        const dataInitElement = document.getElementById("dataInit");
+        const dataEndElement = document.getElementById("dataEnd");
+        dataInitElement.textContent = "Nenhuma data marcada";
+        dataEndElement.textContent = "Nenhuma data marcada";
+    }
+
+
 }
 
-
-
-function dataEstaMarcada(ano, mes, dia) {
-    console.log(`Verificando data: ${ano} ${mes} ${dia}`);
-    for (const dataMarcada of datasMarcadas) {
-        console.log(ano, dataMarcada.init.ano, mes, dataMarcada.init.mes)
-        if (ano === dataMarcada.init.ano && (mes+1
-            ) === dataMarcada.init.mes) {
+function dataDeveSerMarcada(ano, mes, dia) {
+    for (const dataMarcada of datasMarcadas) {  
+        console.log(`mes ${parseInt(mes)+1} dia ${dia} calendario`)
+        console.log(`mes ${dataMarcada.end.mes} dia ${dataMarcada.end.dia} node`)
+        
+        if ((ano === dataMarcada.init.ano && ( parseInt(mes)+1 ) === dataMarcada.init.mes) || (ano === dataMarcada.end.ano && ( parseInt(mes)+1 ) === dataMarcada.end.mes) || (ano === dataMarcada.late.ano && ( parseInt(mes)+1 ) === dataMarcada.late.mes) || (ano === dataMarcada.alert.ano && ( parseInt(mes)+1 ) === dataMarcada.alert.mes)) {
             if (
-                (dia >= dataMarcada.init.dia && dia <= dataMarcada.end.dia) ||
+                dia === dataMarcada.init.dia || dia === dataMarcada.end.dia ||
                 dia === dataMarcada.alert.dia ||
                 dia === dataMarcada.late.dia
             ) {
-                console.log("true")
                 return true; 
             }
-            console.log("false")
         }
     }
 
     return false; 
 }
+/*
+function comparaDateInit(init, ano, mes, dia) {
+    if (ano === init.ano && mes === init.mes) {
+        if (
+            (dia >= init.dia && dia <= init.end.dia) ||
+            dia === init.alert.dia ||
+            dia === init.late.dia
+        ) {
+            console.log("true (init)");
+            return true;
+        }
+        console.log("false (init)");
+    }
+    return false;
+}
+
+function comparaDateAlert(alert, ano, mes, dia) {
+    if (ano === alert.ano && mes === alert.mes) {
+        if (dia === alert.dia) {
+            console.log("true (alert)");
+            return true;
+        }
+        console.log("false (alert)");
+    }
+    return false;
+}
+
+function comparaDateEnd(end, ano, mes, dia) {
+    if (ano === end.ano && mes === end.mes) {
+        if (dia === end.dia) {
+            console.log("true (end)");
+            return true;
+        }
+        console.log("false (end)");
+    }
+    return false;
+}
+
+function comparaDateLate(late, ano, mes, dia) {
+    if (ano === late.ano && mes === late.mes) {
+        if (dia === late.dia) {
+            console.log("true (late)");
+            return true;
+        }
+        console.log("false (late)");
+    }
+    return false;
+}
+
+function dataDeveSerMarcada(ano, mes, dia) {
+    for (const dataMarcada of datasMarcadas) {
+        if (
+            comparaDateInit(dataMarcada.init, ano, mes, dia) ||
+            comparaDateAlert(dataMarcada.alert, ano, mes, dia) ||
+            comparaDateEnd(dataMarcada.end, ano, mes, dia) ||
+            comparaDateLate(dataMarcada.late, ano, mes, dia)
+        ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+*/
 
 const calendario = document.getElementById('calendar');
 

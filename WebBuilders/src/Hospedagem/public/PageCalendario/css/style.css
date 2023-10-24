@@ -360,13 +360,18 @@ select {
 }
 
 .marcada {
-    background-color: green !important;
-    color: white !important; 
+    background-color: #FF5733 !important;
+    color: #FFFFFF !important; 
 }
 
 td.marcada {
     background-color: #FF5733 !important;
     color: #FFFFFF !important;
+}
+
+.marcada:hover{
+    background-color: #c03a1b !important;
+    color: #1f1919 !important;
 }
 
 .conteudo-calendario {

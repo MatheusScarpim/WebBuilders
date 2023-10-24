@@ -83,8 +83,8 @@
                     </div>
                     <div class="mobile-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Livros</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/livros">Livros</a></li>
                             <li><a href="#">Ajuda</a></li>
                             <li><a href="#">Configuração</a></li>
                         </ul>
@@ -128,13 +128,14 @@
                                 <div class="iaf-title"></div>
                                 <div class="iaf-content">
                                     <div class="notificacao-content">
-                                        <h2>Data do emprestimo:</h2>
-                                        <p>10/10/23</p>
-                        
+                                        <h2>Data do empréstimo ou reserva:</h2>
+                                        <p id="dataInit"></p>
+                                    
                                         <h2>Data de devolução:</h2>
-                                        <h5>Devolva o livro até está data</h5>
-                                        <p>12/10/23</p>
+                                        <h5>Devolva o livro até esta data</h5>
+                                        <p id="dataEnd"></p>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -149,13 +150,15 @@
                     </div>
                 </div>
             </div>
-            <script src="/PageCalendario/js/script.js"></script>
         </div> <!-- container -->
     </main>
 
     <script>
         var datasMarcadas = JSON.parse('<%- datasMarcadas %>');
         console.log('Datas recebidas no cliente:', datasMarcadas);
+        if(datasMarcadas.length == 0)
+        console.log("Sem Dados")
+
     </script>
 
     <script src="/PageCalendario/js/script.js"></script>
