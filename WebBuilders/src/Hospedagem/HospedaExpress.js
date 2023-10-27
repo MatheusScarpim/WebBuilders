@@ -82,7 +82,7 @@ app.use((req, res, next) => {
   res.status(404).redirect("/erro")
 });
 
-const port = process.env.PORT || 4441;
+const port = process.env.PORT || 4421;
 const server = http.createServer(app);
 
 server.listen(port, () => {
