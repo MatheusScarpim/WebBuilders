@@ -1,34 +1,43 @@
 const express = require('express');
+const path = require("path");
 var router = express.Router();
 const bodyParser = require('body-parser');
-const path = require('path');
 const con = require('../../Banco/MySQL/conexaoMysql');
 
-router.use(bodyParser.urlencoded({
-    extended: true
-  }));
+router.get('/about', (req, res) => {
+  req.session, (err) => {
+    console.error('Error page about:', err);
+    res.status(500).send('Error page about');
+    return;
+  }
+  res.render(path.join(__dirname, 'about.ejs'))
+})
 
 router.get('/institucional', (req, res) => {
-    con.query('select b.title,b.edition,b.code,b.foto,ac.status,ac.id_action from actions ac INNER join historic h on (ac.id_action = h.id_action) inner join book b on (ac.id_book = b.id_book) where ac.id_customer = ? GROUP by id_action', req.session.id_customer, (err, books, results) => {
-      if (err) {
-        console.error('Error fetching books:', err);
-        res.status(500).send('Error fetching books');
-        return;
-      }
-  
-      con.query('select h.date,h.status_book,ac.id_action from actions ac INNER join historic h on (ac.id_action = h.id_action) inner join book b on (ac.id_book = b.id_book) where ac.id_customer = ? order by h.date', req.session.id_customer, (err, historic) => {
-        if (err) {
-          console.error('Error fetching books:', err);
-          res.status(500).send('Error fetching books');
-          return;
-        }
-        res.render(path.join(__dirname, 'index.ejs'), {
-          books,
-          historic,
-          names: req.session.names
-        });
-      });
-    });
-  });
-  
-  module.exports = router;
+  req.session, (err) => {
+    console.error('Error page index:', err);
+    res.status(500).send('Error page index');
+    return;
+  }
+  res.render(path.join(__dirname, 'index.ejs'))
+})
+
+router.get('/mural', (req, res) => {
+  req.session, (err) => {
+    console.error('Error page mural:', err);
+    res.status(500).send('Error page mural');
+    return;
+  }
+  res.render(path.join(__dirname, 'mural.ejs'))
+})
+
+router.get('/queroajudar', (req, res) => {
+  req.session, (err) => {
+    console.error('Error page queroajudar:', err);
+    res.status(500).send('Error page queroajudar');
+    return;
+  }
+  res.render(path.join(__dirname, 'queroajudar.ejs'))
+})
+
+module.exports = router;

@@ -58,7 +58,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-
+app.use("/ong", institucional);
 app.use("/", isAuthenticated);
 app.use("/", principal);
 app.use("/", login);
@@ -69,7 +69,6 @@ app.use("/", emprestimo);
 app.use("/", historico);
 app.use("/", erro);
 app.use("/", calendario);
-app.use("/", institucional);
 
 app.get('/status', (req, res) => {
   res.json({

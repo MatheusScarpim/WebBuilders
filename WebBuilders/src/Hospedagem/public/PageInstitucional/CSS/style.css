@@ -315,7 +315,7 @@ footer {
 
   }
 
-  .aboutustitle h1{
+  .abouttitle h1{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     color: var(--color-red);
     font-weight: bolder;
@@ -327,7 +327,7 @@ footer {
     padding-left: 10px;
   }
 
-  .aboutustitle h3{
+  .abouttitle h3{
     font-family: Arial, Helvetica, sans-serif;
     color: var(--color-dark-green);
     font-weight: bolder;
@@ -338,7 +338,7 @@ footer {
     display: flex;
     padding-left: 10px;
   }
-  .aboutustitle h5{
+  .abouttitle h5{
     font-family: Arial, Helvetica, sans-serif;
     color: var(--color-red);
     font-weight: bolder;
@@ -349,7 +349,7 @@ footer {
     display: flex;
     padding-left: 10px;
   }
-  .aboutustitle a{
+  .abouttitle a{
     font-family: Arial, Helvetica, sans-serif;
     color: var(--color-red);
     align-items:center;
@@ -398,7 +398,7 @@ footer {
     align-self: center;
  }
 
- .aboutustitle h2{
+ .abouttitle h2{
     padding-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     color: var(--color-red);
@@ -569,7 +569,7 @@ strong{
     width: 90px;
 }
 
-.aboutustitleL h1{
+.abouttitleL h1{
     padding-top: 20px;
     padding-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
