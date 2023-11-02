@@ -1,5 +1,9 @@
+let mesCalendario;
+let anoCalendario;
+
 function criarCalendario(ano, mes) {
-    console.log(datasMarcadas)
+    mesCalendario = mes;
+    anoCalendario = ano;
     const calendario = document.getElementById('calendar');
     const hoje = new Date();
     const diasNoMes = new Date(ano, parseInt(mes) + 1, 0).getDate();
@@ -36,35 +40,31 @@ function criarCalendario(ano, mes) {
         }
     }
 
-    const mesAtual = parseInt(mes) + 1; // Lembre-se de que os meses em JavaScript são baseados em zero.
+    const mesAtual = parseInt(mes) + 1;
     const anoAtual = parseInt(ano);
 
-    // Encontre as datas correspondentes em datasMarcadas.
     const datasDoMesAtual = datasMarcadas.filter(dataMarcada => {
         return (
             dataMarcada.init.ano === anoAtual &&
             dataMarcada.init.mes === mesAtual
         );
     });
-
-    // Se houver datas correspondentes, atualize a notificação com as datas do mês atual.
-    if (datasDoMesAtual.length > 0) {
+    console.log("Tamanho dt", datasMarcadas.length)
+    if (datasMarcadas.length > 0) {
+        console.log("True")
         const dataInitElement = document.getElementById("dataInit");
         const dataEndElement = document.getElementById("dataEnd");
 
-        // Use a primeira data encontrada (você pode ajustar isso se houver várias datas).
         const primeiraDataDoMes = datasDoMesAtual[0];
-        dataInitElement.textContent = `${primeiraDataDoMes.init.ano}-${primeiraDataDoMes.init.mes}-${primeiraDataDoMes.init.dia}`;
-        dataEndElement.textContent = `${primeiraDataDoMes.end.ano}-${primeiraDataDoMes.end.mes}-${primeiraDataDoMes.end.dia}`;
+        //console.log("Tamanho ", primeiraDataDoMes.init.ano)
+        dataInitElement.textContent = `${datasMarcadas.init.ano}/${datasMarcadas.init.mes}/${datasMarcadas.init.dia}`;
+        dataEndElement.textContent = `${datasMarcadas.end.ano}/${datasMarcadas.end.mes}/${datasMarcadas.end.dia}`;
     } else {
-        // Se não houver datas correspondentes, você pode definir um texto padrão.
         const dataInitElement = document.getElementById("dataInit");
         const dataEndElement = document.getElementById("dataEnd");
         dataInitElement.textContent = "Nenhuma data marcada";
         dataEndElement.textContent = "Nenhuma data marcada";
     }
-
-
 }
 
 function dataDeveSerMarcada(ano, mes, dia) {
@@ -152,9 +152,26 @@ function dataDeveSerMarcada(ano, mes, dia) {
 
 const calendario = document.getElementById('calendar');
 
+
 calendario.addEventListener('click', function (event) {
+    let dataMarcada = datasMarcadas[0];
     if (event.target.classList.contains('marcada')) {
-        alert('Esta data foi marcada: ' + event.target.getAttribute('data-dia'));
+        console.log(`${dataMarcada.init.ano} == ${anoCalendario}`)
+        console.log(`${dataMarcada.init.mes} == ${parseInt(mesCalendario)+1}`)
+        console.log(`${dataMarcada.init.dia} == ${event.target.getAttribute('data-dia')}`)
+
+        if (dataMarcada.init.ano == anoCalendario && dataMarcada.init.mes  == (parseInt(mesCalendario)+1) && dataMarcada.init.dia ==  event.target.getAttribute('data-dia')) {
+            alert('Esta data corresponde à data inicial de sua reserva ou empréstimo: ' + event.target.getAttribute('data-dia'));
+       } 
+       else if (dataMarcada.alert.ano == anoCalendario && dataMarcada.alert.mes  == (parseInt(mesCalendario)+1) && dataMarcada.alert.dia ==  event.target.getAttribute('data-dia')) {
+        alert('Esta data corresponde a um dia antes da finalização de sua reserva ou empréstimo: ' + event.target.getAttribute('data-dia'));
+        } 
+        else if (dataMarcada.late.ano == anoCalendario && dataMarcada.late.mes  == (parseInt(mesCalendario)+1) && dataMarcada.late.dia ==  event.target.getAttribute('data-dia')) {
+            alert('Esta data corresponde a um dia após a finalização de sua reserva ou empréstimo: ' + event.target.getAttribute('data-dia'));
+            } 
+            else if (dataMarcada.end.ano == anoCalendario && dataMarcada.end.mes  == (parseInt(mesCalendario)+1) && dataMarcada.end.dia ==  event.target.getAttribute('data-dia')) {
+                alert('Esta data corresponde à data final de sua reserva ou empréstimo: ' + event.target.getAttribute('data-dia'));
+                } 
     } else if (event.target.classList.contains('dia')) {
         // Data não marcada.
     }
@@ -192,6 +209,8 @@ selecaoDeMes.addEventListener('change', function () {
     const mesSelecionado = selecaoDeMes.value;
     const anoSelecionado = selecaoDeAno.value;
     mesAnoAtual.textContent = obterNomeDoMes(mesSelecionado) + ' ' + anoSelecionado;
+    mesCalendario =  parseInt(mesAnoAtual.textContent);
+    anoCalendario = parseInt(anoSelecionado)
     criarCalendario(anoSelecionado, mesSelecionado);
 });
 
@@ -199,6 +218,8 @@ selecaoDeAno.addEventListener('change', function () {
     const mesSelecionado = selecaoDeMes.value;
     const anoSelecionado = selecaoDeAno.value;
     mesAnoAtual.textContent = obterNomeDoMes(mesSelecionado) + ' ' + anoSelecionado;
+    mesCalendario =  parseInt(mesAnoAtual.textContent);
+    anoCalendario = parseInt(anoSelecionado)
     criarCalendario(anoSelecionado, mesSelecionado);
 });
 
@@ -212,7 +233,8 @@ botaoMesAnterior.addEventListener('click', function () {
     } else {
         selecaoDeMes.value = mesAtual - 1;
     }
-
+    mesCalendario =  parseInt(mesAtual.textContent);
+    anoCalendario = parseInt(anoAtual)
     mesAnoAtual.textContent = obterNomeDoMes(selecaoDeMes.value) + ' ' + selecaoDeAno.value;
     criarCalendario(selecaoDeAno.value, selecaoDeMes.value);
 });
@@ -227,7 +249,8 @@ botaoProximoMes.addEventListener('click', function () {
     } else {
         selecaoDeMes.value = mesAtual + 1;
     }
-
+    mesCalendario =  parseInt(mesAtual.textContent);
+    anoCalendario = parseInt(anoAtual)
     mesAnoAtual.textContent = obterNomeDoMes(selecaoDeMes.value) + ' ' + selecaoDeAno.value;
     criarCalendario(selecaoDeAno.value, selecaoDeMes.value);
 });
@@ -235,4 +258,4 @@ botaoProximoMes.addEventListener('click', function () {
 function obterNomeDoMes(mes) {
     const nomesDosMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     return nomesDosMeses[mes];
-}
+} 
