@@ -49,29 +49,23 @@ function criarCalendario(ano, mes) {
             dataMarcada.init.mes === mesAtual
         );
     });
-    console.log("Tamanho dt", datasMarcadas.length)
     if (datasMarcadas.length > 0) {
-        console.log("True")
         const dataInitElement = document.getElementById("dataInit");
         const dataEndElement = document.getElementById("dataEnd");
 
         const primeiraDataDoMes = datasDoMesAtual[0];
-        //console.log("Tamanho ", primeiraDataDoMes.init.ano)
-        dataInitElement.textContent = `${datasMarcadas.init.ano}/${datasMarcadas.init.mes}/${datasMarcadas.init.dia}`;
-        dataEndElement.textContent = `${datasMarcadas.end.ano}/${datasMarcadas.end.mes}/${datasMarcadas.end.dia}`;
+        dataInitElement.textContent = `${datasMarcadas[0].init.ano}/${datasMarcadas[0].init.mes}/${datasMarcadas[0].init.dia}`;
+        dataEndElement.textContent = `${datasMarcadas[0].end.ano}/${datasMarcadas[0].end.mes}/${datasMarcadas[0].end.dia}`;
     } else {
         const dataInitElement = document.getElementById("dataInit");
         const dataEndElement = document.getElementById("dataEnd");
-        dataInitElement.textContent = "Nenhuma data marcada";
+        dataInitElement.textContent = "Você não possuí reservas nem empréstimos !";
         dataEndElement.textContent = "Nenhuma data marcada";
     }
 }
 
 function dataDeveSerMarcada(ano, mes, dia) {
     for (const dataMarcada of datasMarcadas) {
-        console.log(`mes ${parseInt(mes)+1} dia ${dia} calendario`)
-        console.log(`mes ${dataMarcada.end.mes} dia ${dataMarcada.end.dia} node`)
-
         if (
             (ano === dataMarcada.init.ano && (parseInt(mes) + 1) === dataMarcada.init.mes && dia === dataMarcada.init.dia) ||
             (ano === dataMarcada.end.ano && (parseInt(mes) + 1) === dataMarcada.end.mes && dia === dataMarcada.end.dia) ||
@@ -156,10 +150,6 @@ const calendario = document.getElementById('calendar');
 calendario.addEventListener('click', function (event) {
     let dataMarcada = datasMarcadas[0];
     if (event.target.classList.contains('marcada')) {
-        console.log(`${dataMarcada.init.ano} == ${anoCalendario}`)
-        console.log(`${dataMarcada.init.mes} == ${parseInt(mesCalendario)+1}`)
-        console.log(`${dataMarcada.init.dia} == ${event.target.getAttribute('data-dia')}`)
-
         if (dataMarcada.init.ano == anoCalendario && dataMarcada.init.mes  == (parseInt(mesCalendario)+1) && dataMarcada.init.dia ==  event.target.getAttribute('data-dia')) {
             alert('Esta data corresponde à data inicial de sua reserva ou empréstimo: ' + event.target.getAttribute('data-dia'));
        } 
