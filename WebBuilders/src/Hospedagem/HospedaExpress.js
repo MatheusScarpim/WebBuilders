@@ -15,6 +15,7 @@ const historico = require('../pages/Historico/historico')
 const erro = require('../pages/Erros/erros')
 const calendario = require('../pages/Calendario/calendario')
 const institucional = require('../pages/Institucional/institucional')
+const ajuda = require('../pages/Ajuda/ajuda.js')
 
 
 const path = require('path');
@@ -69,6 +70,7 @@ app.use("/", emprestimo);
 app.use("/", historico);
 app.use("/", erro);
 app.use("/", calendario);
+app.use("/", ajuda);
 
 app.get('/status', (req, res) => {
   res.json({
