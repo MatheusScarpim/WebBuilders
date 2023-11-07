@@ -26,7 +26,7 @@ router.get('/AdicionarAdm', checkCargo("M"), (req, res) => {
 
 router.post('/AdicionarAdm', checkCargo("M"), (req, res) => {
   let reqBody = req.body;
-  con.query("INSERT INTO adm VALUES (?,'A')", reqBody.email, (err, results, fields) => {
+  con.query("UPDATE customers set adm = 'A' where email = ?", reqBody.email, (err, results, fields) => {
     if (err) {
       console.error('Error inserting adm:', err);
       res.status(500).send('Error inserting adm');
