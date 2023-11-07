@@ -41,7 +41,6 @@ router.get('/alterarUsuario', (req, res) => {
             res.status(404).redirect("/erro")
             return;
         }
-        console.log(users)
         let user = users[0];
         res.render(path.join(__dirname + "/AlteraDadosUsuario", 'index2.0.ejs'), {
             user,
@@ -52,7 +51,6 @@ router.get('/alterarUsuario', (req, res) => {
 
 router.post('/alterarUsuario', (req, res) => {
     const reqBody = req.body;
-    console.log(reqBody)
     con.query('Update customers set ? where email =?', [reqBody, req.session.login], (err, users) => {
         if (err) {
             console.error('Error fetching users:', err);

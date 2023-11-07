@@ -24,10 +24,7 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
 
     const emailbody = req.body.email;
     const namesbody = req.body.names;
-    console.log(emailbody)
-    console.log(namesbody)
 
-    console.log(emailbody)
     if (emailbody != undefined && emailbody != "") {
         queryBanco = `${queryBanco} email = '${emailbody}'`;
     } else if (namesbody != undefined && namesbody != "") {
@@ -36,7 +33,6 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
         res.redirect("/erro");
         return;
     }
-    console.log(queryBanco)
 
     con.query(queryBanco, (err, values) => {
         if (err) {
@@ -59,7 +55,6 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
 
 router.get('/finalizar', checkCargo("A"), (req, res) => {
     let id = req.query.id_action;
-    console.log(id)
     con.query("update actions ac set ac.status = 'F' WHERE ac.id_action = ?", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
@@ -90,7 +85,6 @@ router.get('/finalizar', checkCargo("A"), (req, res) => {
 
 router.get('/cancelar', checkCargo("A"), (req, res) => {
     let id = req.query.id_action;
-    console.log(id)
     con.query("update actions ac set ac.status = 'C' WHERE ac.id_action = ?", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
@@ -156,14 +150,11 @@ router.get('/emprestimo', checkCargo("A"), (req, res) => {
     let id = req.query.id_action;
     let dataHoje = new Date()
     dataHoje.getTime(dataHoje.getDate() - 1)
-    console.log(dataHoje)
     let dataCortada = dataHoje.toISOString().split("T")
-    console.log(dataCortada)
     let dataCerta = dataCortada[0]
 
     const currentDate = new Date();
     const currentDateString = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-    console.log("currentDateString " + currentDateString)
 
     con.query(`select ac.id_action,cu.names,bo.title,bo.code from actions ac 
     inner join book bo on (ac.id_book = bo.id_book) 
@@ -192,7 +183,6 @@ router.post('/emprestimo', checkCargo("A"), (req, res) => {
     const date_init = body.date_init
     const date_end = body.date_end
     const id = body.id_action
-    console.log(date_init)
 
     const dateInit = new Date(date_init);
     const dateEnd = new Date(date_end);
