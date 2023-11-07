@@ -5,6 +5,7 @@ const path = require('path');
 const con = require('../../Banco/MySQL/conexaoMysql');
 const cargo = require("../Cargo/cargo");
 const checkCargo = require('../Cargo/cargo');
+const crypto = require('crypto');
 
 router.use(bodyParser.urlencoded({
   extended: true
@@ -48,28 +49,28 @@ router.post('/cadastrar', (req, res) => {
     }
 
     if (results.length > 0) {
-      res.status(400).send('Email already exists');
+      res.status(400).send('Email Existente na base de dados');
       return;
     }
+    let senhaCripty = encryptData(reqBody.passwords,encryptionKey )
 
-    con.query('INSERT INTO customers SET ?', reqBody, (err, results, fields) => {
+    con.query('INSERT INTO customers VALUES (DEFAULT,?,?,?,?,?,?,DEFAULT)', [reqBody.names, reqBody.email, reqBody.age, reqBody.address, reqBody.cellphone,senhaCripty], (err, results, fields) => {
       if (err) {
         console.error('Error inserting user:', err);
         res.status(500).send('Error inserting user');
         return;
       }
-
-      console.log('Id inserted: ' + results.insertId);
+  
       res.redirect("/entrar")
     });
-  });
+  })
 });
-
 
 router.post('/entrar', (req, res) => {
   let reqBody = req.body;
+  let senhadescript = encryptData(reqBody.passwords,encryptionKey)
   const query = 'SELECT * FROM customers WHERE `email` = ? AND `passwords` = ?';
-  con.query(query, [reqBody.email, reqBody.passwords], async (err, results) => {
+  con.query(query, [reqBody.email, senhadescript], async (err, results) => {
     if (err) {
       console.error('Erro ao consultar o banco de dados:', err);
       res.status(500).send('Erro no servidor');
@@ -109,8 +110,13 @@ function conferirADM(req, res, email) {
     });
   });
 }
+const encryptionKey = 'wbuilder-security-total';
 
-
-
+function encryptData(data, key) {
+  const cipher = crypto.createCipher('aes-256-cbc', key);
+  let encryptedData = cipher.update(data, 'utf8', 'hex');
+  encryptedData += cipher.final('hex');
+  return encryptedData;
+}
 
 module.exports = router;

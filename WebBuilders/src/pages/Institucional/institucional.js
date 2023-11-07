@@ -4,15 +4,6 @@ var router = express.Router();
 const bodyParser = require('body-parser');
 const con = require('../../Banco/MySQL/conexaoMysql');
 
-router.get('/about', (req, res) => {
-  req.session, (err) => {
-    console.error('Error page about:', err);
-    res.status(500).send('Error page about');
-    return;
-  }
-  res.render(path.join(__dirname, 'about.ejs'))
-})
-
 router.get('/institucional', (req, res) => {
   req.session, (err) => {
     console.error('Error page index:', err);
@@ -20,6 +11,15 @@ router.get('/institucional', (req, res) => {
     return;
   }
   res.render(path.join(__dirname, 'index.ejs'))
+})
+
+router.get('/about', (req, res) => {
+  req.session, (err) => {
+    console.error('Error page about:', err);
+    res.status(500).send('Error page about');
+    return;
+  }
+  res.render(path.join(__dirname, 'about.ejs'))
 })
 
 router.get('/mural', (req, res) => {
