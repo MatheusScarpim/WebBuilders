@@ -13,7 +13,6 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 router.get('/cadbook', checkCargo("A"), (req, res) => {
-  console.log(req.session.adm)
   res.render(path.join(__dirname + "/CadastroUsuarios", 'index2.0.ejs'), { names: req.session.names});
 });
 
@@ -57,8 +56,6 @@ router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
       res.status(500).send('Error inserting book');
       return;
     }
-
-    console.log('Id inserted: ' + results.insertId);
 
     res.status(200).redirect('/livros');
   });

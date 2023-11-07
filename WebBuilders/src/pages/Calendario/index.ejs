@@ -65,6 +65,11 @@
                             <i class="fi fi-rr-settings"></i>
                         </a>
                     </div>
+<div class="nav-icon">
+                        <a href="/download"> 
+                            <i class="fi fi-rr-interrogation"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="desktop">
@@ -85,6 +90,7 @@
                         <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="/livros">Livros</a></li>
+<li><a href="/download">Ajuda</a></li>
                             <li><a href="#">Ajuda</a></li>
                             <li><a href="#">Configuração</a></li>
                         </ul>
@@ -155,9 +161,6 @@
 
     <script>
         var datasMarcadas = JSON.parse('<%- datasMarcadas %>');
-        console.log('Datas recebidas no cliente:', datasMarcadas);
-        if(datasMarcadas.length == 0)
-        console.log("Sem Dados")
 
     </script>
 

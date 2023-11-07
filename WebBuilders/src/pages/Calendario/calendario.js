@@ -26,13 +26,11 @@ function carregarDatas(idCustomer) {
             } else {
                 const datas = [];
                 for (const row of results) {
-                    console.log(row.date_end.getMonth() + 1)
 
                     let mesinit = row.date_init.getMonth() + 1
                     let mesend =  row.date_end.getMonth() + 1
                     let mesalert = row.date_alert.getMonth() + 1
                     let mesless= row.date_late.getMonth() + 1
-                    console.log(mesinit)
                     datas.push({
                         init: {
                             ano: row.date_init.getFullYear(),

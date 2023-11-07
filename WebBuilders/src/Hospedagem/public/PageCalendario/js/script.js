@@ -35,7 +35,7 @@ function criarCalendario(ano, mes) {
     const cells = calendario.querySelectorAll('td.dia');
     for (const cell of cells) {
         const dia = parseInt(cell.getAttribute('data-dia'));
-        if (dataDeveSerMarcada(parseInt(ano), parseInt(mes), parseInt(dia))) {
+        if (dataDeveSerMarcada(parseInt(ano), parseInt(mes), parseInt(dia)-1)) {
             cell.classList.add('marcada');
         }
     }
@@ -54,8 +54,8 @@ function criarCalendario(ano, mes) {
         const dataEndElement = document.getElementById("dataEnd");
 
         const primeiraDataDoMes = datasDoMesAtual[0];
-        dataInitElement.textContent = `${datasMarcadas[0].init.ano}/${datasMarcadas[0].init.mes}/${datasMarcadas[0].init.dia}`;
-        dataEndElement.textContent = `${datasMarcadas[0].end.ano}/${datasMarcadas[0].end.mes}/${datasMarcadas[0].end.dia}`;
+        dataInitElement.textContent = `${parseInt(datasMarcadas[0].init.dia)+1}/${datasMarcadas[0].init.mes}/${datasMarcadas[0].init.ano}`;
+        dataEndElement.textContent = `${datasMarcadas[0].end.dia}/${datasMarcadas[0].end.mes}/${datasMarcadas[0].end.ano}`;
     } else {
         const dataInitElement = document.getElementById("dataInit");
         const dataEndElement = document.getElementById("dataEnd");
@@ -79,71 +79,6 @@ function dataDeveSerMarcada(ano, mes, dia) {
         }
     }
 }
-/*
-function comparaDateInit(init, ano, mes, dia) {
-    if (ano === init.ano && mes === init.mes) {
-        if (
-            (dia >= init.dia && dia <= init.end.dia) ||
-            dia === init.alert.dia ||
-            dia === init.late.dia
-        ) {
-            console.log("true (init)");
-            return true;
-        }
-        console.log("false (init)");
-    }
-    return false;
-}
-
-function comparaDateAlert(alert, ano, mes, dia) {
-    if (ano === alert.ano && mes === alert.mes) {
-        if (dia === alert.dia) {
-            console.log("true (alert)");
-            return true;
-        }
-        console.log("false (alert)");
-    }
-    return false;
-}
-
-function comparaDateEnd(end, ano, mes, dia) {
-    if (ano === end.ano && mes === end.mes) {
-        if (dia === end.dia) {
-            console.log("true (end)");
-            return true;
-        }
-        console.log("false (end)");
-    }
-    return false;
-}
-
-function comparaDateLate(late, ano, mes, dia) {
-    if (ano === late.ano && mes === late.mes) {
-        if (dia === late.dia) {
-            console.log("true (late)");
-            return true;
-        }
-        console.log("false (late)");
-    }
-    return false;
-}
-
-function dataDeveSerMarcada(ano, mes, dia) {
-    for (const dataMarcada of datasMarcadas) {
-        if (
-            comparaDateInit(dataMarcada.init, ano, mes, dia) ||
-            comparaDateAlert(dataMarcada.alert, ano, mes, dia) ||
-            comparaDateEnd(dataMarcada.end, ano, mes, dia) ||
-            comparaDateLate(dataMarcada.late, ano, mes, dia)
-        ) {
-            return true;
-        }
-    }
-
-    return false;
-}
-*/
-
 const calendario = document.getElementById('calendar');
 
 
