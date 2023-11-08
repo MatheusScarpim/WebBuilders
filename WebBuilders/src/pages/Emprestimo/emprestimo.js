@@ -24,10 +24,7 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
 
     const emailbody = req.body.email;
     const namesbody = req.body.names;
-    console.log(emailbody)
-    console.log(namesbody)
 
-    console.log(emailbody)
     if (emailbody != undefined && emailbody != "") {
         queryBanco = `${queryBanco} email = '${emailbody}'`;
     } else if (namesbody != undefined && namesbody != "") {
@@ -36,7 +33,6 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
         res.redirect("/erro");
         return;
     }
-    console.log(queryBanco)
 
     con.query(queryBanco, (err, values) => {
         if (err) {
@@ -59,7 +55,6 @@ router.post('/buscar', checkCargo("A"), (req, res) => {
 
 router.get('/finalizar', checkCargo("A"), (req, res) => {
     let id = req.query.id_action;
-    console.log(id)
     con.query("update actions ac set ac.status = 'F' WHERE ac.id_action = ?", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
@@ -90,18 +85,18 @@ router.get('/finalizar', checkCargo("A"), (req, res) => {
 
 router.get('/cancelar', checkCargo("A"), (req, res) => {
     let id = req.query.id_action;
-    console.log(id)
+
     con.query("update actions ac set ac.status = 'C' WHERE ac.id_action = ?", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
-            res.status(500).send('Error inserting book');
+            res.status(404).redirect("/erro");
             return;
         }
     });
     con.query("insert into historic values(?,DEFAULT,'C')", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado no historico', err);
-            res.status(500).send('Error inserting book');
+            res.status(404).redirect("/erro");
             return;
         }
         res.status(200).redirect('/buscar');
@@ -114,7 +109,7 @@ router.get('/cancelar', checkCargo("A"), (req, res) => {
     `, id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
-            res.status(500).send('Error inserting book');
+            res.status(404).redirect("/erro");
             return;
         }
     });

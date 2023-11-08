@@ -16,6 +16,9 @@ router.get('/', (req, res) => {
 router.get('/escolher', (req, res) => {
     res.render(path.join(__dirname + "/Escolher", 'index.ejs'), { names: req.session.names });
 });
+router.get('/escolherBusca', (req, res) => {
+    res.render(path.join(__dirname + "/EscolherBusca", 'index.ejs'), { names: req.session.names });
+});
 
 
 module.exports = router;
