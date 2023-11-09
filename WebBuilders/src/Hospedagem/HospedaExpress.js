@@ -17,7 +17,6 @@ const calendario = require('../pages/Calendario/calendario')
 const institucional = require('../pages/Institucional/institucional')
 const ajuda = require('../pages/Ajuda/ajuda.js')
 
-
 const path = require('path');
 
 app.engine('html', ejs.renderFile);

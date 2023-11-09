@@ -88,14 +88,14 @@ router.get('/cancelar', checkCargo("A"), (req, res) => {
     con.query("update actions ac set ac.status = 'C' WHERE ac.id_action = ?", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
-            res.status(500).send('Error inserting book');
+            res.status(404).redirect("/erro");
             return;
         }
     });
     con.query("insert into historic values(?,DEFAULT,'C')", id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado no historico', err);
-            res.status(500).send('Error inserting book');
+            res.status(404).redirect("/erro");
             return;
         }
         res.status(200).redirect('/buscar');
@@ -108,7 +108,7 @@ router.get('/cancelar', checkCargo("A"), (req, res) => {
     `, id, (err, results, fields) => {
         if (err) {
             console.error('Finalizado', err);
-            res.status(500).send('Error inserting book');
+            res.status(404).redirect("/erro");
             return;
         }
     });
