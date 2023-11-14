@@ -75,8 +75,6 @@ router.post('/cadbook', checkCargo("A"), upload.single('image'), (req, res) => {
       return;
     }
 
-    console.log('Id inserted: ' + results.insertId);
-
     res.status(200).redirect('/livros');
   });
 });
