@@ -21,4 +21,5 @@ router.get('/escolherBusca', (req, res) => {
 });
 
 
+
 module.exports = router;

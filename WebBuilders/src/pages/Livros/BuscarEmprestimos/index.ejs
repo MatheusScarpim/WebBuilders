@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/PageBuscarEmprestimos/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/PageBuscarEmprestimos/css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="/PageBuscarEmprestimos/css/colors.css" type="text/css">
+    <title>Buscar Empréstimos</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">          
+            <nav class="nav-bar">
+                <div class="nav-bar-lg">
+                    <a href="#">
+                        <img class="logo" src="/Logo/Logo.png" alt="logo-marca">
+                    </a>
+                </div>
+                <div class="nav-bar-perfil">
+                    <div class="perfil-user">
+                        <p>Olá,&nbsp;<span><%= names %></span></p>
+                        <img src="#" alt="">
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="tool-bar">
+                    <div class="tb-space"></div>
+                    <div class="nav-icon">
+                        <a href="/">
+                            <i class="fi fi-sr-home"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/livros">
+                            <i class="fi fi-rr-book-alt"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/historico">
+                            <i class="fi fi-rr-refresh"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                       <div class="nav-icon">
+                        <a href="/calendario">
+                            <i class=
+                            "fi fi-rr-calendar"
+                            ></i>
+                        </a>
+                    </div>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/alterarUsuario">
+                            <i class="fi fi-rr-settings"></i>
+                        </a>
+                    </div>
+                    <div class="nav-icon">
+                        <a href="/download"> 
+                            <i class="fi fi-rr-interrogation"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="desktop">
+                    <div class="blur-background"></div>
+                    <div class="nav-bar-desktop">
+                        <div class="nav-bar-mobile">
+                            <div class="hamburguer">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                        <div class="nav-bar-desktop-texto">
+                            <p><span>Home</span></p>
+                            <h5>/</h5>
+                            <h5><span>Iniciar</span></h5>
+                        </div>
+                    </div>
+                    <div class="mobile-menu">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Livros</a></li>
+                            <li><a href="#">Ajuda</a></li>
+                            <li><a href="#">Configuração</a></li>
+                        </ul>
+                    </div>
+                    <div class="content-desktop">
+                        <section id="topo"></section>
+                        <div class="atalhos-desktop">
+                           
+                            <div class="atalhos-desktop-title">
+                                <h1>Usuários com Empréstimos</h1>
+                            </div>
+                            <% usuarios.forEach(function(user) { %>
+  
+                            <div id="modal-contato" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <h2>Contato</h2>
+                                    <form><br>
+                                        <label for="residencia"><p style="font-weight: bold;">Residência:</p> <%= user.address %></label>
+                                        <input type="text" id="residencia" name="residencia"><br><br>
+                                        <label for="email"><p style="font-weight: bold;">Email:</p>  <%= user.email %></label>
+                                        <input type="text" id="email" name="email"><br><br>
+                                        <label for="telefone"><p style="font-weight: bold;">Telefone:</p> <%= user.cellphone %></label>
+                                        <input type="text" id="telefone" name="telefone">
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="widget-usuario">
+                                <div class="wu-nome">
+                                    <p>Nome:               </p>
+                                    <h4 style="color:#f3e0e0;"><%= user.names %></h4>                             
+                                </div> &nbsp;&nbsp;
+                                <div class="wu-data">
+                                    <p>Data da devolução:</p>
+                                    <h4 style="color:#f3e0e0;"><%= new Intl.DateTimeFormat('pt-BR').format(user.date_end) %></h4>
+                                </div> &nbsp;&nbsp;
+                                <div class="btn-contato">
+                                    <a href="#" id="btn-contato">Contato</a>
+                                </div> 
+                                <div class="btn-cobrar">
+                                    <a href="#"><button>Cobrar</button></a>
+                                </div>
+
+                                <div class="contato-icon">
+                                    <a href="#" class="open-contact-modal"><i class="fi fi-rs-user"></i></a>
+                                </div>
+                                <div class="cobrar-icon">
+                                    <a href="#"><i class="fi fi-rs-flag-alt"></i></i></a>
+                                </div>
+                            </div> <!-- widget-usuario -->
+                            <% }); %>
+                            
+                            
+                            <div class="espaco-desktop"></div>
+                        </div> <!-- atalhos-desktop -->
+                    </div>
+                    <div class="rodape-desktop">
+                        <div class="rodape-desktop-texto">
+                            <p>WBuilders</p>
+                            <h5>| Versão 1.0.0.2</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="/PageBuscarEmprestimos/script.js"></script>
+        </div> <!-- container -->
+    </main>
+</body>
+
+</html>

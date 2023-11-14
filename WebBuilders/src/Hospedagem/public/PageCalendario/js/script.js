@@ -35,7 +35,7 @@ function criarCalendario(ano, mes) {
     const cells = calendario.querySelectorAll('td.dia');
     for (const cell of cells) {
         const dia = parseInt(cell.getAttribute('data-dia'));
-        if (dataDeveSerMarcada(parseInt(ano), parseInt(mes), parseInt(dia)-1)) {
+        if (dataDeveSerMarcada(parseInt(ano), parseInt(mes), parseInt(dia))) {
             cell.classList.add('marcada');
         }
     }

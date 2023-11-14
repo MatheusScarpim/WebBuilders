@@ -272,5 +272,47 @@ router.post('/reservar/:id_book', async (req, res) => {
   }
 });
 
+router.post('/buscarEmprestimos', checkCargo("A"), upload.single('image'), (req, res) => {
+  const reqBody = req.body;
+  const imagePath = req.file.path;
+  const imageBuffer = fs.readFileSync(imagePath);
+
+  reqBody.foto = imageBuffer;
+
+  con.query('INSERT INTO book SET ?', reqBody, (err, results, fields) => {
+    if (err) {
+      console.error('Error inserting book:', err);
+      res.status(500).send('Error inserting book');
+      return;
+    }
+
+    console.log('Id inserted: ' + results.insertId);
+
+    res.status(200).redirect('/livros');
+  });
+});
+
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+router.get('/buscarEmprestimos', checkCargo("A"), (req, res) => {
+  let cargo = req.session.adm == 'M' || req.session.adm == "A"
+  con.query('SELECT c.names, c.address, c.cellphone, c.email, a.date_end  FROM actions a INNER JOIN customers c on c.id_customer = a.id_customer WHERE  a.status = "R" ORDER BY a.date_end ASC ',  (err, usuarios) => {
+    if (err) {
+      console.error('Error fetching books:', err);
+      res.status(500).send('Error fetching books');
+      return;
+    }
+
+    res.render(path.join(__dirname + "/BuscarEmprestimos", 'index.ejs'), {
+      names: req.session.names,
+      cargo,
+      usuarios
+    });
+  });
+});
+
+
 
 module.exports = router;
