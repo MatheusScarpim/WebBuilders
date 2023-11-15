@@ -14,59 +14,33 @@ document.addEventListener("DOMContentLoaded", function () {
             blurBackground.style.display = "none";
         }
     });
-});
 
-// window.addEventListener("scroll", function() {
-//     var scrollArrow = document.getElementById("scrollArrow");
-  
-//     if (window.scrollY >= 10) {
-//       scrollArrow.classList.add("visible");
-//     } else {
-//       scrollArrow.classList.remove("visible");
-//     }
-// });
+    const openModalButtons = document.querySelectorAll(".open-contact-modal");
 
-document.addEventListener("DOMContentLoaded", function() {
-    const zoomableImages = document.querySelectorAll(".zoomable");
-    const overlays = document.querySelectorAll(".overlay");
-    const zoomFrames = document.querySelectorAll(".zoom-frame");
-
-    zoomableImages.forEach((image, index) => {
-        image.addEventListener("click", function() {
-            overlays[index].style.display = "block";
-            zoomFrames[index].classList.add("active");
-        });
-
-        overlays[index].addEventListener("click", function() {
-            overlays[index].style.display = "none";
-            zoomFrames[index].classList.remove("active");
+    openModalButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const modalIndex = button.closest(".btn-contato").dataset.modalIndex;
+            const modal = document.getElementById(`modal-contato-${modalIndex}`);
+            modal.style.display = "block";
         });
     });
-});
 
-// JavaScript para abrir e fechar o modal
-var modal = document.getElementById("modal-contato");
-var btnContato = document.getElementById("btn-contato");
-var span = document.getElementsByClassName("close")[0];
-var openModalButtons = document.getElementsByClassName("open-contact-modal");
+    const closeButtons = document.querySelectorAll("[class^='close']");
+    const modais = document.querySelectorAll("[id^='modal-contato-']");
 
-// Função para abrir o modal
-function openContactModal() {
-    modal.style.display = "block";
-}
+    closeButtons.forEach((span) => {
+        span.addEventListener("click", function () {
+            const modalIndex = span.closest(".modal").id.split("-")[2];
+            const modal = document.getElementById(`modal-contato-${modalIndex}`);
+            modal.style.display = "none";
+        });
+    });
 
-btnContato.addEventListener("click", openContactModal);
-
-for (var i = 0; i < openModalButtons.length; i++) {
-    openModalButtons[i].addEventListener("click", openContactModal);
-}
-
-span.addEventListener("click", function () {
-    modal.style.display = "none";
-});
-
-window.addEventListener("click", function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+    window.addEventListener("click", function (event) {
+        modais.forEach((modal) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
 });

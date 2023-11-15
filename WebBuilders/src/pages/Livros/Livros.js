@@ -296,7 +296,7 @@ router.use(bodyParser.urlencoded({
 
 router.get('/buscarEmprestimos', checkCargo("A"), (req, res) => {
   let cargo = req.session.adm == 'M' || req.session.adm == "A"
-  con.query('SELECT c.names, c.address, c.cellphone, c.email, a.date_end  FROM actions a INNER JOIN customers c on c.id_customer = a.id_customer WHERE  a.status = "R" ORDER BY a.date_end ASC ',  (err, usuarios) => {
+  con.query('SELECT c.names, c.address, c.cellphone, c.email, a.date_end  FROM actions a INNER JOIN customers c on c.id_customer = a.id_customer WHERE  a.status = "E" ORDER BY a.date_end ASC ',  (err, usuarios) => {
     if (err) {
       console.error('Error fetching books:', err);
       res.status(500).send('Error fetching books');

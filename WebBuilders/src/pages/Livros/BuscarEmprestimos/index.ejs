@@ -29,7 +29,7 @@
                 </div>
                 <div class="nav-bar-perfil">
                     <div class="perfil-user">
-                        <p>Olá,&nbsp;<span><%= names %></span></p>
+                        <a href="/logout"><p>Olá,&nbsp;<span><%= names %></span></p></a>
                         <img src="#" alt="">
                     </div>
                 </div>
@@ -103,47 +103,46 @@
                             <div class="atalhos-desktop-title">
                                 <h1>Usuários com Empréstimos</h1>
                             </div>
-                            <% usuarios.forEach(function(user) { %>
-  
-                            <div id="modal-contato" class="modal">
-                                <div class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <h2>Contato</h2>
-                                    <form><br>
-                                        <label for="residencia"><p style="font-weight: bold;">Residência:</p> <%= user.address %></label>
-                                        <input type="text" id="residencia" name="residencia"><br><br>
-                                        <label for="email"><p style="font-weight: bold;">Email:</p>  <%= user.email %></label>
-                                        <input type="text" id="email" name="email"><br><br>
-                                        <label for="telefone"><p style="font-weight: bold;">Telefone:</p> <%= user.cellphone %></label>
-                                        <input type="text" id="telefone" name="telefone">
-                                    </form>
-                                </div>
-                            </div>
-                            
-                            <div class="widget-usuario">
-                                <div class="wu-nome">
-                                    <p>Nome:               </p>
-                                    <h4 style="color:#f3e0e0;"><%= user.names %></h4>                             
-                                </div> &nbsp;&nbsp;
-                                <div class="wu-data">
-                                    <p>Data da devolução:</p>
-                                    <h4 style="color:#f3e0e0;"><%= new Intl.DateTimeFormat('pt-BR').format(user.date_end) %></h4>
-                                </div> &nbsp;&nbsp;
-                                <div class="btn-contato">
-                                    <a href="#" id="btn-contato">Contato</a>
+                            <% usuarios.forEach(function(user, index) { %>                          
+                                <div class="widget-usuario">
+                                    <div class="wu-nome">
+                                        <p>Nome:</p>
+                                        <h4 style="color:#f3e0e0;"><%= user.names %></h4>                             
+                                    </div>
+                                    <div class="wu-data">
+                                        <p>Data da devolução:</p>
+                                        <h4 style="color:#f3e0e0;"><%= new Intl.DateTimeFormat('pt-BR').format(user.date_end) %></h4>
+                                    </div>
+                                    <div class="btn-contato" data-modal-index="<%= index %>">
+                                        <a href="#" class="open-contact-modal">Contato</a>
+                                    </div> 
+                                    <div class="btn-cobrar">
+                                        <a href="#"><button>Cobrar</button></a>
+                                    </div>
+                                    <div class="contato-icon">
+                                        <a href="#" class="open-contact-modal"><i class="fi fi-rs-user"></i></a>
+                                    </div>
+                                    <div class="cobrar-icon">
+                                        <a href="#"><i class="fi fi-rs-flag-alt"></i></i></a>
+                                    </div>
                                 </div> 
-                                <div class="btn-cobrar">
-                                    <a href="#"><button>Cobrar</button></a>
+                            
+                                <div class="modal" id="modal-contato-<%= index %>">
+                                    <div class="modal-content">
+                                        <span class="close">&times;</span>
+                                        <h2>Contato</h2>
+                                        <form><br>
+                                            <label for="residencia"><p style="font-weight: bold;">Residência:</p> <%= user.address %></label>
+                                            <input type="text" id="residencia" name="residencia"><br><br>
+                                            <label for="email"><p style="font-weight: bold;">Email:</p>  <%= user.email %></label>
+                                            <input type="text" id="email" name="email"><br><br>
+                                            <label for="telefone"><p style="font-weight: bold;">Telefone:</p> <%= user.cellphone %></label>
+                                            <input type="text" id="telefone" name="telefone">
+                                        </form>
+                                    </div>
                                 </div>
-
-                                <div class="contato-icon">
-                                    <a href="#" class="open-contact-modal"><i class="fi fi-rs-user"></i></a>
-                                </div>
-                                <div class="cobrar-icon">
-                                    <a href="#"><i class="fi fi-rs-flag-alt"></i></i></a>
-                                </div>
-                            </div> <!-- widget-usuario -->
                             <% }); %>
+                            
                             
                             
                             <div class="espaco-desktop"></div>
