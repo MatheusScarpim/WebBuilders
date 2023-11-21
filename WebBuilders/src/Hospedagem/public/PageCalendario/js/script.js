@@ -54,7 +54,7 @@ function criarCalendario(ano, mes) {
         const dataEndElement = document.getElementById("dataEnd");
 
         const primeiraDataDoMes = datasDoMesAtual[0];
-        dataInitElement.textContent = `${parseInt(datasMarcadas[0].init.dia)+1}/${datasMarcadas[0].init.mes}/${datasMarcadas[0].init.ano}`;
+        dataInitElement.textContent = `${parseInt(datasMarcadas[0].init.dia)}/${datasMarcadas[0].init.mes}/${datasMarcadas[0].init.ano}`;
         dataEndElement.textContent = `${datasMarcadas[0].end.dia}/${datasMarcadas[0].end.mes}/${datasMarcadas[0].end.ano}`;
     } else {
         const dataInitElement = document.getElementById("dataInit");
