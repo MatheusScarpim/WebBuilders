@@ -16,6 +16,7 @@ const erro = require('../pages/Erros/erros')
 const calendario = require('../pages/Calendario/calendario')
 const institucional = require('../pages/Institucional/institucional')
 const ajuda = require('../pages/Ajuda/ajuda.js')
+const disparaMensagem = require('../pages/NotificarWhatsapp/index.js')
 
 const path = require('path');
 
@@ -57,7 +58,7 @@ app.get('/logout', (req, res) => {
     }
   });
 });
-
+app.use("/",disparaMensagem);
 app.use("/ong", institucional);
 app.use("/", isAuthenticated);
 app.use("/", principal);
@@ -99,3 +100,4 @@ module.exports.historico = historico;
 module.exports.erro = erro;
 module.exports.calendario = calendario;
 module.exports.institucional = institucional;
+module.exports.disparaMensagem = disparaMensagem;

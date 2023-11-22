@@ -103,7 +103,7 @@
                             <div class="atalhos-desktop-title">
                                 <h1>Usuários com Empréstimos</h1>
                             </div>
-                            <% usuarios.forEach(function(user, index) { %>                          
+                            <% usuarios.forEach(function(user, index, numero) { %>                          
                                 <div class="widget-usuario">
                                     <div class="wu-nome">
                                         <p>Nome:</p>
@@ -117,7 +117,7 @@
                                         <a href="#" class="open-contact-modal">Contato</a>
                                     </div> 
                                     <div class="btn-cobrar">
-                                        <a href="#"><button>Cobrar</button></a>
+                                        <a href="/dispara?numero=55<%= user.cellphone %>"><button>Cobrar</button></a>
                                     </div>
                                     <div class="contato-icon">
                                         <a href="#" class="open-contact-modal"><i class="fi fi-rs-user"></i></a>

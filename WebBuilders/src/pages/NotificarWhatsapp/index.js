@@ -1,100 +1,62 @@
-/*
-const http = require('http');
 
-const credentials = {
-  username: "adm",
-  senha: "adm",
-};
+const express = require('express');
+var router = express.Router();
+const bodyParser = require('body-parser');
+const path = require('path');
+const fetch = require('node-fetch');
 
-// Função para gerar o token
-function gerarToken(callback) {
-  const url = 'http://4fc4-138-186-2-162.ngrok-free.app/token';
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'username': credentials.username,
-      'senha': credentials.senha,
-    },
-  };
 
-  const req = http.request(url, options, (res) => {
-    let data = '';
+router.get('/dispara', (req, res) => {
+  let params = req.query.numero
+  console.log(params)
 
-    res.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    res.on('end', () => {
-      try {
-        const response = JSON.parse(data);
-        const token = response.Token;
-        callback(null, token);
-      } catch (error) {
-        callback(error, null);
-      }
-    });
-  });
-
-  req.on('error', (error) => {
-    callback(error, null);
-  });
-
-  req.end();
-}
-
-// Função para enviar a mensagem
-function enviarMensagem(telefone, mensagem, token) {
-  const url = 'http://4fc4-138-186-2-162.ngrok-free.app/sendText';
-
-  const data = JSON.stringify({
-    message: mensagem,
-  });
-
-  const options = {
-    method: 'POST',
-    headers: {
-      'Token': token,
-      'telnumber': telefone,
-      'Content-Type': 'application/json',
-      'Content-Length': data.length,
-    },
-  };
-
-  const req = http.request(url, options, (res) => {
-    let responseData = '';
-
-    res.on('data', (chunk) => {
-      responseData += chunk;
-    });
-
-    res.on('end', () => {
-      try {
-        const response = JSON.parse(responseData);
-        console.log('Resposta da API:', response);
-      } catch (error) {
-        console.error('Erro ao analisar a resposta:', error);
-      }
-    });
-  });
-
-  req.on('error', (error) => {
-    console.error('Erro ao enviar a mensagem:', error);
-  });
-
-  req.write(data);
-  req.end();
-}
-
-// Exemplo de uso
-const telefone = "123456789"; // Substitua pelo número de telefone desejado
-const mensagem = "Olá, esta é uma mensagem de teste."; // Substitua pela mensagem desejada
-
-gerarToken((error, token) => {
-  if (error) {
-    console.error('Erro ao obter o token:', error);
-  } else {
-    enviarMensagem(telefone, mensagem, token);
+// 1. Fazer uma requisição GET para obter o token.
+fetch(`${process.env.URL_BOT_WHATSAPP}/token`,{
+  method: 'GET',
+  headers : {
+    username: "adm",
+    senha : "adm"
   }
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    // 2. Extrair o token da resposta.
+    const token = data.Token;
+    for(let i =0; i < 500; i++){
+      fetch(`${process.env.URL_BOT_WHATSAPP}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': `${token}`,
+          //'message': `Por favor devolva o livro`,
+          'message': `FAZ O HELP COR SIM CORNÃO`,
+          //'telnumber': `${params}`,
+          'telnumber': `${5514988198507}`,
+          "protocolo": `false`
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          res.redirect("/BuscarEmprestimos");
+        })
+        .catch(error => {
+          console.error(error);
+          res.redirect("/erro");
+        });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    res.redirect("/erro");
+  });
+
 });
-*/
+
+
+module.exports = router;
